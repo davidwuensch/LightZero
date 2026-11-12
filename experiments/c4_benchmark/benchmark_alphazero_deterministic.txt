@@ -1,0 +1,20 @@
+pygame-ce 2.5.8 (SDL 2.32.10, Python 3.12.15)
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/venv/main/lib/python3.12/site-packages/werkzeug/routing.py:1010: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+  parts = parts or [ast.Str("")]
+/venv/main/lib/python3.12/ast.py:587: DeprecationWarning: Attribute s is deprecated and will be removed in Python 3.14; use value instead
+  return Constant(*args, **kwargs)
+/venv/main/lib/python3.12/site-packages/werkzeug/routing.py:1015: DeprecationWarning: Attribute s is deprecated and will be removed in Python 3.14; use value instead
+  ret[-1] = ast.Str(ret[-1].s + p.s)
+Agent: experiments/c4_az_fixed/runs/alphazero_bot_seed0/ckpt/final.pth.tar  [alphazero (bot mode) on cuda]  (50 sims/move, 2 random opening plies)
+
+opponent                  W    D    L    score         95% CI   Elo Δ   as 1st   as 2nd    time
+-----------------------------------------------------------------------------------------------
+random                   37    0    3    92.5%  [ 80%,  97%]    +436      95%      90%     11s
+rule                      7    0   33    17.5%  [  9%,  32%]    -269      30%       5%     20s
+mcts                      1    0   39     2.5%  [  0%,  13%]    -636       5%       0%    250s
+ckpt:…t/final.pth.tar    31    0    9    77.5%  [ 62%,  88%]    +215      95%      60%     14s
+
+score = (wins + ½·draws) / games.  Elo Δ = agent strength relative to that opponent.

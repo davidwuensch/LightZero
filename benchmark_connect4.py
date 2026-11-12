@@ -1,21 +1,22 @@
-"""Benchmark a trained Connect Four AlphaZero agent against baseline opponents.
+"""Benchmark a trained Connect Four AlphaZero or MuZero agent against baseline opponents.
 
 The agent plays N games against each opponent, half as first player and half as second.
 The first few plies are random (--random-plies) so a deterministic agent doesn't replay
 the same game over and over.
 
 Usage (from this directory):
-    source .venv/bin/activate
+    source /venv/main/bin/activate
     python benchmark_connect4.py                                   # latest ckpt vs random, rule, mcts
     python benchmark_connect4.py --games 100 --opponents rule
     python benchmark_connect4.py --opponents mcts --mcts-sims 1000 # stronger pure-MCTS baseline
-    python benchmark_connect4.py --opponents ckpt:data_az/connect4_alphazero/ckpt/iteration_250.pth.tar
+    python benchmark_connect4.py --slip-prob 0.2                   # on stochastic Connect Four (default: as trained)
+    python benchmark_connect4.py --opponents ckpt:data_c4/alphazero_bot_seed0/ckpt/final.pth.tar
 
 Opponents:
     random        uniform random legal moves
     rule          LightZero's rule bot (win / block / avoid traps / build sequences)
     mcts          pure MCTS with random rollouts, no neural network (--mcts-sims)
-    ckpt:<path>   another AlphaZero checkpoint (e.g. an earlier one), to measure progress
+    ckpt:<path>   another AlphaZero/MuZero checkpoint (e.g. an earlier one), to measure progress
 """
 import argparse
 import contextlib
@@ -28,36 +29,12 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import numpy as np
-import torch
-from ding.config import compile_config
-from ding.policy import create_policy
 from easydict import EasyDict
 
-from zoo.board_games.connect4.config.connect4_alphazero_sp_mode_config import main_config, create_config
+from connect4_agent import latest_checkpoint, load_agent
 from zoo.board_games.connect4.envs.connect4_env import Connect4Env
 from zoo.board_games.connect4.envs.rule_bot import Connect4RuleBot
 from zoo.board_games.mcts_bot import MCTSBot
-from play_connect4 import latest_checkpoint
-
-
-def load_agent(ckpt: str, sims: int):
-    """Return (policy_eval_mode, env_cfg) for a checkpoint."""
-    cfg = copy.deepcopy(main_config)
-    cfg.policy.cuda = False
-    cfg.policy.device = "cpu"
-    cfg.policy.mcts_ctree = True
-    cfg.env.alphazero_mcts_ctree = True
-    cfg.env.battle_mode = "self_play_mode"
-    cfg.policy.mcts.num_simulations = sims
-    cfg.policy.collector_env_num = cfg.policy.evaluator_env_num = 1
-    cfg.env.collector_env_num = cfg.env.evaluator_env_num = 1
-    cfg.exp_name = "data_az/benchmark"
-    cfg = compile_config(cfg, seed=0, env=None, auto=True, create_cfg=copy.deepcopy(create_config), save_cfg=False)
-    cfg.policy.full_cfg = cfg
-    cfg.policy.create_cfg = create_config
-    policy = create_policy(cfg.policy, enable_field=["learn", "eval"])
-    policy.learn_mode.load_state_dict(torch.load(ckpt, map_location="cpu"))
-    return policy.eval_mode, cfg.env
 
 
 def make_player(spec: str, env_cfg, args):
@@ -82,8 +59,8 @@ def make_player(spec: str, env_cfg, args):
                 return int(action)
         return mcts
     if spec.startswith("ckpt:"):
-        other, _ = load_agent(spec[5:], args.sims)
-        return lambda env, obs, ply: int(other.forward({0: obs})[0]["action"])
+        other = load_agent(spec[5:], args.sims, args.device, slip_prob=env_cfg.slip_prob, slip_to=env_cfg.slip_to)
+        return lambda env, obs, ply: other.act(env, obs)
     raise SystemExit(f"Unknown opponent '{spec}'")
 
 
@@ -133,15 +110,23 @@ def main():
     p.add_argument("--mcts-sims", type=int, default=200, help="simulations for the pure-MCTS opponent")
     p.add_argument("--random-plies", type=int, default=2, help="random opening moves for game diversity")
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument("--slip-prob", type=float, default=None,
+                   help="stochastic env: probability a piece slips columns (default: as trained)")
+    p.add_argument("--slip-to", choices=("adjacent", "any"), default=None, help="default: as trained")
+    p.add_argument("--sim-slip-prob", type=float, default=None,
+                   help="AlphaZero simulator slip (default: as trained / = --slip-prob)")
+    p.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto", help="default: GPU if available")
     args = p.parse_args()
 
     np.random.seed(args.seed)
     ckpt = args.ckpt or latest_checkpoint()
-    agent, env_cfg = load_agent(ckpt, args.sims)
-    agent_fn = lambda env, obs, ply: int(agent.forward({0: obs})[0]["action"])
-    env = Connect4Env(env_cfg)
+    agent = load_agent(ckpt, args.sims, args.device,
+                       slip_prob=args.slip_prob, slip_to=args.slip_to, sim_slip_prob=args.sim_slip_prob)
+    env_cfg = agent.env_cfg
+    agent_fn = lambda env, obs, ply: agent.act(env, obs)
+    env = agent.make_env()
 
-    print(f"Agent: {ckpt}  ({args.sims} sims/move, {args.random_plies} random opening plies)\n")
+    print(f"Agent: {ckpt}  [{agent.describe()}]  ({args.sims} sims/move, {args.random_plies} random opening plies)\n")
     header = f"{'opponent':<22}{'W':>5}{'D':>5}{'L':>5}   {'score':>6}  {'95% CI':>13}  {'Elo Δ':>6}  {'as 1st':>7}  {'as 2nd':>7}  {'time':>6}"
     print(header)
     print("-" * len(header))

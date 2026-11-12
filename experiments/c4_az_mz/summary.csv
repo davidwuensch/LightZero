@@ -1,0 +1,4 @@
+algo,mode,run,evals,last_eval_step,games,final_return,best_return,mean_last3,wall_min
+muzero,bot,muzero_bot_seed0,20,19034,2032,0.9,1.0,0.9,32.5
+muzero,bot,muzero_bot_seed1,20,19045,1824,0.7,0.7,0.533,29.8
+muzero,bot,muzero_bot_seed2,20,19028,2392,-0.25,0.0,-0.283,36.7

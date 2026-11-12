@@ -1,0 +1,3 @@
+[2026-11-12 15:52:07][advanced_buffer.py:252][INFO] Refuse to sample due to -- 
+staleness: True, Remove 0 elements due to staleness. Not enough for sampling. valid(59) / sample(256) < sample_min_limit_ratio(1) 
+thruput: False, Always can sample because push_sample_rate_limit['min'] == 0

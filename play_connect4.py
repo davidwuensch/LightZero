@@ -1,38 +1,24 @@
-"""Play Connect Four against your trained AlphaZero agent in the terminal.
+"""Play Connect Four against your trained AlphaZero or MuZero agent in the terminal.
 
 Usage (from this directory):
-    source .venv/bin/activate
-    python play_connect4.py                       # latest checkpoint, you move first
+    source /venv/main/bin/activate
+    python play_connect4.py                       # latest checkpoint (data_c4/ or experiments/), you move first
     python play_connect4.py --second              # the agent moves first
     python play_connect4.py --sims 200            # stronger (slower) agent search
-    python play_connect4.py --ckpt data_az/connect4_alphazero/ckpt/iteration_250.pth.tar
+    python play_connect4.py --ckpt data_c4/muzero_bot_seed0/ckpt/final.pth.tar
+    python play_connect4.py --device cpu          # default: GPU if available
+    python play_connect4.py --slip-prob 0.2       # stochastic: pieces may slip into a neighbouring column
+
+The algorithm (alphazero / muzero) and training mode are read from the run's run_info.json.
 """
 import argparse
-import glob
-import os
-import re
 import warnings
 
 warnings.filterwarnings("ignore")
 
-import torch
-from ding.config import compile_config
-from ding.policy import create_policy
-
-from zoo.board_games.connect4.config.connect4_alphazero_sp_mode_config import main_config, create_config
-from zoo.board_games.connect4.envs.connect4_env import Connect4Env
+from connect4_agent import latest_checkpoint, load_agent
 
 SYMBOLS = {0: "·", 1: "\033[91m●\033[0m", 2: "\033[93m●\033[0m"}  # empty, red, yellow
-
-
-def latest_checkpoint() -> str:
-    ckpts = glob.glob("data_az/*/ckpt/*.pth.tar")
-    if not ckpts:
-        raise SystemExit("No checkpoint found under data_az/. Train first with: python train_connect4.py")
-    best = [c for c in ckpts if c.endswith("ckpt_best.pth.tar")]
-    if best:
-        return max(best, key=os.path.getmtime)
-    return max(ckpts, key=lambda c: int(re.search(r"iteration_(\d+)", c).group(1)) if "iteration_" in c else -1)
 
 
 def show(board) -> None:
@@ -49,35 +35,24 @@ def main() -> None:
     parser.add_argument("--ckpt", type=str, default=None, help="checkpoint path (default: latest)")
     parser.add_argument("--sims", type=int, default=100, help="MCTS simulations per agent move")
     parser.add_argument("--second", action="store_true", help="let the agent move first")
+    parser.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto")
+    parser.add_argument("--slip-prob", type=float, default=None,
+                        help="stochastic env: probability a piece slips columns (default: as trained)")
+    parser.add_argument("--slip-to", choices=("adjacent", "any"), default=None, help="default: as trained")
+    parser.add_argument("--sim-slip-prob", type=float, default=None,
+                        help="AlphaZero simulator slip (default: as trained / = --slip-prob)")
     args = parser.parse_args()
 
-    ckpt = args.ckpt or latest_checkpoint()
-
-    main_config.policy.cuda = False
-    main_config.policy.mcts_ctree = True
-    main_config.env.alphazero_mcts_ctree = True
-    main_config.env.battle_mode = "self_play_mode"   # we drive both sides ourselves
-    main_config.policy.mcts.num_simulations = args.sims
-    main_config.policy.collector_env_num = 1
-    main_config.policy.evaluator_env_num = 1
-    main_config.env.collector_env_num = 1
-    main_config.env.evaluator_env_num = 1
-    main_config.exp_name = "data_az/play"
-    main_config.policy.device = "cpu"
-
-    cfg = compile_config(main_config, seed=0, env=None, auto=True, create_cfg=create_config, save_cfg=False)
-    cfg.policy.full_cfg = cfg
-    cfg.policy.create_cfg = create_config
-    policy = create_policy(cfg.policy, enable_field=["learn", "eval"])
-    policy.learn_mode.load_state_dict(torch.load(ckpt, map_location="cpu"))
-    agent = policy.eval_mode
-
-    env = Connect4Env(cfg.env)
+    agent = load_agent(args.ckpt or latest_checkpoint(), args.sims, args.device,
+                       slip_prob=args.slip_prob, slip_to=args.slip_to, sim_slip_prob=args.sim_slip_prob)
+    env = agent.make_env()
     obs = env.reset()
 
     human_player = 2 if args.second else 1
-    print(f"Loaded {ckpt}")
+    print(f"Loaded {agent.ckpt}  [{agent.describe()}]")
     print(f"You are {SYMBOLS[human_player]}  (player {human_player}). Enter a column 1-7, or q to quit.")
+    if env.slip_prob > 0:
+        print(f"Slippery board: each piece lands in another ({env.slip_to}) column with probability {env.slip_prob:g}.")
 
     done = False
     while not done:
@@ -92,10 +67,12 @@ def main() -> None:
                     break
                 print(f"Pick a non-full column from {[a + 1 for a in env.legal_actions]}.")
         else:
-            action = int(agent.forward({0: obs})[0]["action"])
+            action = agent.act(env, obs)
             print(f"Agent plays column {action + 1}")
         timestep = env.step(action)
         obs, done = timestep.obs, timestep.done
+        if env.last_slipped:
+            print(f"  ...the piece slipped into column {env.last_landed_column + 1}!")
 
     show(env.board)
     _, winner = env.get_done_winner()

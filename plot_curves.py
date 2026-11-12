@@ -1,13 +1,13 @@
 """Plot LightZero training curves (mean over seeds ± shaded band), README style.
 
 Each --run is "Label=glob": all run directories matching the glob are treated as seeds of one
-curve. Without --run, every run under data_az/ is grouped by its name, with trailing
+curve. Without --run, every run under data_c4/ is grouped by its name, with trailing
 "_seedN" and LightZero's "_YYMMDD_HHMMSS" suffix stripped.
 
 Usage (from this directory):
-    source .venv/bin/activate
-    python plot_curves.py                                          # all runs in data_az/
-    python plot_curves.py --run "AlphaZero=data_az/c4_sims50_seed*" --run "AZ 200 sims=data_az/c4_sims200_seed*"
+    source /venv/main/bin/activate
+    python plot_curves.py                                          # all runs in data_c4/
+    python plot_curves.py --run "AlphaZero=data_c4/alphazero_bot_seed*" --run "MuZero=data_c4/muzero_bot_seed*"
     python plot_curves.py --tag learner_step/total_loss_avg_avg --ylabel Loss
     python plot_curves.py --list-tags                              # show all logged metrics
 """
@@ -68,7 +68,7 @@ def default_groups(root: str):
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--run", action="append", default=[], help='"Label=glob" of run dirs (repeatable)')
-    p.add_argument("--root", default="data_az", help="where to look when --run is not given")
+    p.add_argument("--root", default="data_c4", help="where to look when --run is not given")
     p.add_argument("--tag", default="evaluator_step/eval_episode_return_mean")
     p.add_argument("--title", default="Connect4")
     p.add_argument("--ylabel", default="Return")
@@ -121,8 +121,11 @@ def main():
     ax.set_title(args.title, fontsize=16)
     ax.set_xlabel(args.xlabel, fontsize=14)
     ax.set_ylabel(args.ylabel, fontsize=14)
-    ax.xaxis.set_major_formatter(FuncFormatter(lambda x, _: f"{x / 1e6:g}M"))
-    ax.legend(loc="lower right")
+    # Millions for long runs, thousands for short ones (e.g. 20k-step Connect4 runs).
+    xmax = ax.get_xlim()[1]
+    ax.xaxis.set_major_formatter(FuncFormatter(
+        (lambda x, _: f"{x / 1e6:g}M") if xmax >= 1e6 else (lambda x, _: f"{x / 1e3:g}k")))
+    ax.legend(loc="best")
     fig.tight_layout()
     os.makedirs(os.path.dirname(args.out) or ".", exist_ok=True)
     fig.savefig(args.out, dpi=150)

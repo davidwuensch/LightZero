@@ -1,0 +1,681 @@
+Gym has been unmaintained since 2022 and does not support NumPy 2.0 amongst other critical functionality.
+Please upgrade to Gymnasium, the maintained drop-in replacement of Gym, or contact the authors of your software and request that they upgrade.
+See the migration guide at https://gymnasium.farama.org/introduction/migration_guide/ for additional information.
+/venv/main/lib/python3.12/site-packages/werkzeug/routing.py:1010: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+  parts = parts or [ast.Str("")]
+/venv/main/lib/python3.12/ast.py:587: DeprecationWarning: Attribute s is deprecated and will be removed in Python 3.14; use value instead
+  return Constant(*args, **kwargs)
+/venv/main/lib/python3.12/site-packages/werkzeug/routing.py:1015: DeprecationWarning: Attribute s is deprecated and will be removed in Python 3.14; use value instead
+  ret[-1] = ast.Str(ret[-1].s + p.s)
+[train_connect4] muzero/bot on cuda (CUDA-graph MCTS inference)
+[train_connect4] stochastic env: slip_prob=0.2 (adjacent)
+/venv/main/lib/python3.12/site-packages/yapf/__init__.py:35: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+
+  from lib2to3.pgen2 import tokenize
+2026-11-12 16:45:58,740 - learner_logger - INFO - [RANK0]: DI-engine DRL Policy
+MuZeroModel(
+  (representation_network): RepresentationNetwork(
+    (activation): ReLU(inplace=True)
+    (conv): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (resblocks): ModuleList(
+      (0): ResBlock(
+        (act): ReLU(inplace=True)
+        (conv1): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+        )
+        (conv2): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+        )
+      )
+    )
+  )
+  (dynamics_network): DynamicsNetwork(
+    (conv): Conv2d(71, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (norm_common): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (resblocks): ModuleList(
+      (0): ResBlock(
+        (act): ReLU(inplace=True)
+        (conv1): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+        )
+        (conv2): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+        )
+      )
+    )
+    (conv1x1_reward): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1))
+    (norm_reward): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (fc_reward_head): Sequential(
+      (0): Linear(in_features=672, out_features=32, bias=True)
+      (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Linear(in_features=32, out_features=601, bias=True)
+    )
+    (activation): ReLU(inplace=True)
+  )
+  (prediction_network): PredictionNetwork(
+    (resblocks): ModuleList(
+      (0): ResBlock(
+        (act): ReLU(inplace=True)
+        (conv1): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+        )
+        (conv2): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+        )
+      )
+    )
+    (conv1x1_value): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1))
+    (conv1x1_policy): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1))
+    (norm_value): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (norm_policy): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (activation): ReLU(inplace=True)
+    (fc_value): Sequential(
+      (0): Linear(in_features=672, out_features=32, bias=True)
+      (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Linear(in_features=32, out_features=601, bias=True)
+    )
+    (fc_policy): Sequential(
+      (0): Linear(in_features=672, out_features=32, bias=True)
+      (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+      (2): ReLU(inplace=True)
+      (3): Linear(in_features=32, out_features=7, bias=True)
+    )
+  )
+)
+No task_id found in configuration. Task ID is set to None.
+/venv/main/lib/python3.12/multiprocessing/popen_fork.py:66: DeprecationWarning: This process (pid=125534) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  self.pid = os.fork()
+2026-11-12 16:45:59,057 - root - INFO - rank 0, self.task_id: None
+2026-11-12 16:45:59,908 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[0], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[1], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[2], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[3], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[4], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[5], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[6], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[7], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[8], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[9], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[10], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[11], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[12], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[13], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[14], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[15], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[16], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[17], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[18], assigning value -1
+2026-11-12 16:45:59,909 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[19], assigning value -1
+2026-11-12 16:46:01,241 - evaluator_logger - INFO - [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 1
+2026-11-12 16:46:01,241 - evaluator_logger - INFO - [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 2
+2026-11-12 16:46:01,241 - evaluator_logger - INFO - [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 3
+2026-11-12 16:46:01,241 - evaluator_logger - INFO - [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 4
+2026-11-12 16:46:01,507 - evaluator_logger - INFO - [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 5
+2026-11-12 16:46:01,507 - evaluator_logger - INFO - [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 6
+2026-11-12 16:46:01,507 - evaluator_logger - INFO - [EVALUATOR] env 14 finished episode, final reward: -1.0, current episode count: 7
+2026-11-12 16:46:01,508 - evaluator_logger - INFO - [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 8
+2026-11-12 16:46:01,786 - evaluator_logger - INFO - [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 9
+2026-11-12 16:46:01,787 - evaluator_logger - INFO - [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 10
+2026-11-12 16:46:02,036 - evaluator_logger - INFO - [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 11
+2026-11-12 16:46:02,036 - evaluator_logger - INFO - [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 12
+2026-11-12 16:46:02,275 - evaluator_logger - INFO - [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 13
+2026-11-12 16:46:02,276 - evaluator_logger - INFO - [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 14
+2026-11-12 16:46:02,506 - evaluator_logger - INFO - [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 15
+2026-11-12 16:46:02,736 - evaluator_logger - INFO - [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 16
+2026-11-12 16:46:02,971 - evaluator_logger - INFO - [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 17
+2026-11-12 16:46:03,236 - evaluator_logger - INFO - [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 18
+2026-11-12 16:46:03,871 - evaluator_logger - INFO - [EVALUATOR] env 16 finished episode, final reward: -1.0, current episode count: 19
+2026-11-12 16:46:03,872 - evaluator_logger - INFO - [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 20
+2026-11-12 16:46:03,896 - learner_logger - INFO - [RANK0]: learner save ckpt in ./experiments/c4_slip20/runs/muzero_bot_seed1/ckpt/WM_ckpt_best.pth.tar
+2026-11-12 16:46:03,898 - root - INFO - rank 0, self.task_id: None
+2026-11-12 16:46:03,904 - evaluator_logger - INFO - 
++-------+------------+---------------------+---------------+---------------+
+| Name  | train_iter | ckpt_name           | episode_count | envstep_count |
++-------+------------+---------------------+---------------+---------------+
+| Value | 0.000000   | iteration_0.pth.tar | 20.000000     | 156.000000    |
++-------+------------+---------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 7.800000                | 3.961828      | 39.375759           | 5.048174             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.700000   | 0.714143   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                                   |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------------------+
+| Value | -0.700000        | 1.000000        | 7.800000            | [-1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, -1.0] |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -0.700000                |
++-------+--------------------------+
+
+2026-11-12 16:46:05,338 - root - WARNING - The data in replay_buffer is not sufficient to sample a mini-batch: batch_size: 256, current buffer statistics is: num_of_all_collected_episodes: 8, num of game segments: 8, number of transitions: 63 continue to collect now ....
+2026-11-12 16:46:06,102 - root - WARNING - The data in replay_buffer is not sufficient to sample a mini-batch: batch_size: 256, current buffer statistics is: num_of_all_collected_episodes: 16, num of game segments: 16, number of transitions: 111 continue to collect now ....
+2026-11-12 16:46:07,652 - root - WARNING - The data in replay_buffer is not sufficient to sample a mini-batch: batch_size: 256, current buffer statistics is: num_of_all_collected_episodes: 24, num of game segments: 24, number of transitions: 178 continue to collect now ....
+2026-11-12 16:46:09,000 - root - WARNING - The data in replay_buffer is not sufficient to sample a mini-batch: batch_size: 256, current buffer statistics is: num_of_all_collected_episodes: 32, num of game segments: 32, number of transitions: 236 continue to collect now ....
+2026-11-12 16:46:11,683 - learner_logger - INFO - [RANK0]: === Training Iteration 0 Result ===
+2026-11-12 16:46:11,685 - learner_logger - INFO - 
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Name  | analysis/dormant_ratio_encoder_avg | analysis/dormant_ratio_dynamics_avg | analysis/latent_state_l2_norms_avg | analysis/l2_norm_before_avg |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Value | 0.000000                           | 0.000000                            | 54.020203                          | 0.000000                    |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Name  | analysis/l2_norm_after_avg | analysis/grad_norm_before_avg | analysis/grad_norm_after_avg | collect_mcts_temperature_avg |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Value | 0.000000                   | 0.000000                      | 0.000000                     | 0.250000                     |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
++-------+------------+-------------------------+----------------+-----------------+
+| Name  | cur_lr_avg | weighted_total_loss_avg | total_loss_avg | policy_loss_avg |
++-------+------------+-------------------------+----------------+-----------------+
+| Value | 0.003000   | 50.190269               | 50.190269      | 8.657781        |
++-------+------------+-------------------------+----------------+-----------------+
++-------+--------------------+---------------------------+-----------------+----------------+
+| Name  | policy_entropy_avg | target_policy_entropy_avg | reward_loss_avg | value_loss_avg |
++-------+--------------------+---------------------------+-----------------+----------------+
+| Value | 1.945910           | 1.565149                  | 31.992973       | 38.391567      |
++-------+--------------------+---------------------------+-----------------+----------------+
++-------+----------------------+--------------------+-------------------+------------------+
+| Name  | consistency_loss_avg | value_priority_avg | target_reward_avg | target_value_avg |
++-------+----------------------+--------------------+-------------------+------------------+
+| Value | 0.000000             | 1.000007           | -0.106771         | -0.669922        |
++-------+----------------------+--------------------+-------------------+------------------+
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Name  | predicted_rewards_avg | predicted_values_avg | transformed_target_reward_avg | transformed_target_value_avg |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Value | 0.000006              | 0.000006             | -0.044333                     | -0.278161                    |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
++-------+---------------------------------+
+| Name  | total_grad_norm_before_clip_avg |
++-------+---------------------------------+
+| Value | 2.348463                        |
++-------+---------------------------------+
+
+2026-11-12 16:46:11,713 - learner_logger - INFO - [RANK0]: learner save ckpt in ./experiments/c4_slip20/runs/muzero_bot_seed1/ckpt/iteration_0.pth.tar
+2026-11-12 16:46:23,203 - collector_logger - INFO - Collector Training Summary:
+  episode_count: 56
+  envstep_count: 427
+  avg_envstep_per_episode: 7.625
+  avg_envstep_per_sec: 43.857863651302004
+  avg_episode_per_sec: 5.751850970662558
+  collect_time: 9.735996340244077
+  reward_mean: -0.8928571343421936
+  reward_std: 0.4503399729728699
+  reward_max: 1.0
+  reward_min: -1.0
+  total_envstep_count: 427
+  total_episode_count: 56
+  total_duration: 36.329798271555454
+  visit_entropy_mean: 1.7363769764999988
+2026-11-12 16:46:23,303 - learner_logger - INFO - [RANK0]: === Training Iteration 100 Result ===
+2026-11-12 16:46:23,305 - learner_logger - INFO - 
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Name  | analysis/dormant_ratio_encoder_avg | analysis/dormant_ratio_dynamics_avg | analysis/latent_state_l2_norms_avg | analysis/l2_norm_before_avg |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Value | 0.000000                           | 0.000000                            | 47.636639                          | 0.000000                    |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Name  | analysis/l2_norm_after_avg | analysis/grad_norm_before_avg | analysis/grad_norm_after_avg | collect_mcts_temperature_avg |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Value | 0.000000                   | 0.000000                      | 0.000000                     | 0.250000                     |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
++-------+------------+-------------------------+----------------+-----------------+
+| Name  | cur_lr_avg | weighted_total_loss_avg | total_loss_avg | policy_loss_avg |
++-------+------------+-------------------------+----------------+-----------------+
+| Value | 0.003000   | 10.553117               | 10.553117      | 8.570331        |
++-------+------------+-------------------------+----------------+-----------------+
++-------+--------------------+---------------------------+-----------------+----------------+
+| Name  | policy_entropy_avg | target_policy_entropy_avg | reward_loss_avg | value_loss_avg |
++-------+--------------------+---------------------------+-----------------+----------------+
+| Value | 1.907595           | 1.573748                  | 1.028328        | 4.046746       |
++-------+--------------------+---------------------------+-----------------+----------------+
++-------+----------------------+--------------------+-------------------+------------------+
+| Name  | consistency_loss_avg | value_priority_avg | target_reward_avg | target_value_avg |
++-------+----------------------+--------------------+-------------------+------------------+
+| Value | 0.000000             | 0.412887           | -0.107777         | -0.684422        |
++-------+----------------------+--------------------+-------------------+------------------+
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Name  | predicted_rewards_avg | predicted_values_avg | transformed_target_reward_avg | transformed_target_value_avg |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Value | -0.088604             | -0.640206            | -0.044750                     | -0.284181                    |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
++-------+---------------------------------+
+| Name  | total_grad_norm_before_clip_avg |
++-------+---------------------------------+
+| Value | 0.091059                        |
++-------+---------------------------------+
+
+2026-11-12 16:46:35,843 - collector_logger - INFO - Collector Training Summary:
+  episode_count: 16
+  envstep_count: 116
+  avg_envstep_per_episode: 7.25
+  avg_envstep_per_sec: 29.956195964359214
+  avg_episode_per_sec: 4.131889098532306
+  collect_time: 3.8723207759093494
+  reward_mean: -1.0
+  reward_std: 0.0
+  reward_max: -1.0
+  reward_min: -1.0
+  total_envstep_count: 543
+  total_episode_count: 72
+  total_duration: 42.001778760325166
+  visit_entropy_mean: 1.2521240123612771
+2026-11-12 16:46:35,945 - learner_logger - INFO - [RANK0]: === Training Iteration 200 Result ===
+2026-11-12 16:46:35,947 - learner_logger - INFO - 
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Name  | analysis/dormant_ratio_encoder_avg | analysis/dormant_ratio_dynamics_avg | analysis/latent_state_l2_norms_avg | analysis/l2_norm_before_avg |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Value | 0.000000                           | 0.000000                            | 42.406390                          | 0.000000                    |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Name  | analysis/l2_norm_after_avg | analysis/grad_norm_before_avg | analysis/grad_norm_after_avg | collect_mcts_temperature_avg |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Value | 0.000000                   | 0.000000                      | 0.000000                     | 0.250000                     |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
++-------+------------+-------------------------+----------------+-----------------+
+| Name  | cur_lr_avg | weighted_total_loss_avg | total_loss_avg | policy_loss_avg |
++-------+------------+-------------------------+----------------+-----------------+
+| Value | 0.003000   | 9.997173                | 9.997173       | 8.384275        |
++-------+------------+-------------------------+----------------+-----------------+
++-------+--------------------+---------------------------+-----------------+----------------+
+| Name  | policy_entropy_avg | target_policy_entropy_avg | reward_loss_avg | value_loss_avg |
++-------+--------------------+---------------------------+-----------------+----------------+
+| Value | 1.881058           | 1.558416                  | 0.800378        | 3.475811       |
++-------+--------------------+---------------------------+-----------------+----------------+
++-------+----------------------+--------------------+-------------------+------------------+
+| Name  | consistency_loss_avg | value_priority_avg | target_reward_avg | target_value_avg |
++-------+----------------------+--------------------+-------------------+------------------+
+| Value | 0.000000             | 0.261191           | -0.106297         | -0.660275        |
++-------+----------------------+--------------------+-------------------+------------------+
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Name  | predicted_rewards_avg | predicted_values_avg | transformed_target_reward_avg | transformed_target_value_avg |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Value | -0.084582             | -0.633275            | -0.044136                     | -0.274155                    |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
++-------+---------------------------------+
+| Name  | total_grad_norm_before_clip_avg |
++-------+---------------------------------+
+| Value | 0.219755                        |
++-------+---------------------------------+
+
+2026-11-12 16:46:48,646 - collector_logger - INFO - Collector Training Summary:
+  episode_count: 16
+  envstep_count: 112
+  avg_envstep_per_episode: 7.0
+  avg_envstep_per_sec: 28.044477990363486
+  avg_episode_per_sec: 4.006353998623355
+  collect_time: 3.9936560786934567
+  reward_mean: -0.75
+  reward_std: 0.6614378094673157
+  reward_max: 1.0
+  reward_min: -1.0
+  total_envstep_count: 655
+  total_episode_count: 88
+  total_duration: 48.36657290804293
+  visit_entropy_mean: 0.9474109951426732
+2026-11-12 16:46:48,731 - learner_logger - INFO - [RANK0]: === Training Iteration 300 Result ===
+2026-11-12 16:46:48,733 - learner_logger - INFO - 
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Name  | analysis/dormant_ratio_encoder_avg | analysis/dormant_ratio_dynamics_avg | analysis/latent_state_l2_norms_avg | analysis/l2_norm_before_avg |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Value | 0.000000                           | 0.000000                            | 37.764194                          | 0.000000                    |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Name  | analysis/l2_norm_after_avg | analysis/grad_norm_before_avg | analysis/grad_norm_after_avg | collect_mcts_temperature_avg |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Value | 0.000000                   | 0.000000                      | 0.000000                     | 0.250000                     |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
++-------+------------+-------------------------+----------------+-----------------+
+| Name  | cur_lr_avg | weighted_total_loss_avg | total_loss_avg | policy_loss_avg |
++-------+------------+-------------------------+----------------+-----------------+
+| Value | 0.003000   | 9.582736                | 9.582736       | 8.382179        |
++-------+------------+-------------------------+----------------+-----------------+
++-------+--------------------+---------------------------+-----------------+----------------+
+| Name  | policy_entropy_avg | target_policy_entropy_avg | reward_loss_avg | value_loss_avg |
++-------+--------------------+---------------------------+-----------------+----------------+
+| Value | 1.864147           | 1.542916                  | 0.435961        | 3.282080       |
++-------+--------------------+---------------------------+-----------------+----------------+
++-------+----------------------+--------------------+-------------------+------------------+
+| Name  | consistency_loss_avg | value_priority_avg | target_reward_avg | target_value_avg |
++-------+----------------------+--------------------+-------------------+------------------+
+| Value | 0.000000             | 0.147458           | -0.102036         | -0.653527        |
++-------+----------------------+--------------------+-------------------+------------------+
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Name  | predicted_rewards_avg | predicted_values_avg | transformed_target_reward_avg | transformed_target_value_avg |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Value | -0.102541             | -0.642055            | -0.042367                     | -0.271353                    |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
++-------+---------------------------------+
+| Name  | total_grad_norm_before_clip_avg |
++-------+---------------------------------+
+| Value | 0.101735                        |
++-------+---------------------------------+
+
+2026-11-12 16:46:59,951 - collector_logger - INFO - Collector Training Summary:
+  episode_count: 16
+  envstep_count: 117
+  avg_envstep_per_episode: 7.3125
+  avg_envstep_per_sec: 38.98008732075923
+  avg_episode_per_sec: 5.330610231898698
+  collect_time: 3.001532527036965
+  reward_mean: -0.875
+  reward_std: 0.4841229319572449
+  reward_max: 1.0
+  reward_min: -1.0
+  total_envstep_count: 772
+  total_episode_count: 104
+  total_duration: 52.94586758198124
+  visit_entropy_mean: 0.7569261642532457
+2026-11-12 16:47:00,046 - learner_logger - INFO - [RANK0]: === Training Iteration 400 Result ===
+2026-11-12 16:47:00,048 - learner_logger - INFO - 
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Name  | analysis/dormant_ratio_encoder_avg | analysis/dormant_ratio_dynamics_avg | analysis/latent_state_l2_norms_avg | analysis/l2_norm_before_avg |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Value | 0.000000                           | 0.000000                            | 34.848260                          | 0.000000                    |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Name  | analysis/l2_norm_after_avg | analysis/grad_norm_before_avg | analysis/grad_norm_after_avg | collect_mcts_temperature_avg |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Value | 0.000000                   | 0.000000                      | 0.000000                     | 0.250000                     |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
++-------+------------+-------------------------+----------------+-----------------+
+| Name  | cur_lr_avg | weighted_total_loss_avg | total_loss_avg | policy_loss_avg |
++-------+------------+-------------------------+----------------+-----------------+
+| Value | 0.003000   | 9.371442                | 9.371442       | 8.185080        |
++-------+------------+-------------------------+----------------+-----------------+
++-------+--------------------+---------------------------+-----------------+----------------+
+| Name  | policy_entropy_avg | target_policy_entropy_avg | reward_loss_avg | value_loss_avg |
++-------+--------------------+---------------------------+-----------------+----------------+
+| Value | 1.836696           | 1.519284                  | 0.442528        | 3.195738       |
++-------+--------------------+---------------------------+-----------------+----------------+
++-------+----------------------+--------------------+-------------------+------------------+
+| Name  | consistency_loss_avg | value_priority_avg | target_reward_avg | target_value_avg |
++-------+----------------------+--------------------+-------------------+------------------+
+| Value | 0.000000             | 0.165654           | -0.104936         | -0.661991        |
++-------+----------------------+--------------------+-------------------+------------------+
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Name  | predicted_rewards_avg | predicted_values_avg | transformed_target_reward_avg | transformed_target_value_avg |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Value | -0.104242             | -0.658157            | -0.043571                     | -0.274868                    |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
++-------+---------------------------------+
+| Name  | total_grad_norm_before_clip_avg |
++-------+---------------------------------+
+| Value | 0.110215                        |
++-------+---------------------------------+
+
+2026-11-12 16:47:12,828 - collector_logger - INFO - Collector Training Summary:
+  episode_count: 16
+  envstep_count: 106
+  avg_envstep_per_episode: 6.625
+  avg_envstep_per_sec: 25.848776923888934
+  avg_episode_per_sec: 3.9017021771907827
+  collect_time: 4.10077429628931
+  reward_mean: -1.0
+  reward_std: 0.0
+  reward_max: -1.0
+  reward_min: -1.0
+  total_envstep_count: 878
+  total_episode_count: 120
+  total_duration: 59.42011572190282
+  visit_entropy_mean: 0.46409757196673307
+2026-11-12 16:47:12,916 - learner_logger - INFO - [RANK0]: === Training Iteration 500 Result ===
+2026-11-12 16:47:12,919 - learner_logger - INFO - 
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Name  | analysis/dormant_ratio_encoder_avg | analysis/dormant_ratio_dynamics_avg | analysis/latent_state_l2_norms_avg | analysis/l2_norm_before_avg |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Value | 0.000000                           | 0.000000                            | 32.334913                          | 0.000000                    |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Name  | analysis/l2_norm_after_avg | analysis/grad_norm_before_avg | analysis/grad_norm_after_avg | collect_mcts_temperature_avg |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Value | 0.000000                   | 0.000000                      | 0.000000                     | 0.250000                     |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
++-------+------------+-------------------------+----------------+-----------------+
+| Name  | cur_lr_avg | weighted_total_loss_avg | total_loss_avg | policy_loss_avg |
++-------+------------+-------------------------+----------------+-----------------+
+| Value | 0.003000   | 9.099505                | 9.099505       | 7.930215        |
++-------+------------+-------------------------+----------------+-----------------+
++-------+--------------------+---------------------------+-----------------+----------------+
+| Name  | policy_entropy_avg | target_policy_entropy_avg | reward_loss_avg | value_loss_avg |
++-------+--------------------+---------------------------+-----------------+----------------+
+| Value | 1.805354           | 1.486304                  | 0.437781        | 3.142680       |
++-------+--------------------+---------------------------+-----------------+----------------+
++-------+----------------------+--------------------+-------------------+------------------+
+| Name  | consistency_loss_avg | value_priority_avg | target_reward_avg | target_value_avg |
++-------+----------------------+--------------------+-------------------+------------------+
+| Value | 0.000000             | 0.112085           | -0.106593         | -0.662346        |
++-------+----------------------+--------------------+-------------------+------------------+
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Name  | predicted_rewards_avg | predicted_values_avg | transformed_target_reward_avg | transformed_target_value_avg |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Value | -0.106165             | -0.662537            | -0.044259                     | -0.275015                    |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
++-------+---------------------------------+
+| Name  | total_grad_norm_before_clip_avg |
++-------+---------------------------------+
+| Value | 0.106732                        |
++-------+---------------------------------+
+
+2026-11-12 16:47:26,572 - collector_logger - INFO - Collector Training Summary:
+  episode_count: 16
+  envstep_count: 139
+  avg_envstep_per_episode: 8.6875
+  avg_envstep_per_sec: 27.23823945619886
+  avg_episode_per_sec: 3.1353369158214512
+  collect_time: 5.10311983355321
+  reward_mean: -0.6875
+  reward_std: 0.6817945241928101
+  reward_max: 1.0
+  reward_min: -1.0
+  total_envstep_count: 1017
+  total_episode_count: 136
+  total_duration: 66.32516209979636
+  visit_entropy_mean: 0.5860733614470217
+2026-11-12 16:47:26,658 - learner_logger - INFO - [RANK0]: === Training Iteration 600 Result ===
+2026-11-12 16:47:26,660 - learner_logger - INFO - 
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Name  | analysis/dormant_ratio_encoder_avg | analysis/dormant_ratio_dynamics_avg | analysis/latent_state_l2_norms_avg | analysis/l2_norm_before_avg |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
+| Value | 0.000000                           | 0.000000                            | 29.812162                          | 0.000000                    |
++-------+------------------------------------+-------------------------------------+------------------------------------+-----------------------------+
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Name  | analysis/l2_norm_after_avg | analysis/grad_norm_before_avg | analysis/grad_norm_after_avg | collect_mcts_temperature_avg |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
+| Value | 0.000000                   | 0.000000                      | 0.000000                     | 0.250000                     |
++-------+----------------------------+-------------------------------+------------------------------+------------------------------+
++-------+------------+-------------------------+----------------+-----------------+
+| Name  | cur_lr_avg | weighted_total_loss_avg | total_loss_avg | policy_loss_avg |
++-------+------------+-------------------------+----------------+-----------------+
+| Value | 0.003000   | 8.875276                | 8.875276       | 7.700878        |
++-------+------------+-------------------------+----------------+-----------------+
++-------+--------------------+---------------------------+-----------------+----------------+
+| Name  | policy_entropy_avg | target_policy_entropy_avg | reward_loss_avg | value_loss_avg |
++-------+--------------------+---------------------------+-----------------+----------------+
+| Value | 1.790241           | 1.465883                  | 0.450446        | 3.110641       |
++-------+--------------------+---------------------------+-----------------+----------------+
++-------+----------------------+--------------------+-------------------+------------------+
+| Name  | consistency_loss_avg | value_priority_avg | target_reward_avg | target_value_avg |
++-------+----------------------+--------------------+-------------------+------------------+
+| Value | 0.000000             | 0.133567           | -0.109908         | -0.635653        |
++-------+----------------------+--------------------+-------------------+------------------+
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Name  | predicted_rewards_avg | predicted_values_avg | transformed_target_reward_avg | transformed_target_value_avg |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
+| Value | -0.111087             | -0.625743            | -0.045635                     | -0.263932                    |
++-------+-----------------------+----------------------+-------------------------------+------------------------------+
++-------+---------------------------------+
+| Name  | total_grad_norm_before_clip_avg |
++-------+---------------------------------+
+| Value | 0.102740                        |
++-------+---------------------------------+
+
+2026-11-12 16:47:30,848 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[0], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[1], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[2], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[3], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[4], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[5], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[6], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[7], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[8], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[9], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[10], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[11], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[12], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[13], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[14], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[15], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[16], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[17], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[18], assigning value -1
+2026-11-12 16:47:30,849 - evaluator_logger - WARNING - 'timestep' key is missing in init_obs[19], assigning value -1
+2026-11-12 16:47:31,586 - evaluator_logger - INFO - [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 1
+2026-11-12 16:47:31,586 - evaluator_logger - INFO - [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 2
+2026-11-12 16:47:31,586 - evaluator_logger - INFO - [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 3
+[W1112 16:47:31.217793385 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 20971520 bytes (free: 11665408, total: 16698310656).
+2026-11-12 16:47:31,948 - evaluator_logger - INFO - [EVALUATOR] env 14 finished episode, final reward: -1.0, current episode count: 4
+2026-11-12 16:47:32,111 - evaluator_logger - INFO - [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 5
+2026-11-12 16:47:32,111 - evaluator_logger - INFO - [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 6
+2026-11-12 16:47:32,111 - evaluator_logger - INFO - [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 7
+2026-11-12 16:47:32,445 - evaluator_logger - INFO - [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 8
+2026-11-12 16:47:32,446 - evaluator_logger - INFO - [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 9
+2026-11-12 16:47:32,446 - evaluator_logger - INFO - [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 10
+2026-11-12 16:47:32,446 - evaluator_logger - INFO - [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 11
+2026-11-12 16:47:32,446 - evaluator_logger - INFO - [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 12
+2026-11-12 16:47:32,575 - evaluator_logger - INFO - [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 13
+2026-11-12 16:47:32,575 - evaluator_logger - INFO - [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 14
+2026-11-12 16:47:32,575 - evaluator_logger - INFO - [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 15
+2026-11-12 16:47:32,921 - evaluator_logger - INFO - [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 16
+2026-11-12 16:47:33,089 - evaluator_logger - INFO - [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 17
+2026-11-12 16:47:33,252 - evaluator_logger - INFO - [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 18
+2026-11-12 16:47:33,407 - evaluator_logger - INFO - [EVALUATOR] env 16 finished episode, final reward: -1.0, current episode count: 19
+2026-11-12 16:47:33,546 - evaluator_logger - INFO - [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 20
+2026-11-12 16:47:33,547 - root - INFO - rank 0, self.task_id: None
+2026-11-12 16:47:33,548 - evaluator_logger - INFO - 
++-------+------------+-----------------------+---------------+---------------+
+| Name  | train_iter | ckpt_name             | episode_count | envstep_count |
++-------+------------+-----------------------+---------------+---------------+
+| Value | 650.000000 | iteration_650.pth.tar | 20.000000     | 154.000000    |
++-------+------------+-----------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 7.700000                | 2.696834      | 57.104002           | 7.416104             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.900000   | 0.435890   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                                     |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------------+
+| Value | -0.900000        | 1.000000        | 7.700000            | [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0] |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -0.900000                |
++-------+--------------------------+
+
+[W1112 16:47:35.625096409 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 13762560, total: 16698310656).
+[W1112 16:47:35.625422216 CUDACachingAllocator.cpp:3934] memory allocation failed with OOM on device 0 while trying to allocate 16777216 bytes (free: 13762560, total: 16698310656).
+Traceback (most recent call last):
+  File "/root/LightZero/train_connect4.py", line 317, in <module>
+    main()
+  File "/root/LightZero/train_connect4.py", line 298, in main
+    policy = train_fn([main_config, create_config], seed=args.seed, model_path=args.resume, max_env_step=args.steps)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/LightZero/lzero/entry/train_muzero.py", line 201, in train_muzero
+    train_data = replay_buffer.sample(batch_size, policy)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/LightZero/lzero/mcts/buffer/game_buffer_muzero.py", line 167, in sample
+    batch_rewards, batch_target_values = self._compute_target_reward_value(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/LightZero/lzero/mcts/buffer/game_buffer_muzero.py", line 498, in _compute_target_reward_value
+    m_output = model.initial_inference(m_obs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/LightZero/lzero/model/muzero_model.py", line 235, in initial_inference
+    latent_state, policy_logits, value = run_graphed(self, 'initial_inference', self._initial_inference_core, obs)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/LightZero/lzero/model/cuda_graph_inference.py", line 50, in run_graphed
+    return fn(*inputs)
+           ^^^^^^^^^^^
+  File "/root/LightZero/lzero/model/muzero_model.py", line 282, in _initial_inference_core
+    latent_state = self._representation(obs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/LightZero/lzero/model/muzero_model.py", line 304, in _representation
+    latent_state = self.representation_network(observation)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/LightZero/lzero/model/common.py", line 872, in forward
+    x = self.conv(x)
+        ^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 565, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/venv/main/lib/python3.12/site-packages/torch/nn/modules/conv.py", line 560, in _conv_forward
+    return F.conv2d(
+           ^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 16.00 MiB. GPU 0 has a total capacity of 15.55 GiB of which 13.12 MiB is free. Including non-PyTorch memory, this process has 2.00 GiB memory in use. Process 125528 has 1.46 GiB memory in use. Process 125524 has 1.67 GiB memory in use. Process 125532 has 1.50 GiB memory in use. Process 125535 has 1.45 GiB memory in use. Process 125536 has 1.94 GiB memory in use. Process 125526 has 1.67 GiB memory in use. Process 125525 has 1.67 GiB memory in use. Process 125529 has 2.01 GiB memory in use. Of the allocated memory 1.44 GiB is allocated by PyTorch, with 472.58 MiB allocated in private pools (e.g., CUDA Graphs), and 24.69 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://docs.pytorch.org/docs/stable/notes/cuda.html#optimizing-memory-usage-with-pytorch-cuda-alloc-conf)
+Exception ignored in: <function MuZeroCollector.__del__ at 0x7bf02ec94ea0>
+Traceback (most recent call last):
+  File "/root/LightZero/lzero/worker/muzero_collector.py", line 303, in __del__
+    self.close()
+  File "/root/LightZero/lzero/worker/muzero_collector.py", line 292, in close
+    self._env.close()
+  File "/venv/main/lib/python3.12/site-packages/ding/envs/env_manager/subprocess_env_manager.py", line 635, in close
+    p.send(['close', None, None])
+  File "/venv/main/lib/python3.12/multiprocessing/connection.py", line 206, in send
+    self._send_bytes(_ForkingPickler.dumps(obj))
+  File "/venv/main/lib/python3.12/multiprocessing/connection.py", line 427, in _send_bytes
+    self._send(header + buf)
+  File "/venv/main/lib/python3.12/multiprocessing/connection.py", line 384, in _send
+    n = write(self._handle, buf)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe
+Exception ignored in: <function MuZeroEvaluator.__del__ at 0x7bf02ec96340>
+Traceback (most recent call last):
+  File "/root/LightZero/lzero/worker/muzero_evaluator.py", line 187, in __del__
+    self.close()
+  File "/root/LightZero/lzero/worker/muzero_evaluator.py", line 177, in close
+    self._env.close()
+  File "/venv/main/lib/python3.12/site-packages/ding/envs/env_manager/subprocess_env_manager.py", line 635, in close
+    p.send(['close', None, None])
+  File "/venv/main/lib/python3.12/multiprocessing/connection.py", line 206, in send
+    self._send_bytes(_ForkingPickler.dumps(obj))
+  File "/venv/main/lib/python3.12/multiprocessing/connection.py", line 427, in _send_bytes
+    self._send(header + buf)
+  File "/venv/main/lib/python3.12/multiprocessing/connection.py", line 384, in _send
+    n = write(self._handle, buf)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+BrokenPipeError: [Errno 32] Broken pipe

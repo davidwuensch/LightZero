@@ -88,6 +88,9 @@ class AlphaZeroPolicy(Policy):
         mcts=dict(
             # (int) The number of simulations to perform at each move.
             num_simulations=50,
+            # (int or None) Simulations per move in eval mode. None = upstream default min(800, 4 * num_simulations).
+            # Set it to num_simulations for a like-for-like comparison with MuZero, which evaluates with num_simulations.
+            eval_num_simulations=None,
             # (int) The maximum number of moves to make in a game.
             max_moves=512,  # for chess and shogi, 722 for Go.
             # (float) The alpha value used in the Dirichlet distribution for exploration at the root node of the search tree.
@@ -229,6 +232,7 @@ class AlphaZeroPolicy(Policy):
         self.simulate_env_list = []
         for _ in range(self._cfg.collector_env_num):
             env = env_cls(self._cfg.full_cfg.env)
+            env.is_simulation_env = True  # e.g. stochastic Connect4 then uses its simulation_slip_prob
             self.simulate_env_list.append(env)
 
         if self._cfg.mcts_ctree:
@@ -277,6 +281,10 @@ class AlphaZeroPolicy(Policy):
         start_player_index = {env_id: obs[env_id]['current_player_index'] for env_id in ready_env_id}
 
         self._policy_model = self._collect_model
+        # MCTS inference must use BatchNorm running statistics (as MuZero does). Without this the network stays in
+        # train mode after _forward_learn: BN normalises with the statistics of the current inference batch (8 or
+        # even 1 states) and its running statistics are updated with MCTS inference data.
+        self._collect_model.eval()
 
         # ========== Step 1: Prepare all state configurations ==========
         state_configs = []
@@ -336,6 +344,7 @@ class AlphaZeroPolicy(Policy):
         self.simulate_env_list_eval = []
         for _ in range(self._cfg.evaluator_env_num):
             env = env_cls(self._cfg.full_cfg.env)
+            env.is_simulation_env = True  # e.g. stochastic Connect4 then uses its simulation_slip_prob
             self.simulate_env_list_eval.append(env)
 
         if self._cfg.mcts_ctree:
@@ -344,9 +353,8 @@ class AlphaZeroPolicy(Policy):
             find_and_add_to_sys_path("lzero/mcts/ctree/ctree_alphazero/build")
             import mcts_alphazero
 
-            # TODO(pu): how to set proper num_simulations for evaluation
             self._eval_mcts = mcts_alphazero.MCTS(self._cfg.mcts.max_moves,
-                                                  min(800, self._cfg.mcts.num_simulations * 4),
+                                                  self._eval_num_simulations(),
                                                   self._cfg.mcts.pb_c_base,
                                                   self._cfg.mcts.pb_c_init, self._cfg.mcts.root_dirichlet_alpha,
                                                   self._cfg.mcts.root_noise_weight, self.simulate_env)
@@ -356,8 +364,7 @@ class AlphaZeroPolicy(Policy):
             else:
                 from lzero.mcts.ptree.ptree_az import MCTS
             mcts_eval_config = copy.deepcopy(self._cfg.mcts)
-            # TODO(pu): how to set proper num_simulations for evaluation
-            mcts_eval_config.num_simulations = min(800, mcts_eval_config.num_simulations * 4)
+            mcts_eval_config.num_simulations = self._eval_num_simulations()
             self._eval_mcts = MCTS(mcts_eval_config, self.simulate_env)
 
         self._eval_model = self._model
@@ -387,6 +394,7 @@ class AlphaZeroPolicy(Policy):
         start_player_index = {env_id: obs[env_id]['current_player_index'] for env_id in ready_env_id}
 
         self._policy_model = self._eval_model
+        self._eval_model.eval()  # see _forward_collect: use BatchNorm running statistics for MCTS inference
 
         # ========== Step 1: Prepare all state configurations ==========
         state_configs = []
@@ -429,6 +437,11 @@ class AlphaZeroPolicy(Policy):
 
         return output
 
+    def _eval_num_simulations(self) -> int:
+        """Simulations per move in eval mode: ``mcts.eval_num_simulations`` if set, else min(800, 4 * num_simulations)."""
+        n = self._cfg.mcts.get('eval_num_simulations', None)
+        return int(n) if n else min(800, self._cfg.mcts.num_simulations * 4)
+
     def _get_simulation_env(self):
         """
         Overview:
@@ -446,6 +459,7 @@ class AlphaZeroPolicy(Policy):
 
         # Create simulation env with config from main config
         self.simulate_env = env_cls(self._cfg.full_cfg.env)
+        self.simulate_env.is_simulation_env = True  # e.g. stochastic Connect4 then uses its simulation_slip_prob
 
     @torch.no_grad()
     def _policy_value_fn(self, env: 'Env') -> Tuple[Dict[int, np.ndarray], float]:  # noqa
@@ -508,27 +522,23 @@ class AlphaZeroPolicy(Policy):
         for env in env_list:
             legal_actions_list.append(env.legal_actions)
             current_state, current_state_scale = env.current_state()
-            state_tensor = torch.from_numpy(current_state_scale).to(
-                device=self._device, dtype=torch.float
-            )
-            state_batch_list.append(state_tensor)
+            state_batch_list.append(current_state_scale)
 
-        # Stack states into batch tensor
-        state_batch = torch.stack(state_batch_list, dim=0)
+        # Stack on the CPU and copy to the device once (instead of one small host->device copy per env)
+        state_batch = torch.from_numpy(np.stack(state_batch_list, axis=0)).to(device=self._device, dtype=torch.float)
 
         # Single batch forward pass
         with torch.no_grad():
             action_probs_batch, value_batch = self._policy_model.compute_policy_value(state_batch)
 
         # Unpack results and build output dictionaries with legal actions only
+        # One device->host copy for the whole batch (instead of two GPU syncs per env)
+        action_probs_np = action_probs_batch.detach().cpu().numpy()
+        values_np = value_batch.detach().cpu().numpy().reshape(len(env_list), -1)[:, 0]
         results = []
         for i, legal_actions in enumerate(legal_actions_list):
-            action_probs = action_probs_batch[i]
-            value = value_batch[i]
-            action_probs_dict = dict(
-                zip(legal_actions, action_probs[legal_actions].detach().cpu().numpy())
-            )
-            results.append((action_probs_dict, value.item()))
+            action_probs_dict = dict(zip(legal_actions, action_probs_np[i][legal_actions]))
+            results.append((action_probs_dict, values_np[i].item()))
 
         return results
 

@@ -533,45 +533,99 @@ class MuZeroGameBuffer(GameBuffer):
             # if len(value_mask)>sum(value_mask):
             #     print('have value mask')
             value_list = value_list * np.array(value_mask)
-            value_list = value_list.tolist()
-            value_index = 0
-
-            for game_segment_len_non_re, reward_list, state_index, to_play_list in zip(game_segment_lens, rewards_list,
-                                                                                       pos_in_game_segment_list,
-                                                                                       to_play_segment):
-                target_values = []
-                target_rewards = []
-                base_index = state_index
-
-                truncation_length = game_segment_len_non_re
-
-                for current_index in range(state_index, state_index + self._cfg.num_unroll_steps + 1):
-                    bootstrap_index = current_index + td_steps_list[value_index]
-                    for i, reward in enumerate(reward_list[current_index:bootstrap_index]):
-                        if self._cfg.env_type == 'board_games' and to_play_segment[0][0] in [1, 2]:
-                            # TODO(pu): for board_games, very important, to check
-                            if to_play_list[base_index] == to_play_list[i]:
-                                value_list[value_index] += reward * self._cfg.discount_factor ** i
-                            else:
-                                value_list[value_index] += -reward * self._cfg.discount_factor ** i
-                        else:
-                            value_list[value_index] += reward * self._cfg.discount_factor ** i
-
-                    # TODO: check the boundary condition
-                    target_values.append(self._scalar_reward(value_list[value_index]))
-                    if current_index < len(reward_list):
-                        target_rewards.append(self._scalar_reward(reward_list[current_index]))
-                    else:
-                        target_rewards.append(0.)
-
-                    value_index += 1
-
-                batch_rewards.append(target_rewards)
-                batch_target_values.append(target_values)
+            if self._cfg.env_type == 'board_games' and to_play_segment[0][0] in [1, 2]:
+                batch_rewards, batch_target_values = self._accumulate_reward_value_targets_loop(
+                    value_list, game_segment_lens, rewards_list, pos_in_game_segment_list, to_play_segment, td_steps_list
+                )
+            else:
+                batch_rewards, batch_target_values = self._accumulate_reward_value_targets_vectorized(
+                    value_list, rewards_list, pos_in_game_segment_list, td_steps_list
+                )
 
         batch_rewards = np.asarray(batch_rewards)
         batch_target_values = np.asarray(batch_target_values)
 
+        return batch_rewards, batch_target_values
+
+    def _accumulate_reward_value_targets_loop(self, value_list, game_segment_lens, rewards_list,
+                                              pos_in_game_segment_list, to_play_segment, td_steps_list):
+        """
+        Overview:
+            Original (pure-Python) accumulation of n-step value targets and reward targets from
+            ``_compute_target_reward_value``. Used for board games in self-play mode (player-dependent reward signs)
+            and as the reference for ``_accumulate_reward_value_targets_vectorized``.
+        """
+        batch_target_values, batch_rewards = [], []
+        value_list = value_list.tolist()
+        value_index = 0
+
+        for game_segment_len_non_re, reward_list, state_index, to_play_list in zip(game_segment_lens, rewards_list,
+                                                                                   pos_in_game_segment_list,
+                                                                                   to_play_segment):
+            target_values = []
+            target_rewards = []
+            base_index = state_index
+
+            truncation_length = game_segment_len_non_re
+
+            for current_index in range(state_index, state_index + self._cfg.num_unroll_steps + 1):
+                bootstrap_index = current_index + td_steps_list[value_index]
+                for i, reward in enumerate(reward_list[current_index:bootstrap_index]):
+                    if self._cfg.env_type == 'board_games' and to_play_segment[0][0] in [1, 2]:
+                        # The value target at ``current_index`` is from the view of the player to move there; the
+                        # reward at ``current_index + i`` belongs to the player who moved at that step. Fixed: the
+                        # upstream code compared to_play_list[base_index] (the first unroll position, for every
+                        # unroll step) with to_play_list[i] (a window offset used as an absolute index).
+                        reward_index = current_index + i
+                        if reward_index < len(to_play_list):
+                            same_player = to_play_list[current_index] == to_play_list[reward_index]
+                        else:  # alternating two-player game: same player every second ply
+                            same_player = i % 2 == 0
+                        if same_player:
+                            value_list[value_index] += reward * self._cfg.discount_factor ** i
+                        else:
+                            value_list[value_index] += -reward * self._cfg.discount_factor ** i
+                    else:
+                        value_list[value_index] += reward * self._cfg.discount_factor ** i
+
+                # TODO: check the boundary condition
+                target_values.append(self._scalar_reward(value_list[value_index]))
+                if current_index < len(reward_list):
+                    target_rewards.append(self._scalar_reward(reward_list[current_index]))
+                else:
+                    target_rewards.append(0.)
+
+                value_index += 1
+
+            batch_rewards.append(target_rewards)
+            batch_target_values.append(target_values)
+        return batch_rewards, batch_target_values
+
+    def _accumulate_reward_value_targets_vectorized(self, value_list, rewards_list, pos_in_game_segment_list,
+                                                    td_steps_list):
+        """
+        Overview:
+            NumPy version of ``_accumulate_reward_value_targets_loop`` for the case without player-dependent reward
+            signs: target_value = bootstrap_value + sum_i reward[t + i] * discount ** i over the n-step window.
+            Same results up to floating-point summation order (exact e.g. for discount 1 and integer rewards).
+        """
+        value_list = np.asarray(value_list, dtype=np.float64).reshape(-1)
+        num_steps = self._cfg.num_unroll_steps + 1
+        max_td = int(np.max(td_steps_list)) if len(td_steps_list) else 1
+        discounts = self._cfg.discount_factor ** np.arange(max(max_td, 1), dtype=np.float64)
+        batch_target_values = np.empty((len(rewards_list), num_steps), dtype=np.float64)
+        batch_rewards = np.zeros((len(rewards_list), num_steps), dtype=np.float64)
+        value_index = 0
+        for j, (reward_list, state_index) in enumerate(zip(rewards_list, pos_in_game_segment_list)):
+            n = len(reward_list)
+            rewards = np.asarray(reward_list, dtype=np.float64).reshape(n, -1)[:, 0] if n else np.zeros(0)
+            for k in range(num_steps):
+                current_index = state_index + k
+                window = rewards[current_index:current_index + int(td_steps_list[value_index])]
+                batch_target_values[j, k] = value_list[value_index] + window @ discounts[:len(window)]
+                if current_index < n:
+                    batch_rewards[j, k] = rewards[current_index]
+                value_index += 1
         return batch_rewards, batch_target_values
 
     # @profile

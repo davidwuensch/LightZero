@@ -1,0 +1,871 @@
+[2026-11-12 16:46:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:46:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:46:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:46:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:46:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:46:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:46:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:46:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:46:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: -1.0, current episode: 9
+[2026-11-12 16:46:07][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 10
+[2026-11-12 16:46:07][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 11
+[2026-11-12 16:46:07][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 12
+[2026-11-12 16:46:08][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 12
+[2026-11-12 16:46:08][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: -1.0, current episode: 13
+[2026-11-12 16:46:08][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: -1.0, current episode: 14
+[2026-11-12 16:46:08][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 14
+[2026-11-12 16:46:08][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: -1.0, current episode: 14
+[2026-11-12 16:46:08][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 15
+[2026-11-12 16:46:08][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: -1.0, current episode: 15
+[2026-11-12 16:46:08][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: -1.0, current episode: 16
+[2026-11-12 16:46:09][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 16
+[2026-11-12 16:46:09][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 16
+[2026-11-12 16:46:09][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 16
+[2026-11-12 16:46:09][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: -1.0, current episode: 17
+[2026-11-12 16:46:09][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: -1.0, current episode: 18
+[2026-11-12 16:46:09][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:46:09][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:46:09][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: -1.0, current episode: 20
+[2026-11-12 16:46:09][alphazero_evaluator.py:268][INFO] 
++-------+------------+---------------------+---------------+---------------+
+| Name  | train_iter | ckpt_name           | episode_count | envstep_count |
++-------+------------+---------------------+---------------+---------------+
+| Value | 0.000000   | iteration_0.pth.tar | 20.000000     | 280.000000    |
++-------+------------+---------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 14.000000               | 6.339461      | 44.167790           | 3.154842             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -1.000000   | 0.000000   | -1.000000  | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+--------------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                                      | eval_episode_return_mean |
++-------+--------------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0] | -1.000000                |
++-------+--------------------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:46:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:46:55][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:46:55][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:46:55][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:46:55][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:46:55][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:46:55][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:46:55][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:46:55][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: -1.0, current episode: 9
+[2026-11-12 16:46:55][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: -1.0, current episode: 10
+[2026-11-12 16:46:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:46:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:46:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:46:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:46:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:46:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:46:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:46:57][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 17
+[2026-11-12 16:46:57][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -1.0, current episode: 17
+[2026-11-12 16:46:57][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:46:57][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:46:57][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:46:57][alphazero_evaluator.py:268][INFO] 
++-------+------------+-----------------------+---------------+---------------+
+| Name  | train_iter | ckpt_name             | episode_count | envstep_count |
++-------+------------+-----------------------+---------------+---------------+
+| Value | 550.000000 | iteration_550.pth.tar | 20.000000     | 320.000000    |
++-------+------------+-----------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 16.000000               | 5.119352      | 62.507911           | 3.906744             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.000000    | 1.000000   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+----------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                            | eval_episode_return_mean |
++-------+----------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [-1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0] | 0.000000                 |
++-------+----------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:47:42][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:47:42][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:47:42][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 9
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 10
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:47:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:47:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 16
+[2026-11-12 16:47:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:47:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:47:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:47:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: -1.0, current episode: 20
+[2026-11-12 16:47:45][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 1250.000000 | iteration_1250.pth.tar | 20.000000     | 380.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 19.000000               | 6.017951      | 63.144414           | 3.323390             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.300000   | 0.953939   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+-------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                               | eval_episode_return_mean |
++-------+-------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [-1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, 1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0] | -0.300000                |
++-------+-------------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: -1.0, current episode: 9
+[2026-11-12 16:48:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 10
+[2026-11-12 16:48:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: -1.0, current episode: 11
+[2026-11-12 16:48:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 12
+[2026-11-12 16:48:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 13
+[2026-11-12 16:48:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:48:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:48:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:48:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:48:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:48:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:48:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:48:27][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 2050.000000 | iteration_2050.pth.tar | 20.000000     | 340.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 17.000000               | 5.200576      | 65.377371           | 3.845728             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.300000   | 0.953939   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+-------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                               | eval_episode_return_mean |
++-------+-------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, -1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, 1.0] | -0.300000                |
++-------+-------------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:49:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:49:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:49:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:49:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:49:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 5
+[2026-11-12 16:49:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 6
+[2026-11-12 16:49:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:49:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:49:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:49:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:49:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:49:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:49:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:49:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:49:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:49:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:49:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:49:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 17
+[2026-11-12 16:49:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:49:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:49:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:49:06][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 2700.000000 | iteration_2700.pth.tar | 20.000000     | 400.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 20.000000               | 6.319454      | 63.296607           | 3.164830             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.600000    | 0.800000   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+----------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                      | eval_episode_return_mean |
++-------+----------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0] | 0.600000                 |
++-------+----------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:49:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:49:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:49:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 3
+[2026-11-12 16:49:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 4
+[2026-11-12 16:49:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 5
+[2026-11-12 16:49:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 6
+[2026-11-12 16:49:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:49:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:49:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:49:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:49:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:49:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:49:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:49:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:49:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:49:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 16
+[2026-11-12 16:49:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:49:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:49:46][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 18
+[2026-11-12 16:49:46][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:49:46][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:49:46][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 3400.000000 | iteration_3400.pth.tar | 20.000000     | 420.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 21.000000               | 6.632314      | 63.326314           | 3.015539             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.700000    | 0.714143   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+---------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                     | eval_episode_return_mean |
++-------+---------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0] | 0.700000                 |
++-------+---------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:50:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:50:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:50:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:50:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:50:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:50:23][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:50:23][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:50:23][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:50:23][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:50:23][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:50:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 9
+[2026-11-12 16:50:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 10
+[2026-11-12 16:50:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 10
+[2026-11-12 16:50:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:50:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:50:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 12
+[2026-11-12 16:50:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:50:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:50:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:50:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:50:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:50:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:50:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:50:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:50:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: -0.0, current episode: 20
+[2026-11-12 16:50:27][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 4050.000000 | iteration_4050.pth.tar | 20.000000     | 420.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 21.000000               | 6.842351      | 61.382415           | 2.922972             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.050000    | 0.973396   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+----------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                            | eval_episode_return_mean |
++-------+----------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -0.0, 1.0, -1.0, -1.0] | 0.050000                 |
++-------+----------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:51:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:51:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:51:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:51:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:51:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:51:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:51:05][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:51:06][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:51:07][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:51:07][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:51:07][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:51:07][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:51:07][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:51:07][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 20
+[2026-11-12 16:51:07][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 4750.000000 | iteration_4750.pth.tar | 20.000000     | 400.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 20.000000               | 6.402696      | 62.473685           | 3.123684             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.400000    | 0.916515   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                        | eval_episode_return_mean |
++-------+------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0] | 0.400000                 |
++-------+------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:51:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:51:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:51:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 9
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 10
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: -1.0, current episode: 11
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: -1.0, current episode: 12
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 13
+[2026-11-12 16:51:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: -1.0, current episode: 14
+[2026-11-12 16:51:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:51:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:51:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:51:46][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 17
+[2026-11-12 16:51:46][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:51:46][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:51:46][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:51:46][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 20
+[2026-11-12 16:51:46][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: -1.0, current episode: 20
+[2026-11-12 16:51:46][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 5450.000000 | iteration_5450.pth.tar | 20.000000     | 360.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 18.000000               | 5.871048      | 61.317845           | 3.406547             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.600000   | 0.800000   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+----------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                                  | eval_episode_return_mean |
++-------+----------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, -1.0, -1.0, 1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0] | -0.600000                |
++-------+----------------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 6
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:52:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:52:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:52:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:52:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:52:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:52:23][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:52:23][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:52:23][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:52:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:52:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:52:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:52:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:52:24][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 6100.000000 | iteration_6100.pth.tar | 20.000000     | 400.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 20.000000               | 6.644353      | 60.201497           | 3.010075             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.400000    | 0.916515   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                        | eval_episode_return_mean |
++-------+------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0, 1.0] | 0.400000                 |
++-------+------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:53:00][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:53:00][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:53:00][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: 1.0, current episode: 4
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 5
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 6
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:53:01][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:53:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 17
+[2026-11-12 16:53:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:53:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:53:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:53:03][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 6750.000000 | iteration_6750.pth.tar | 20.000000     | 380.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 19.000000               | 6.112533      | 62.167351           | 3.271966             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.600000    | 0.800000   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+----------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                      | eval_episode_return_mean |
++-------+----------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0] | 0.600000                 |
++-------+----------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:53:41][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:53:41][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:53:41][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:53:41][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:53:42][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 5
+[2026-11-12 16:53:42][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 6
+[2026-11-12 16:53:42][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:53:43][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:53:44][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:53:45][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -0.0, current episode: 20
+[2026-11-12 16:53:45][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 7450.000000 | iteration_7450.pth.tar | 20.000000     | 420.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 21.000000               | 6.829372      | 61.499065           | 2.928527             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.550000    | 0.804674   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+-----------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                       | eval_episode_return_mean |
++-------+-----------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [-1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, -0.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0] | 0.550000                 |
++-------+-----------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:54:18][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:54:18][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:54:18][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:54:20][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:54:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 17
+[2026-11-12 16:54:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:54:21][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:54:22][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 20
+[2026-11-12 16:54:22][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 8050.000000 | iteration_8050.pth.tar | 20.000000     | 380.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 19.000000               | 6.340888      | 59.928513           | 3.154132             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.300000    | 0.953939   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+-------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                         | eval_episode_return_mean |
++-------+-------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [-1.0, 1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0] | 0.300000                 |
++-------+-------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 9
+[2026-11-12 16:54:54][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: -1.0, current episode: 10
+[2026-11-12 16:54:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:54:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:54:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:54:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:54:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:54:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:54:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:54:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:54:56][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:54:58][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:54:58][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:54:58][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:54:58][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:54:58][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:54:58][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 8600.000000 | iteration_8600.pth.tar | 20.000000     | 400.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 20.000000               | 6.498304      | 61.554525           | 3.077726             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.000000    | 1.000000   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+----------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                            | eval_episode_return_mean |
++-------+----------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [-1.0, 1.0, -1.0, -1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0] | 0.000000                 |
++-------+----------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: -1.0, current episode: 9
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 10
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:55:34][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:55:35][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:55:35][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:55:35][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:55:35][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:55:35][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:55:35][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:55:37][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:55:37][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: -1.0, current episode: 20
+[2026-11-12 16:55:37][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 9250.000000 | iteration_9250.pth.tar | 20.000000     | 380.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 19.000000               | 6.128471      | 62.005676           | 3.263457             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.200000   | 0.979796   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                              | eval_episode_return_mean |
++-------+------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [-1.0, -1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0] | -0.200000                |
++-------+------------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:56:12][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:56:12][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:56:12][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:56:12][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:56:12][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:56:12][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:56:13][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:56:13][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:56:13][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:56:13][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:56:13][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:56:13][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:56:14][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:56:14][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:56:14][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:56:15][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:56:15][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:56:15][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:56:15][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:56:15][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:56:15][alphazero_evaluator.py:268][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 9850.000000 | iteration_9850.pth.tar | 20.000000     | 400.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 20.000000               | 6.459349      | 61.925744           | 3.096287             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.400000    | 0.916515   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                        | eval_episode_return_mean |
++-------+------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, 1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0] | 0.400000                 |
++-------+------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:56:48][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:56:48][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:56:48][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:56:48][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:56:48][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:56:48][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:56:48][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:56:49][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:56:49][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:56:49][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:56:49][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:56:49][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:56:49][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:56:50][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:56:50][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:56:50][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:56:50][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:56:50][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:56:50][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:56:50][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:56:50][alphazero_evaluator.py:268][INFO] 
++-------+--------------+-------------------------+---------------+---------------+
+| Name  | train_iter   | ckpt_name               | episode_count | envstep_count |
++-------+--------------+-------------------------+---------------+---------------+
+| Value | 10350.000000 | iteration_10350.pth.tar | 20.000000     | 340.000000    |
++-------+--------------+-------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 17.000000               | 5.581533      | 60.915167           | 3.583245             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.300000    | 0.953939   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+-------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                         | eval_episode_return_mean |
++-------+-------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [-1.0, 1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0] | 0.300000                 |
++-------+-------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:57:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:57:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:57:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:57:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:57:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:57:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 6
+[2026-11-12 16:57:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 7
+[2026-11-12 16:57:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: -1.0, current episode: 8
+[2026-11-12 16:57:24][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: -1.0, current episode: 9
+[2026-11-12 16:57:25][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:57:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:57:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:57:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:57:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:57:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:57:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:57:26][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:57:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: -1.0, current episode: 18
+[2026-11-12 16:57:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -1.0, current episode: 19
+[2026-11-12 16:57:27][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: -1.0, current episode: 20
+[2026-11-12 16:57:27][alphazero_evaluator.py:268][INFO] 
++-------+--------------+-------------------------+---------------+---------------+
+| Name  | train_iter   | ckpt_name               | episode_count | envstep_count |
++-------+--------------+-------------------------+---------------+---------------+
+| Value | 10900.000000 | iteration_10900.pth.tar | 20.000000     | 380.000000    |
++-------+--------------+-------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 19.000000               | 6.301740      | 60.300808           | 3.173727             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.200000   | 0.979796   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                              | eval_episode_return_mean |
++-------+------------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [-1.0, -1.0, -1.0, -1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0] | -0.200000                |
++-------+------------------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 1
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: 1.0, current episode: 2
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: 1.0, current episode: 3
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: 1.0, current episode: 4
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: 1.0, current episode: 5
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: 1.0, current episode: 6
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:58:03][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:58:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:58:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:58:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 15
+[2026-11-12 16:58:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 16
+[2026-11-12 16:58:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 17
+[2026-11-12 16:58:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 18
+[2026-11-12 16:58:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:58:04][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:58:04][alphazero_evaluator.py:268][INFO] 
++-------+--------------+-------------------------+---------------+---------------+
+| Name  | train_iter   | ckpt_name               | episode_count | envstep_count |
++-------+--------------+-------------------------+---------------+---------------+
+| Value | 11450.000000 | iteration_11450.pth.tar | 20.000000     | 320.000000    |
++-------+--------------+-------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 16.000000               | 5.243629      | 61.026433           | 3.814152             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 1.000000    | 0.000000   | 1.000000   | 1.000000   |
++-------+-------------+------------+------------+------------+
++-------+------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                  | eval_episode_return_mean |
++-------+------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] | 1.000000                 |
++-------+------------------------------------------------------------------------------------------------------+--------------------------+
+
+[2026-11-12 16:58:37][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 3 finish episode, final reward: -1.0, current episode: 1
+[2026-11-12 16:58:37][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 5 finish episode, final reward: -1.0, current episode: 2
+[2026-11-12 16:58:37][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 8 finish episode, final reward: -1.0, current episode: 3
+[2026-11-12 16:58:37][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 13 finish episode, final reward: -1.0, current episode: 4
+[2026-11-12 16:58:37][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 14 finish episode, final reward: -1.0, current episode: 5
+[2026-11-12 16:58:37][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 9 finish episode, final reward: 1.0, current episode: 6
+[2026-11-12 16:58:38][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 1 finish episode, final reward: 1.0, current episode: 7
+[2026-11-12 16:58:38][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 11 finish episode, final reward: 1.0, current episode: 8
+[2026-11-12 16:58:38][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 6 finish episode, final reward: 1.0, current episode: 9
+[2026-11-12 16:58:38][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 10 finish episode, final reward: 1.0, current episode: 10
+[2026-11-12 16:58:38][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 12 finish episode, final reward: 1.0, current episode: 11
+[2026-11-12 16:58:38][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 16 finish episode, final reward: 1.0, current episode: 12
+[2026-11-12 16:58:38][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 17 finish episode, final reward: 1.0, current episode: 13
+[2026-11-12 16:58:38][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 18 finish episode, final reward: 1.0, current episode: 14
+[2026-11-12 16:58:40][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 2 finish episode, final reward: -1.0, current episode: 15
+[2026-11-12 16:58:40][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 4 finish episode, final reward: -1.0, current episode: 16
+[2026-11-12 16:58:40][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 7 finish episode, final reward: -1.0, current episode: 17
+[2026-11-12 16:58:40][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 19 finish episode, final reward: -1.0, current episode: 18
+[2026-11-12 16:58:40][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 0 finish episode, final reward: 1.0, current episode: 19
+[2026-11-12 16:58:40][alphazero_evaluator.py:238][INFO] [EVALUATOR]env 15 finish episode, final reward: 1.0, current episode: 20
+[2026-11-12 16:58:40][alphazero_evaluator.py:268][INFO] 
++-------+--------------+-------------------------+---------------+---------------+
+| Name  | train_iter   | ckpt_name               | episode_count | envstep_count |
++-------+--------------+-------------------------+---------------+---------------+
+| Value | 12000.000000 | iteration_12000.pth.tar | 20.000000     | 399.000000    |
++-------+--------------+-------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 19.950000               | 6.671622      | 59.805550           | 2.997772             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.100000    | 0.994987   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+---------------------------------------------------------------------------------------------------------------+--------------------------+
+| Name  | eval_episode_return                                                                                           | eval_episode_return_mean |
++-------+---------------------------------------------------------------------------------------------------------------+--------------------------+
+| Value | [1.0, 1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0] | 0.100000                 |
++-------+---------------------------------------------------------------------------------------------------------------+--------------------------+
+

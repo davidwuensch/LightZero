@@ -13,6 +13,7 @@ from numpy import ndarray
 
 from .common import MZNetworkOutput, RepresentationNetwork, PredictionNetwork, FeatureAndGradientHook, MLP_V2
 from .utils import renormalize, get_params_mean
+from .cuda_graph_inference import run_graphed
 
 
 # use ModelRegistry to register the model, for more details about ModelRegistry, please refer to DI-engine's document.
@@ -116,6 +117,8 @@ class MuZeroModel(nn.Module):
         self.self_supervised_learning_loss = self_supervised_learning_loss
         self.last_linear_layer_init_zero = last_linear_layer_init_zero
         self.state_norm = state_norm
+        # (bool) Replay small-batch inference (MCTS calls) as CUDA graphs; see lzero/model/cuda_graph_inference.py.
+        self.use_cuda_graphs = kwargs.get('use_cuda_graphs', False)
         self.downsample = downsample
         self.analysis_sim_norm = analysis_sim_norm
 
@@ -228,8 +231,10 @@ class MuZeroModel(nn.Module):
                 latent state, W_ is the width of latent state.
          """
         batch_size = obs.size(0)
-        latent_state = self._representation(obs)
-        policy_logits, value = self._prediction(latent_state)
+        if self.use_cuda_graphs:
+            latent_state, policy_logits, value = run_graphed(self, 'initial_inference', self._initial_inference_core, obs)
+        else:
+            latent_state, policy_logits, value = self._initial_inference_core(obs)
         return MZNetworkOutput(
             value,
             [0. for _ in range(batch_size)],
@@ -265,9 +270,23 @@ class MuZeroModel(nn.Module):
             - next_latent_state (:obj:`torch.Tensor`): :math:`(B, H_, W_)`, where B is batch_size, H_ is the height of \
                 latent state, W_ is the width of latent state.
          """
+        if self.use_cuda_graphs:
+            next_latent_state, reward, policy_logits, value = run_graphed(
+                self, 'recurrent_inference', self._recurrent_inference_core, latent_state, action
+            )
+        else:
+            next_latent_state, reward, policy_logits, value = self._recurrent_inference_core(latent_state, action)
+        return MZNetworkOutput(value, reward, policy_logits, next_latent_state)
+
+    def _initial_inference_core(self, obs: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+        latent_state = self._representation(obs)
+        policy_logits, value = self._prediction(latent_state)
+        return latent_state, policy_logits, value
+
+    def _recurrent_inference_core(self, latent_state: torch.Tensor, action: torch.Tensor) -> Tuple[torch.Tensor, ...]:
         next_latent_state, reward = self._dynamics(latent_state, action)
         policy_logits, value = self._prediction(next_latent_state)
-        return MZNetworkOutput(value, reward, policy_logits, next_latent_state)
+        return next_latent_state, reward, policy_logits, value
 
     def _representation(self, observation: torch.Tensor) -> torch.Tensor:
         """

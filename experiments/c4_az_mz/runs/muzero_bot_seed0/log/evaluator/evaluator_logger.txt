@@ -1,0 +1,1340 @@
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:14:08][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 7
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 8
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 9
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 10
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 11
+[2026-11-12 15:14:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: -1.0, current episode count: 12
+[2026-11-12 15:14:10][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 13
+[2026-11-12 15:14:10][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 14
+[2026-11-12 15:14:10][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 15
+[2026-11-12 15:14:10][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 16
+[2026-11-12 15:14:10][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 17
+[2026-11-12 15:14:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 18
+[2026-11-12 15:14:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 19
+[2026-11-12 15:14:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 20
+[2026-11-12 15:14:11][muzero_evaluator.py:467][INFO] 
++-------+------------+---------------------+---------------+---------------+
+| Name  | train_iter | ckpt_name           | episode_count | envstep_count |
++-------+------------+---------------------+---------------+---------------+
+| Value | 0.000000   | iteration_0.pth.tar | 20.000000     | 141.000000    |
++-------+------------+---------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 7.050000                | 3.409250      | 41.358073           | 5.866393             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -1.000000   | 0.000000   | -1.000000  | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                                      |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------------------+
+| Value | -1.000000        | -1.000000       | 7.050000            | [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0] |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -1.000000                |
++-------+--------------------------+
+
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:15:51][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 7
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 8
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 9
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 10
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 11
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 12
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 13
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 14
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 15
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 16
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 17
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: -1.0, current episode count: 18
+[2026-11-12 15:15:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 19
+[2026-11-12 15:15:53][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 20
+[2026-11-12 15:15:53][muzero_evaluator.py:467][INFO] 
++-------+------------+-----------------------+---------------+---------------+
+| Name  | train_iter | ckpt_name             | episode_count | envstep_count |
++-------+------------+-----------------------+---------------+---------------+
+| Value | 750.000000 | iteration_750.pth.tar | 20.000000     | 124.000000    |
++-------+------------+-----------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 6.200000                | 1.874959      | 66.134789           | 10.666901            |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -1.000000   | 0.000000   | -1.000000  | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                                      |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------------------+
+| Value | -1.000000        | -1.000000       | 6.200000            | [-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0] |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -1.000000                |
++-------+--------------------------+
+
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:17:38][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 7
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 8
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 9
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 10
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: -1.0, current episode count: 11
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 12
+[2026-11-12 15:17:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 13
+[2026-11-12 15:17:40][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:17:40][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:17:40][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:17:40][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:17:40][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:17:40][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:17:40][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:17:40][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 1600.000000 | iteration_1600.pth.tar | 20.000000     | 138.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 6.900000                | 1.906291      | 72.391890           | 10.491578            |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.300000   | 0.953939   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                               |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------+
+| Value | -0.300000        | 1.000000        | 6.900000            | [1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0] |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -0.300000                |
++-------+--------------------------+
+
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:19:37][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: -1.0, current episode count: 7
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 8
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 9
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 10
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 11
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 12
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 13
+[2026-11-12 15:19:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 14
+[2026-11-12 15:19:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:19:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:19:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:19:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:19:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:19:39][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 20
+[2026-11-12 15:19:39][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 2500.000000 | iteration_2500.pth.tar | 20.000000     | 129.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 6.450000                | 2.548041      | 50.627138           | 7.849169             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.500000   | 0.866025   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                                 |
++-------+------------------+-----------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+| Value | -0.500000        | 1.000000        | 6.450000            | [1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, -1.0, -1.0, 1.0, -1.0] |
++-------+------------------+-----------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -0.500000                |
++-------+--------------------------+
+
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:21:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 7
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 8
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 9
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 10
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 11
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 12
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 13
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 14
+[2026-11-12 15:21:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 15
+[2026-11-12 15:21:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:21:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:21:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:21:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:21:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:21:28][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 3350.000000 | iteration_3350.pth.tar | 20.000000     | 130.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 6.500000                | 1.980748      | 65.631762           | 10.097194            |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.500000   | 0.866025   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                                 |
++-------+------------------+-----------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
+| Value | -0.500000        | 1.000000        | 6.500000            | [-1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0] |
++-------+------------------+-----------------+---------------------+---------------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -0.500000                |
++-------+--------------------------+
+
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:23:06][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:23:07][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:23:07][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:23:07][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:23:07][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 7
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 8
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 9
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 10
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:23:08][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:23:09][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 19
+[2026-11-12 15:23:10][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:23:10][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 4100.000000 | iteration_4100.pth.tar | 20.000000     | 178.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 8.900000                | 4.040763      | 44.051082           | 4.949560             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.100000   | 0.994987   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                             |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------------+
+| Value | -0.100000        | 1.000000        | 8.900000            | [-1.0, -1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0, 1.0, -1.0, -1.0, 1.0] |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -0.100000                |
++-------+--------------------------+
+
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:24:54][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:24:55][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:24:55][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:24:55][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:24:55][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: -1.0, current episode count: 7
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:24:56][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:24:57][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 17
+[2026-11-12 15:24:57][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 18
+[2026-11-12 15:24:57][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 19
+[2026-11-12 15:24:58][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:24:58][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 4850.000000 | iteration_4850.pth.tar | 20.000000     | 194.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 9.700000                | 3.927228      | 49.398710           | 5.092651             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.000000    | 1.000000   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+----------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                            |
++-------+------------------+-----------------+---------------------+----------------------------------------------------------------------------------------------------------------+
+| Value | 0.000000         | 1.000000        | 9.700000            | [1.0, -1.0, 1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, -1.0, 1.0] |
++-------+------------------+-----------------+---------------------+----------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.000000                 |
++-------+--------------------------+
+
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:26:41][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:26:41][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:26:41][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:26:41][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:26:41][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:26:41][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:26:41][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: -1.0, current episode count: 7
+[2026-11-12 15:26:42][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 8
+[2026-11-12 15:26:42][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 9
+[2026-11-12 15:26:42][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 10
+[2026-11-12 15:26:42][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 11
+[2026-11-12 15:26:42][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 12
+[2026-11-12 15:26:42][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 13
+[2026-11-12 15:26:42][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 14
+[2026-11-12 15:26:42][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 15
+[2026-11-12 15:26:42][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 16
+[2026-11-12 15:26:43][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:26:43][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:26:43][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:26:43][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 20
+[2026-11-12 15:26:43][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 5600.000000 | iteration_5600.pth.tar | 20.000000     | 137.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 6.850000                | 2.017445      | 67.907673           | 9.913529             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.700000   | 0.714143   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                                   |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------------------+
+| Value | -0.700000        | 1.000000        | 6.850000            | [-1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0] |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -0.700000                |
++-------+--------------------------+
+
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:28:26][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:28:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:28:27][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:28:28][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:28:29][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 18
+[2026-11-12 15:28:29][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 19
+[2026-11-12 15:28:30][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:28:30][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 6350.000000 | iteration_6350.pth.tar | 20.000000     | 206.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 10.300000               | 4.187332      | 49.196003           | 4.776311             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.300000    | 0.953939   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                         |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------+
+| Value | 0.300000         | 1.000000        | 10.300000           | [1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0] |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.300000                 |
++-------+--------------------------+
+
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:30:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:30:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:30:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:30:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:30:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:30:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:30:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 7
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 8
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 9
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 16
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 17
+[2026-11-12 15:30:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 18
+[2026-11-12 15:30:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 19
+[2026-11-12 15:30:14][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:30:14][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 7050.000000 | iteration_7050.pth.tar | 20.000000     | 187.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 9.350000                | 4.012857      | 46.600219           | 4.983981             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | -0.300000   | 0.953939   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                               |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------+
+| Value | -0.300000        | 1.000000        | 9.350000            | [-1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, -1.0, -1.0] |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | -0.300000                |
++-------+--------------------------+
+
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:31:48][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:31:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:31:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:31:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:31:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:31:50][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:31:50][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 6
+[2026-11-12 15:31:50][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:31:50][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:31:50][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:31:50][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:31:50][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:31:51][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 12
+[2026-11-12 15:31:51][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:31:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:31:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:31:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:31:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:31:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:31:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:31:52][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:31:52][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 7650.000000 | iteration_7650.pth.tar | 20.000000     | 223.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 11.150000               | 3.631479      | 61.407491           | 5.507398             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.300000    | 0.953939   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                         |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------+
+| Value | 0.300000         | 1.000000        | 11.150000           | [-1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0] |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.300000                 |
++-------+--------------------------+
+
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:33:34][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:33:35][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:33:35][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:33:35][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:33:35][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:33:36][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 5
+[2026-11-12 15:33:36][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:33:36][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:33:36][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:33:36][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:33:36][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:33:36][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:33:37][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 12
+[2026-11-12 15:33:37][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 13
+[2026-11-12 15:33:37][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 14
+[2026-11-12 15:33:37][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 15
+[2026-11-12 15:33:37][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:33:37][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:33:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:33:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:33:38][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:33:38][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 8300.000000 | iteration_8300.pth.tar | 20.000000     | 224.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 11.200000               | 3.837589      | 58.369976           | 5.211605             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.200000    | 0.979796   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                          |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------+
+| Value | 0.200000         | 1.000000        | 11.200000           | [1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 1.0] |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.200000                 |
++-------+--------------------------+
+
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:34:57][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:34:58][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:34:58][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:34:59][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 3
+[2026-11-12 15:34:59][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 4
+[2026-11-12 15:34:59][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 5
+[2026-11-12 15:34:59][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:34:59][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:34:59][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:34:59][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:34:59][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:34:59][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:35:00][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 12
+[2026-11-12 15:35:00][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 13
+[2026-11-12 15:35:00][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: -1.0, current episode count: 14
+[2026-11-12 15:35:00][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 15
+[2026-11-12 15:35:00][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 16
+[2026-11-12 15:35:00][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 17
+[2026-11-12 15:35:00][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:35:00][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:35:01][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:35:01][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 8800.000000 | iteration_8800.pth.tar | 20.000000     | 243.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 12.150000               | 3.592268      | 67.645295           | 5.567514             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.200000    | 0.979796   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                          |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------+
+| Value | 0.200000         | 1.000000        | 12.150000           | [1.0, -1.0, 1.0, 1.0, -1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 1.0, 1.0] |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.200000                 |
++-------+--------------------------+
+
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:36:28][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:36:29][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:36:29][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:36:30][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:36:30][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:36:30][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: -1.0, current episode count: 5
+[2026-11-12 15:36:30][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:36:30][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:36:30][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:36:30][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:36:31][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:36:31][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:36:31][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:36:31][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:36:31][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:36:31][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:36:32][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:36:32][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:36:32][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:36:32][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:36:32][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:36:32][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 9350.000000 | iteration_9350.pth.tar | 20.000000     | 260.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 13.000000               | 3.664485      | 70.951314           | 5.457793             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.500000    | 0.866025   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                       |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| Value | 0.500000         | 1.000000        | 13.000000           | [1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0] |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.500000                 |
++-------+--------------------------+
+
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:37:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:37:46][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:37:46][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:37:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:37:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 4
+[2026-11-12 15:37:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 5
+[2026-11-12 15:37:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:37:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:37:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:37:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:37:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:37:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: -1.0, current episode count: 11
+[2026-11-12 15:37:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:37:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:37:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:37:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:37:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:37:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:37:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:37:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:37:49][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:37:49][muzero_evaluator.py:467][INFO] 
++-------+-------------+------------------------+---------------+---------------+
+| Name  | train_iter  | ckpt_name              | episode_count | envstep_count |
++-------+-------------+------------------------+---------------+---------------+
+| Value | 9800.000000 | iteration_9800.pth.tar | 20.000000     | 250.000000    |
++-------+-------------+------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 12.500000               | 3.627732      | 68.913581           | 5.513087             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.600000    | 0.800000   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+----------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                      |
++-------+------------------+-----------------+---------------------+----------------------------------------------------------------------------------------------------------+
+| Value | 0.600000         | 1.000000        | 12.500000           | [1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0] |
++-------+------------------+-----------------+---------------------+----------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.600000                 |
++-------+--------------------------+
+
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:39:15][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:39:16][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:39:16][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:39:16][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:39:16][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 5
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:39:17][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:39:18][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: -1.0, current episode count: 15
+[2026-11-12 15:39:18][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:39:18][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:39:18][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:39:18][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:39:18][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:39:18][muzero_evaluator.py:467][INFO] 
++-------+--------------+-------------------------+---------------+---------------+
+| Name  | train_iter   | ckpt_name               | episode_count | envstep_count |
++-------+--------------+-------------------------+---------------+---------------+
+| Value | 10350.000000 | iteration_10350.pth.tar | 20.000000     | 210.000000    |
++-------+--------------+-------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 10.500000               | 3.154580      | 66.569885           | 6.339989             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.500000    | 0.866025   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                       |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------+
+| Value | 0.500000         | 1.000000        | 10.500000           | [-1.0, -1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] |
++-------+------------------+-----------------+---------------------+-----------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.500000                 |
++-------+--------------------------+
+
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:40:43][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:40:44][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:40:44][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: -1.0, current episode count: 2
+[2026-11-12 15:40:44][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: -1.0, current episode count: 3
+[2026-11-12 15:40:44][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: -1.0, current episode count: 4
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 5
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:40:45][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:40:46][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:40:46][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:40:46][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:40:46][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:40:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:40:47][muzero_evaluator.py:467][INFO] 
++-------+--------------+-------------------------+---------------+---------------+
+| Name  | train_iter   | ckpt_name               | episode_count | envstep_count |
++-------+--------------+-------------------------+---------------+---------------+
+| Value | 10900.000000 | iteration_10900.pth.tar | 20.000000     | 209.000000    |
++-------+--------------+-------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 10.450000               | 3.528560      | 59.230964           | 5.668035             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.600000    | 0.800000   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+----------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                      |
++-------+------------------+-----------------+---------------------+----------------------------------------------------------------------------------------------------------+
+| Value | 0.600000         | 1.000000        | 10.450000           | [1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0] |
++-------+------------------+-----------------+---------------------+----------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.600000                 |
++-------+--------------------------+
+
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:42:09][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 1
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 2
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 3
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: 1.0, current episode count: 4
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 5
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: -1.0, current episode count: 9
+[2026-11-12 15:42:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: -1.0, current episode count: 10
+[2026-11-12 15:42:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:42:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:42:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:42:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:42:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:42:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:42:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:42:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:42:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:42:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:42:13][muzero_evaluator.py:467][INFO] 
++-------+--------------+-------------------------+---------------+---------------+
+| Name  | train_iter   | ckpt_name               | episode_count | envstep_count |
++-------+--------------+-------------------------+---------------+---------------+
+| Value | 11400.000000 | iteration_11400.pth.tar | 20.000000     | 282.000000    |
++-------+--------------+-------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 14.100000               | 3.692816      | 76.364484           | 5.415921             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.800000    | 0.600000   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                    |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------+
+| Value | 0.800000         | 1.000000        | 14.100000           | [1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] |
++-------+------------------+-----------------+---------------------+--------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.800000                 |
++-------+--------------------------+
+
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:43:45][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 1
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: 1.0, current episode count: 2
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 3
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 4
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 5
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:43:47][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:43:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:43:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:43:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:43:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:43:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:43:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:43:48][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:43:48][muzero_evaluator.py:467][INFO] 
++-------+--------------+-------------------------+---------------+---------------+
+| Name  | train_iter   | ckpt_name               | episode_count | envstep_count |
++-------+--------------+-------------------------+---------------+---------------+
+| Value | 11950.000000 | iteration_11950.pth.tar | 20.000000     | 242.000000    |
++-------+--------------+-------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 12.100000               | 3.111025      | 77.787864           | 6.428749             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 1.000000    | 0.000000   | 1.000000   | 1.000000   |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                  |
++-------+------------------+-----------------+---------------------+------------------------------------------------------------------------------------------------------+
+| Value | 1.000000         | 1.000000        | 12.100000           | [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0] |
++-------+------------------+-----------------+---------------------+------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 1.000000                 |
++-------+--------------------------+
+
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[0], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[1], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[2], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[3], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[4], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[5], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[6], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[7], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[8], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[9], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[10], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[11], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[12], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[13], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[14], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[15], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[16], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[17], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[18], assigning value -1
+[2026-11-12 15:45:10][muzero_evaluator.py:273][WARNING] 'timestep' key is missing in init_obs[19], assigning value -1
+[2026-11-12 15:45:11][muzero_evaluator.py:396][INFO] [EVALUATOR] env 19 finished episode, final reward: -1.0, current episode count: 1
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 0 finished episode, final reward: 1.0, current episode count: 2
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 1 finished episode, final reward: 1.0, current episode count: 3
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 3 finished episode, final reward: 1.0, current episode count: 4
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 4 finished episode, final reward: 1.0, current episode count: 5
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 9 finished episode, final reward: 1.0, current episode count: 6
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 10 finished episode, final reward: 1.0, current episode count: 7
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 12 finished episode, final reward: 1.0, current episode count: 8
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 14 finished episode, final reward: 1.0, current episode count: 9
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 16 finished episode, final reward: 1.0, current episode count: 10
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 17 finished episode, final reward: 1.0, current episode count: 11
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 18 finished episode, final reward: 1.0, current episode count: 12
+[2026-11-12 15:45:12][muzero_evaluator.py:396][INFO] [EVALUATOR] env 7 finished episode, final reward: 1.0, current episode count: 13
+[2026-11-12 15:45:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 2 finished episode, final reward: 1.0, current episode count: 14
+[2026-11-12 15:45:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 5 finished episode, final reward: 1.0, current episode count: 15
+[2026-11-12 15:45:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 6 finished episode, final reward: 1.0, current episode count: 16
+[2026-11-12 15:45:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 8 finished episode, final reward: 1.0, current episode count: 17
+[2026-11-12 15:45:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 11 finished episode, final reward: 1.0, current episode count: 18
+[2026-11-12 15:45:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 13 finished episode, final reward: 1.0, current episode count: 19
+[2026-11-12 15:45:13][muzero_evaluator.py:396][INFO] [EVALUATOR] env 15 finished episode, final reward: 1.0, current episode count: 20
+[2026-11-12 15:45:13][muzero_evaluator.py:467][INFO] 
++-------+--------------+-------------------------+---------------+---------------+
+| Name  | train_iter   | ckpt_name               | episode_count | envstep_count |
++-------+--------------+-------------------------+---------------+---------------+
+| Value | 12500.000000 | iteration_12500.pth.tar | 20.000000     | 237.000000    |
++-------+--------------+-------------------------+---------------+---------------+
++-------+-------------------------+---------------+---------------------+----------------------+
+| Name  | avg_envstep_per_episode | evaluate_time | avg_envstep_per_sec | avg_time_per_episode |
++-------+-------------------------+---------------+---------------------+----------------------+
+| Value | 11.850000               | 2.914103      | 81.328621           | 6.863175             |
++-------+-------------------------+---------------+---------------------+----------------------+
++-------+-------------+------------+------------+------------+
+| Name  | reward_mean | reward_std | reward_max | reward_min |
++-------+-------------+------------+------------+------------+
+| Value | 0.900000    | 0.435890   | 1.000000   | -1.000000  |
++-------+-------------+------------+------------+------------+
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------+
+| Name  | eval/mean_return | eval/max_return | eval/episode_length | eval_episode_return                                                                                   |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------+
+| Value | 0.900000         | 1.000000        | 11.850000           | [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, -1.0] |
++-------+------------------+-----------------+---------------------+-------------------------------------------------------------------------------------------------------+
++-------+--------------------------+
+| Name  | eval_episode_return_mean |
++-------+--------------------------+
+| Value | 0.900000                 |
++-------+--------------------------+
+

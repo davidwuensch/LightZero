@@ -1,0 +1,115 @@
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+===== 1. training (Thu Nov 12 16:45:48 UTC 2026)
+[16:45:48] start experiments/c4_az_fixed
+[16:45:48] start experiments/c4_slip20
+Experiment experiments/c4_az_fixed: 3 runs, 20000 env steps each, eval every 1000 steps (20 games), 3 in parallel
+  [start] alphazero_bot_seed0
+  [start] alphazero_bot_seed1
+Experiment experiments/c4_slip20: 6 runs, 20000 env steps each, eval every 1000 steps (20 games), 6 in parallel
+  [start] alphazero_bot_seed0
+  [start] alphazero_bot_seed2
+  [start] muzero_bot_seed0
+  [start] alphazero_bot_seed1
+  [start] muzero_bot_seed1
+  [start] alphazero_bot_seed2
+  [start] muzero_bot_seed2
+  [FAILED (exit 1)] muzero_bot_seed1 in 1.8 min   (1/6 finished, 1.8 min elapsed)
+           see experiments/c4_slip20/logs/muzero_bot_seed1.log
+  [FAILED (exit 1)] muzero_bot_seed0 in 1.9 min   (2/6 finished, 1.9 min elapsed)
+           see experiments/c4_slip20/logs/muzero_bot_seed0.log
+  [done ] alphazero_bot_seed2 in 13.4 min   (1/3 finished, 13.4 min elapsed)
+  [done ] alphazero_bot_seed0 in 13.5 min   (2/3 finished, 13.5 min elapsed)
+  [done ] alphazero_bot_seed1 in 13.7 min   (3/3 finished, 13.7 min elapsed)
+Saved experiments/c4_az_fixed/return_vs_steps.png
+Saved experiments/c4_az_fixed/return_vs_games.png
+Saved experiments/c4_az_fixed/return_vs_time.png
+
+algo       mode       seeds     final return     mean last 3   best   games  train time
+AlphaZero  vs bot         3      0.48 ± 0.38     0.54 ± 0.33   0.93    1981    13.4 min
+
+Saved experiments/c4_az_fixed/summary.csv
+[16:59:36] done experiments/c4_az_fixed
+  [done ] alphazero_bot_seed0 in 14.4 min   (3/6 finished, 14.4 min elapsed)
+  [done ] alphazero_bot_seed2 in 14.4 min   (4/6 finished, 14.4 min elapsed)
+  [done ] alphazero_bot_seed1 in 14.5 min   (5/6 finished, 14.5 min elapsed)
+  [done ] muzero_bot_seed2 in 25.7 min   (6/6 finished, 25.7 min elapsed)
+
+2 run(s) failed: muzero_bot_seed1, muzero_bot_seed0
+Saved experiments/c4_slip20/return_vs_steps.png
+Saved experiments/c4_slip20/return_vs_games.png
+Saved experiments/c4_slip20/return_vs_time.png
+
+algo       mode       seeds     final return     mean last 3   best   games  train time
+AlphaZero  vs bot         3     -0.43 ± 0.24    -0.18 ± 0.11   0.20    2453    14.3 min
+MuZero     vs bot         1     -0.70 ± 0.00    -0.77 ± 0.00   0.00    2384    25.5 min
+
+Saved experiments/c4_slip20/summary.csv
+[17:31:44] seeds 0,1 exited: 2/2 finished
+[17:31:44] original c4_slip20 experiment exited; replotting with all runs
+Saved experiments/c4_slip20/return_vs_steps.png
+Saved experiments/c4_slip20/return_vs_games.png
+Saved experiments/c4_slip20/return_vs_time.png
+
+algo       mode       seeds     final return     mean last 3   best   games  train time
+AlphaZero  vs bot         3     -0.43 ± 0.24    -0.18 ± 0.11   0.20    2453    14.3 min
+MuZero     vs bot         3     -0.73 ± 0.12    -0.76 ± 0.02  -0.40    2472    24.5 min
+
+Saved experiments/c4_slip20/summary.csv
+[32mActivated conda/uv virtual environment at [36m/venv/main[0m
+===== 1. training (Thu Nov 12 17:31:48 UTC 2026)
+[skip] experiments/c4_az_fixed already finished
+[skip] experiments/c4_slip20 already finished
+===== 2. plots (Thu Nov 12 17:31:48 UTC 2026)
+AlphaZero: 3 run(s), 56 points, final mean 0.559
+MuZero: 3 run(s), 56 points, final mean 0.329
+Saved experiments/c4_benchmark/deterministic.png
+AlphaZero: 3 run(s), 56 points, final mean -0.266
+MuZero: 3 run(s), 56 points, final mean -0.744
+Saved experiments/c4_benchmark/stochastic_slip20.png
+AlphaZero: 3 run(s), 56 points, final mean 0.559
+MuZero: 3 run(s), 56 points, final mean 0.329
+AlphaZero slip 0.2: 3 run(s), 56 points, final mean -0.266
+MuZero slip 0.2: 3 run(s), 56 points, final mean -0.744
+Saved experiments/c4_benchmark/all.png
+===== 3. benchmarks (Thu Nov 12 17:31:56 UTC 2026): 40 games per opponent, 50 sims/move, seed-0 agents
+--- muzero_slip
+Agent: experiments/c4_slip20/runs/muzero_bot_seed0/ckpt/final.pth.tar  [muzero (bot mode) on cuda, env slip 0.2 (adjacent), trained with 0.2]  (50 sims/move, 2 random opening plies)
+
+opponent                  W    D    L    score         95% CI   Elo Δ   as 1st   as 2nd    time
+-----------------------------------------------------------------------------------------------
+random                   23    0   17    57.5%  [ 42%,  71%]     +53      70%      45%     28s
+rule                      3    0   37     7.5%  [  3%,  20%]    -436      15%       0%     15s
+mcts                      0    0   40     0.0%  [  0%,   9%]    -inf       0%       0%    193s
+ckpt:…t/final.pth.tar     4    0   36    10.0%  [  4%,  23%]    -382      15%       5%     13s
+
+--- muzero_deterministic
+Agent: experiments/c4_az_mz/runs/muzero_bot_seed0/ckpt/final.pth.tar  [muzero (bot mode) on cuda]  (50 sims/move, 2 random opening plies)
+
+opponent                  W    D    L    score         95% CI   Elo Δ   as 1st   as 2nd    time
+-----------------------------------------------------------------------------------------------
+random                   25    0   15    62.5%  [ 47%,  76%]     +89      70%      55%     29s
+rule                      4    0   36    10.0%  [  4%,  23%]    -382      20%       0%     15s
+mcts                      0    0   40     0.0%  [  0%,   9%]    -inf       0%       0%    213s
+ckpt:…t/final.pth.tar     6    0   34    15.0%  [  7%,  29%]    -301      30%       0%     16s
+
+--- alphazero_deterministic
+Agent: experiments/c4_az_fixed/runs/alphazero_bot_seed0/ckpt/final.pth.tar  [alphazero (bot mode) on cuda]  (50 sims/move, 2 random opening plies)
+
+opponent                  W    D    L    score         95% CI   Elo Δ   as 1st   as 2nd    time
+-----------------------------------------------------------------------------------------------
+random                   37    0    3    92.5%  [ 80%,  97%]    +436      95%      90%     11s
+rule                      7    0   33    17.5%  [  9%,  32%]    -269      30%       5%     20s
+mcts                      1    0   39     2.5%  [  0%,  13%]    -636       5%       0%    250s
+ckpt:…t/final.pth.tar    31    0    9    77.5%  [ 62%,  88%]    +215      95%      60%     14s
+
+--- alphazero_slip
+Agent: experiments/c4_slip20/runs/alphazero_bot_seed0/ckpt/final.pth.tar  [alphazero (bot mode) on cuda, env slip 0.2 (adjacent), trained with 0.2, simulator slip 0.2]  (50 sims/move, 2 random opening plies)
+
+opponent                  W    D    L    score         95% CI   Elo Δ   as 1st   as 2nd    time
+-----------------------------------------------------------------------------------------------
+random                   33    0    7    82.5%  [ 68%,  91%]    +269      85%      80%     14s
+rule                     17    0   23    42.5%  [ 29%,  58%]     -53      50%      35%     17s
+mcts                      4    0   36    10.0%  [  4%,  23%]    -382       0%      20%    254s
+ckpt:…t/final.pth.tar    35    0    5    87.5%  [ 74%,  95%]    +338      90%      85%     15s
+
+===== finished (Thu Nov 12 17:37:05 UTC 2026). Plots and benchmark tables: experiments/c4_benchmark/

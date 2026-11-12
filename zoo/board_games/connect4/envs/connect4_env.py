@@ -47,6 +47,21 @@ from zoo.board_games.connect4.envs.rule_bot import Connect4RuleBot
 from zoo.board_games.mcts_bot import MCTSBot
 
 
+def _make_win_lines() -> np.ndarray:
+    """Flat board indices (row * 7 + col) of every horizontal, vertical and diagonal line of four: shape (69, 4)."""
+    lines = []
+    for r in range(6):
+        for c in range(7):
+            for dr, dc in ((0, 1), (1, 0), (1, 1), (-1, 1)):
+                cells = [(r + k * dr, c + k * dc) for k in range(4)]
+                if all(0 <= rr < 6 and 0 <= cc < 7 for rr, cc in cells):
+                    lines.append([rr * 7 + cc for rr, cc in cells])
+    return np.array(lines, dtype=np.int64)
+
+
+_WIN_LINES = _make_win_lines()
+
+
 @ENV_REGISTRY.register('connect4')
 class Connect4Env(BaseEnv):
     config = dict(
@@ -79,6 +94,16 @@ class Connect4Env(BaseEnv):
         scale=False,
         # (float) The stop value when training the agent. If the evalue return reach the stop value, then the training will stop.
         stop_value=2,
+        # ---------------- Stochastic Connect Four ("slippery columns") ----------------
+        # (float) Probability that a dropped piece slips and lands in a different column than the chosen one.
+        # Applies to every move (agent, bot, human). 0 = the original deterministic game.
+        slip_prob=0.,
+        # (str) Where a slipping piece lands: 'adjacent' = uniformly in a non-full neighbouring column (c-1 / c+1),
+        # 'any' = uniformly in any other non-full column. If no such column exists, the piece stays in its column.
+        slip_to='adjacent',
+        # (float or None) Slip probability inside AlphaZero's MCTS simulator. None = same as ``slip_prob``
+        # (AlphaZero plans with the true stochastic rules); 0 = AlphaZero plans as if the game were deterministic.
+        simulation_slip_prob=None,
     )
 
     @classmethod
@@ -124,6 +149,18 @@ class Connect4Env(BaseEnv):
                 self.prob_random_agent == 0 and self.prob_expert_agent >= 0), \
             f'self.prob_random_agent:{self.prob_random_agent}, self.prob_expert_agent:{self.prob_expert_agent}'
 
+        # Stochastic dynamics (see ``slip_prob`` in the default config).
+        self.slip_prob = float(cfg.get('slip_prob', 0.))
+        self.slip_to = cfg.get('slip_to', 'adjacent')
+        assert self.slip_to in ('adjacent', 'any'), f"slip_to must be 'adjacent' or 'any', got {self.slip_to}"
+        sim_slip = cfg.get('simulation_slip_prob', None)
+        self.simulation_slip_prob = self.slip_prob if sim_slip is None else float(sim_slip)
+        assert 0 <= self.slip_prob <= 1 and 0 <= self.simulation_slip_prob <= 1
+        # Set to True by the AlphaZero policy on its MCTS simulation envs, which then use ``simulation_slip_prob``.
+        self.is_simulation_env = False
+        # Where the last piece actually landed, and whether it slipped (also returned in ``info``).
+        self.last_chosen_column, self.last_landed_column, self.last_slipped = None, None, False
+
         # The board state is saved as a one-dimensional array instead of a two-dimensional array for ease of computation in ``step()`` function.
         self.board = [0] * (6 * 7)
 
@@ -162,6 +199,19 @@ class Connect4Env(BaseEnv):
             whether the game is terminated, and some other information. 
         """
         if action in self.legal_actions:
+            chosen = action
+            action = self._landing_column(action)
+            piece = self.players.index(self._current_player) + 1
+            for i in list(filter(lambda x: x % 7 == action, list(range(41, -1, -1)))):
+                if self.board[i] == 0:
+                    self.board[i] = piece
+                    break
+        elif self.is_simulation_env:
+            # With stochastic dynamics, MCTS replays a tree path whose earlier moves may have slipped
+            # differently than when the node was expanded, so a stored action can be illegal here.
+            # Treat it like a slip: the piece lands in a random legal column (silently).
+            chosen = action
+            action = self.random_action()
             piece = self.players.index(self._current_player) + 1
             for i in list(filter(lambda x: x % 7 == action, list(range(41, -1, -1)))):
                 if self.board[i] == 0:
@@ -175,6 +225,7 @@ class Connect4Env(BaseEnv):
                 f"Now we randomly choice a action from self.legal_actions."
             )
             action = self.random_action()
+            chosen = action
             print("the random action is", action)
             piece = self.players.index(self._current_player) + 1
             for i in list(filter(lambda x: x % 7 == action, list(range(41, -1, -1)))):
@@ -189,7 +240,10 @@ class Connect4Env(BaseEnv):
         else:
             reward = np.array(0).astype(np.float32)
 
-        info = {}
+        self.last_chosen_column, self.last_landed_column = int(chosen), int(action)
+        self.last_slipped = self.last_landed_column != self.last_chosen_column
+        info = {'chosen_column': self.last_chosen_column, 'landed_column': self.last_landed_column,
+                'slipped': self.last_slipped}
 
         self._current_player = self.next_player
 
@@ -205,6 +259,30 @@ class Connect4Env(BaseEnv):
                                         format=self.replay_format)
 
         return BaseEnvTimestep(obs, reward, done, info)
+
+    @property
+    def effective_slip_prob(self) -> float:
+        return self.simulation_slip_prob if self.is_simulation_env else self.slip_prob
+
+    def _landing_column(self, action: int) -> int:
+        """
+        Overview:
+            Stochastic dynamics: with probability ``effective_slip_prob`` the piece slips to another non-full
+            column (a neighbouring one for ``slip_to='adjacent'``, any other one for ``slip_to='any'``).
+        Arguments:
+            - action (:obj:`int`): the (legal) column chosen by the player.
+        Returns:
+            - column (:obj:`int`): the column the piece actually lands in.
+        """
+        p = self.effective_slip_prob
+        if p <= 0 or np.random.rand() >= p:
+            return action
+        legal = self.legal_actions
+        if self.slip_to == 'adjacent':
+            candidates = [c for c in (action - 1, action + 1) if c in legal]
+        else:
+            candidates = [c for c in legal if c != action]
+        return int(np.random.choice(candidates)) if candidates else action
 
     def step(self, action: int) -> BaseEnvTimestep:
         """
@@ -321,6 +399,9 @@ class Connect4Env(BaseEnv):
         self.start_player_index = start_player_index
         self._current_player = self.players[self.start_player_index]
 
+        # The spaces never change: build them only once (AlphaZero's MCTS calls reset() for every simulation).
+        if getattr(self, '_observation_space', None) is not None:
+            return self.observe()
         self._action_space = spaces.Discrete(7)
         self._reward_space = spaces.Box(low=-1, high=1, shape=(1,), dtype=np.float32)
         self._observation_space = spaces.Dict(
@@ -349,14 +430,14 @@ class Connect4Env(BaseEnv):
                 the 2 dim indicates which player is the to_play player, 1 means player 1, 2 means player 2.
         """
         board_vals = np.array(self.board).reshape(6, 7)
-        board_curr_player = np.where(board_vals == self.current_player, 1, 0)
-        board_opponent_player = np.where(board_vals == self.next_player, 1, 0)
-        board_to_play = np.full((6, 7), self.current_player)
-        raw_obs = np.array([board_curr_player, board_opponent_player, board_to_play], dtype=np.float32)
+        raw_obs = np.empty((3, 6, 7), dtype=np.float32)
+        raw_obs[0] = board_vals == self.current_player
+        raw_obs[1] = board_vals == self.next_player
+        raw_obs[2] = self.current_player
         if self.scale:
-            scale_obs = copy.deepcopy(raw_obs / 2)
+            scale_obs = raw_obs / 2
         else:
-            scale_obs = copy.deepcopy(raw_obs)
+            scale_obs = raw_obs.copy()
         if self.channel_last:
             # move channel dim to last axis
             # (C, W, H) -> (W, H, C)
@@ -381,20 +462,23 @@ class Connect4Env(BaseEnv):
         if self.battle_mode == 'play_with_bot_mode' or self.battle_mode == 'eval_mode':
             return {"observation": self.current_state()[1],
                     "action_mask": action_mask,
-                    "board": copy.deepcopy(self.board),
+                    "board": self.board.copy() if isinstance(self.board, np.ndarray) else list(self.board),
                     "current_player_index": self.players.index(self._current_player),
                     "to_play": -1
                     }
         elif self.battle_mode == 'self_play_mode':
             return {"observation": self.current_state()[1],
                     "action_mask": action_mask,
-                    "board": copy.deepcopy(self.board),
+                    "board": self.board.copy() if isinstance(self.board, np.ndarray) else list(self.board),
                     "current_player_index": self.players.index(self._current_player),
                     "to_play": self._current_player
                     }
 
     @property
     def legal_actions(self) -> List[int]:
+        # Hot path in AlphaZero's MCTS (called per simulated move): vectorised for numpy boards.
+        if isinstance(self.board, np.ndarray):
+            return np.flatnonzero(self.board[:7] == 0).tolist()
         return [i for i in range(7) if self.board[i] == 0]
 
     def render(self, mode: str = None) -> None:
@@ -513,56 +597,20 @@ class Connect4Env(BaseEnv):
                 - if draw,             'done' = True, 'winner' = -1
                 - if game is not over, 'done' = False,'winner' = -1
         """
-        board = copy.deepcopy(np.array(self.board)).reshape(6, 7)
-        for piece in [1, 2]:
-            # Check horizontal locations for win
-            column_count = 7
-            row_count = 6
+        # Vectorised check over all 69 possible four-in-a-row lines (same result and order as the original
+        # nested loops: player 1 is checked before player 2, then a full board is a draw). This runs several
+        # times per MCTS simulation in AlphaZero, so it is performance critical.
+        board = np.asarray(self.board).reshape(-1)
+        lines = board[_WIN_LINES]
+        first = lines[:, 0]
+        complete = (lines == first[:, None]).all(axis=1) & (first != 0)   # lines of four equal stones
+        if complete.any():
+            winners = first[complete]
+            for piece in (1, 2):
+                if (winners == piece).any():
+                    return True, piece
 
-            for c in range(column_count - 3):
-                for r in range(row_count):
-                    if (
-                            board[r][c] == piece
-                            and board[r][c + 1] == piece
-                            and board[r][c + 2] == piece
-                            and board[r][c + 3] == piece
-                    ):
-                        return True, piece
-
-            # Check vertical locations for win
-            for c in range(column_count):
-                for r in range(row_count - 3):
-                    if (
-                            board[r][c] == piece
-                            and board[r + 1][c] == piece
-                            and board[r + 2][c] == piece
-                            and board[r + 3][c] == piece
-                    ):
-                        return True, piece
-
-            # Check positively sloped diagonals
-            for c in range(column_count - 3):
-                for r in range(row_count - 3):
-                    if (
-                            board[r][c] == piece
-                            and board[r + 1][c + 1] == piece
-                            and board[r + 2][c + 2] == piece
-                            and board[r + 3][c + 3] == piece
-                    ):
-                        return True, piece
-
-            # Check negatively sloped diagonals
-            for c in range(column_count - 3):
-                for r in range(3, row_count):
-                    if (
-                            board[r][c] == piece
-                            and board[r - 1][c + 1] == piece
-                            and board[r - 2][c + 2] == piece
-                            and board[r - 3][c + 3] == piece
-                    ):
-                        return True, piece
-
-        if all(x in [1, 2] for x in self.board):
+        if ((board == 1) | (board == 2)).all():
             return True, -1
 
         return False, -1

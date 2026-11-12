@@ -1,0 +1,1049 @@
+diff --git a/benchmark_connect4.py b/benchmark_connect4.py
+index ebb2ce6c..745516ac 100644
+--- a/benchmark_connect4.py
++++ b/benchmark_connect4.py
+@@ -1,21 +1,22 @@
+-"""Benchmark a trained Connect Four AlphaZero agent against baseline opponents.
++"""Benchmark a trained Connect Four AlphaZero or MuZero agent against baseline opponents.
+ 
+ The agent plays N games against each opponent, half as first player and half as second.
+ The first few plies are random (--random-plies) so a deterministic agent doesn't replay
+ the same game over and over.
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
++    source /venv/main/bin/activate
+     python benchmark_connect4.py                                   # latest ckpt vs random, rule, mcts
+     python benchmark_connect4.py --games 100 --opponents rule
+     python benchmark_connect4.py --opponents mcts --mcts-sims 1000 # stronger pure-MCTS baseline
+-    python benchmark_connect4.py --opponents ckpt:data_az/connect4_alphazero/ckpt/iteration_250.pth.tar
++    python benchmark_connect4.py --slip-prob 0.2                   # on stochastic Connect Four (default: as trained)
++    python benchmark_connect4.py --opponents ckpt:data_c4/alphazero_bot_seed0/ckpt/final.pth.tar
+ 
+ Opponents:
+     random        uniform random legal moves
+     rule          LightZero's rule bot (win / block / avoid traps / build sequences)
+     mcts          pure MCTS with random rollouts, no neural network (--mcts-sims)
+-    ckpt:<path>   another AlphaZero checkpoint (e.g. an earlier one), to measure progress
++    ckpt:<path>   another AlphaZero/MuZero checkpoint (e.g. an earlier one), to measure progress
+ """
+ import argparse
+ import contextlib
+@@ -28,36 +29,12 @@ import warnings
+ warnings.filterwarnings("ignore")
+ 
+ import numpy as np
+-import torch
+-from ding.config import compile_config
+-from ding.policy import create_policy
+ from easydict import EasyDict
+ 
+-from zoo.board_games.connect4.config.connect4_alphazero_sp_mode_config import main_config, create_config
++from connect4_agent import latest_checkpoint, load_agent
+ from zoo.board_games.connect4.envs.connect4_env import Connect4Env
+ from zoo.board_games.connect4.envs.rule_bot import Connect4RuleBot
+ from zoo.board_games.mcts_bot import MCTSBot
+-from play_connect4 import latest_checkpoint
+-
+-
+-def load_agent(ckpt: str, sims: int):
+-    """Return (policy_eval_mode, env_cfg) for a checkpoint."""
+-    cfg = copy.deepcopy(main_config)
+-    cfg.policy.cuda = False
+-    cfg.policy.device = "cpu"
+-    cfg.policy.mcts_ctree = True
+-    cfg.env.alphazero_mcts_ctree = True
+-    cfg.env.battle_mode = "self_play_mode"
+-    cfg.policy.mcts.num_simulations = sims
+-    cfg.policy.collector_env_num = cfg.policy.evaluator_env_num = 1
+-    cfg.env.collector_env_num = cfg.env.evaluator_env_num = 1
+-    cfg.exp_name = "data_az/benchmark"
+-    cfg = compile_config(cfg, seed=0, env=None, auto=True, create_cfg=copy.deepcopy(create_config), save_cfg=False)
+-    cfg.policy.full_cfg = cfg
+-    cfg.policy.create_cfg = create_config
+-    policy = create_policy(cfg.policy, enable_field=["learn", "eval"])
+-    policy.learn_mode.load_state_dict(torch.load(ckpt, map_location="cpu"))
+-    return policy.eval_mode, cfg.env
+ 
+ 
+ def make_player(spec: str, env_cfg, args):
+@@ -82,8 +59,8 @@ def make_player(spec: str, env_cfg, args):
+                 return int(action)
+         return mcts
+     if spec.startswith("ckpt:"):
+-        other, _ = load_agent(spec[5:], args.sims)
+-        return lambda env, obs, ply: int(other.forward({0: obs})[0]["action"])
++        other = load_agent(spec[5:], args.sims, args.device, slip_prob=env_cfg.slip_prob, slip_to=env_cfg.slip_to)
++        return lambda env, obs, ply: other.act(env, obs)
+     raise SystemExit(f"Unknown opponent '{spec}'")
+ 
+ 
+@@ -133,15 +110,23 @@ def main():
+     p.add_argument("--mcts-sims", type=int, default=200, help="simulations for the pure-MCTS opponent")
+     p.add_argument("--random-plies", type=int, default=2, help="random opening moves for game diversity")
+     p.add_argument("--seed", type=int, default=0)
++    p.add_argument("--slip-prob", type=float, default=None,
++                   help="stochastic env: probability a piece slips columns (default: as trained)")
++    p.add_argument("--slip-to", choices=("adjacent", "any"), default=None, help="default: as trained")
++    p.add_argument("--sim-slip-prob", type=float, default=None,
++                   help="AlphaZero simulator slip (default: as trained / = --slip-prob)")
++    p.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto", help="default: GPU if available")
+     args = p.parse_args()
+ 
+     np.random.seed(args.seed)
+     ckpt = args.ckpt or latest_checkpoint()
+-    agent, env_cfg = load_agent(ckpt, args.sims)
+-    agent_fn = lambda env, obs, ply: int(agent.forward({0: obs})[0]["action"])
+-    env = Connect4Env(env_cfg)
++    agent = load_agent(ckpt, args.sims, args.device,
++                       slip_prob=args.slip_prob, slip_to=args.slip_to, sim_slip_prob=args.sim_slip_prob)
++    env_cfg = agent.env_cfg
++    agent_fn = lambda env, obs, ply: agent.act(env, obs)
++    env = agent.make_env()
+ 
+-    print(f"Agent: {ckpt}  ({args.sims} sims/move, {args.random_plies} random opening plies)\n")
++    print(f"Agent: {ckpt}  [{agent.describe()}]  ({args.sims} sims/move, {args.random_plies} random opening plies)\n")
+     header = f"{'opponent':<22}{'W':>5}{'D':>5}{'L':>5}   {'score':>6}  {'95% CI':>13}  {'Elo Δ':>6}  {'as 1st':>7}  {'as 2nd':>7}  {'time':>6}"
+     print(header)
+     print("-" * len(header))
+diff --git a/lzero/mcts/buffer/game_buffer_muzero.py b/lzero/mcts/buffer/game_buffer_muzero.py
+index b37f411a..100528a4 100644
+--- a/lzero/mcts/buffer/game_buffer_muzero.py
++++ b/lzero/mcts/buffer/game_buffer_muzero.py
+@@ -533,45 +533,99 @@ class MuZeroGameBuffer(GameBuffer):
+             # if len(value_mask)>sum(value_mask):
+             #     print('have value mask')
+             value_list = value_list * np.array(value_mask)
+-            value_list = value_list.tolist()
+-            value_index = 0
++            if self._cfg.env_type == 'board_games' and to_play_segment[0][0] in [1, 2]:
++                batch_rewards, batch_target_values = self._accumulate_reward_value_targets_loop(
++                    value_list, game_segment_lens, rewards_list, pos_in_game_segment_list, to_play_segment, td_steps_list
++                )
++            else:
++                batch_rewards, batch_target_values = self._accumulate_reward_value_targets_vectorized(
++                    value_list, rewards_list, pos_in_game_segment_list, td_steps_list
++                )
+ 
+-            for game_segment_len_non_re, reward_list, state_index, to_play_list in zip(game_segment_lens, rewards_list,
+-                                                                                       pos_in_game_segment_list,
+-                                                                                       to_play_segment):
+-                target_values = []
+-                target_rewards = []
+-                base_index = state_index
++        batch_rewards = np.asarray(batch_rewards)
++        batch_target_values = np.asarray(batch_target_values)
+ 
+-                truncation_length = game_segment_len_non_re
++        return batch_rewards, batch_target_values
+ 
+-                for current_index in range(state_index, state_index + self._cfg.num_unroll_steps + 1):
+-                    bootstrap_index = current_index + td_steps_list[value_index]
+-                    for i, reward in enumerate(reward_list[current_index:bootstrap_index]):
+-                        if self._cfg.env_type == 'board_games' and to_play_segment[0][0] in [1, 2]:
+-                            # TODO(pu): for board_games, very important, to check
+-                            if to_play_list[base_index] == to_play_list[i]:
+-                                value_list[value_index] += reward * self._cfg.discount_factor ** i
+-                            else:
+-                                value_list[value_index] += -reward * self._cfg.discount_factor ** i
+-                        else:
+-                            value_list[value_index] += reward * self._cfg.discount_factor ** i
++    def _accumulate_reward_value_targets_loop(self, value_list, game_segment_lens, rewards_list,
++                                              pos_in_game_segment_list, to_play_segment, td_steps_list):
++        """
++        Overview:
++            Original (pure-Python) accumulation of n-step value targets and reward targets from
++            ``_compute_target_reward_value``. Used for board games in self-play mode (player-dependent reward signs)
++            and as the reference for ``_accumulate_reward_value_targets_vectorized``.
++        """
++        batch_target_values, batch_rewards = [], []
++        value_list = value_list.tolist()
++        value_index = 0
++
++        for game_segment_len_non_re, reward_list, state_index, to_play_list in zip(game_segment_lens, rewards_list,
++                                                                                   pos_in_game_segment_list,
++                                                                                   to_play_segment):
++            target_values = []
++            target_rewards = []
++            base_index = state_index
++
++            truncation_length = game_segment_len_non_re
+ 
+-                    # TODO: check the boundary condition
+-                    target_values.append(self._scalar_reward(value_list[value_index]))
+-                    if current_index < len(reward_list):
+-                        target_rewards.append(self._scalar_reward(reward_list[current_index]))
++            for current_index in range(state_index, state_index + self._cfg.num_unroll_steps + 1):
++                bootstrap_index = current_index + td_steps_list[value_index]
++                for i, reward in enumerate(reward_list[current_index:bootstrap_index]):
++                    if self._cfg.env_type == 'board_games' and to_play_segment[0][0] in [1, 2]:
++                        # The value target at ``current_index`` is from the view of the player to move there; the
++                        # reward at ``current_index + i`` belongs to the player who moved at that step. Fixed: the
++                        # upstream code compared to_play_list[base_index] (the first unroll position, for every
++                        # unroll step) with to_play_list[i] (a window offset used as an absolute index).
++                        reward_index = current_index + i
++                        if reward_index < len(to_play_list):
++                            same_player = to_play_list[current_index] == to_play_list[reward_index]
++                        else:  # alternating two-player game: same player every second ply
++                            same_player = i % 2 == 0
++                        if same_player:
++                            value_list[value_index] += reward * self._cfg.discount_factor ** i
++                        else:
++                            value_list[value_index] += -reward * self._cfg.discount_factor ** i
+                     else:
+-                        target_rewards.append(0.)
++                        value_list[value_index] += reward * self._cfg.discount_factor ** i
+ 
+-                    value_index += 1
++                # TODO: check the boundary condition
++                target_values.append(self._scalar_reward(value_list[value_index]))
++                if current_index < len(reward_list):
++                    target_rewards.append(self._scalar_reward(reward_list[current_index]))
++                else:
++                    target_rewards.append(0.)
+ 
+-                batch_rewards.append(target_rewards)
+-                batch_target_values.append(target_values)
++                value_index += 1
+ 
+-        batch_rewards = np.asarray(batch_rewards)
+-        batch_target_values = np.asarray(batch_target_values)
++            batch_rewards.append(target_rewards)
++            batch_target_values.append(target_values)
++        return batch_rewards, batch_target_values
+ 
++    def _accumulate_reward_value_targets_vectorized(self, value_list, rewards_list, pos_in_game_segment_list,
++                                                    td_steps_list):
++        """
++        Overview:
++            NumPy version of ``_accumulate_reward_value_targets_loop`` for the case without player-dependent reward
++            signs: target_value = bootstrap_value + sum_i reward[t + i] * discount ** i over the n-step window.
++            Same results up to floating-point summation order (exact e.g. for discount 1 and integer rewards).
++        """
++        value_list = np.asarray(value_list, dtype=np.float64).reshape(-1)
++        num_steps = self._cfg.num_unroll_steps + 1
++        max_td = int(np.max(td_steps_list)) if len(td_steps_list) else 1
++        discounts = self._cfg.discount_factor ** np.arange(max(max_td, 1), dtype=np.float64)
++        batch_target_values = np.empty((len(rewards_list), num_steps), dtype=np.float64)
++        batch_rewards = np.zeros((len(rewards_list), num_steps), dtype=np.float64)
++        value_index = 0
++        for j, (reward_list, state_index) in enumerate(zip(rewards_list, pos_in_game_segment_list)):
++            n = len(reward_list)
++            rewards = np.asarray(reward_list, dtype=np.float64).reshape(n, -1)[:, 0] if n else np.zeros(0)
++            for k in range(num_steps):
++                current_index = state_index + k
++                window = rewards[current_index:current_index + int(td_steps_list[value_index])]
++                batch_target_values[j, k] = value_list[value_index] + window @ discounts[:len(window)]
++                if current_index < n:
++                    batch_rewards[j, k] = rewards[current_index]
++                value_index += 1
+         return batch_rewards, batch_target_values
+ 
+     # @profile
+diff --git a/lzero/model/alphazero_model.py b/lzero/model/alphazero_model.py
+index d541794e..67a86140 100644
+--- a/lzero/model/alphazero_model.py
++++ b/lzero/model/alphazero_model.py
+@@ -13,6 +13,7 @@ from ding.torch_utils import MLP, ResBlock
+ from ding.utils import MODEL_REGISTRY, SequenceType
+ 
+ from .common import RepresentationNetwork
++from .cuda_graph_inference import run_graphed
+ 
+ 
+ # use ModelRegistry to register the model, for more details about ModelRegistry, please refer to DI-engine's document.
+@@ -45,6 +46,7 @@ class AlphaZeroModel(nn.Module):
+         bound_type: str = None,
+         norm_type: str = 'BN',
+         discrete_action_encoding_type: str = 'one_hot',
++        use_cuda_graphs: bool = False,
+     ):
+         """
+         Overview:
+@@ -71,6 +73,8 @@ class AlphaZeroModel(nn.Module):
+             - value_support_range (:obj:`SequenceType`): The range of categorical value output.
+         """
+         super(AlphaZeroModel, self).__init__()
++        # (bool) Replay small-batch inference (MCTS calls) as CUDA graphs; see lzero/model/cuda_graph_inference.py.
++        self.use_cuda_graphs = use_cuda_graphs
+         self.observation_shape = observation_shape
+         self.categorical_distribution = categorical_distribution
+         if self.categorical_distribution:
+@@ -181,6 +185,11 @@ class AlphaZeroModel(nn.Module):
+             - prob (:obj:`torch.Tensor`): :math:`(B, N)`, where B is batch size, N is action space size.
+             - value (:obj:`torch.Tensor`): :math:`(B, 1)`, where B is batch size.
+         """
++        if self.use_cuda_graphs:
++            return run_graphed(self, 'compute_policy_value', self._policy_value_core, state_batch)
++        return self._policy_value_core(state_batch)
++
++    def _policy_value_core(self, state_batch: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
+         logit, value = self.forward(state_batch)
+         prob = torch.nn.functional.softmax(logit, dim=-1)
+         return prob, value
+diff --git a/lzero/model/muzero_model.py b/lzero/model/muzero_model.py
+index 4ce5b3e2..de8e8287 100644
+--- a/lzero/model/muzero_model.py
++++ b/lzero/model/muzero_model.py
+@@ -13,6 +13,7 @@ from numpy import ndarray
+ 
+ from .common import MZNetworkOutput, RepresentationNetwork, PredictionNetwork, FeatureAndGradientHook, MLP_V2
+ from .utils import renormalize, get_params_mean
++from .cuda_graph_inference import run_graphed
+ 
+ 
+ # use ModelRegistry to register the model, for more details about ModelRegistry, please refer to DI-engine's document.
+@@ -116,6 +117,8 @@ class MuZeroModel(nn.Module):
+         self.self_supervised_learning_loss = self_supervised_learning_loss
+         self.last_linear_layer_init_zero = last_linear_layer_init_zero
+         self.state_norm = state_norm
++        # (bool) Replay small-batch inference (MCTS calls) as CUDA graphs; see lzero/model/cuda_graph_inference.py.
++        self.use_cuda_graphs = kwargs.get('use_cuda_graphs', False)
+         self.downsample = downsample
+         self.analysis_sim_norm = analysis_sim_norm
+ 
+@@ -228,8 +231,10 @@ class MuZeroModel(nn.Module):
+                 latent state, W_ is the width of latent state.
+          """
+         batch_size = obs.size(0)
+-        latent_state = self._representation(obs)
+-        policy_logits, value = self._prediction(latent_state)
++        if self.use_cuda_graphs:
++            latent_state, policy_logits, value = run_graphed(self, 'initial_inference', self._initial_inference_core, obs)
++        else:
++            latent_state, policy_logits, value = self._initial_inference_core(obs)
+         return MZNetworkOutput(
+             value,
+             [0. for _ in range(batch_size)],
+@@ -265,9 +270,23 @@ class MuZeroModel(nn.Module):
+             - next_latent_state (:obj:`torch.Tensor`): :math:`(B, H_, W_)`, where B is batch_size, H_ is the height of \
+                 latent state, W_ is the width of latent state.
+          """
++        if self.use_cuda_graphs:
++            next_latent_state, reward, policy_logits, value = run_graphed(
++                self, 'recurrent_inference', self._recurrent_inference_core, latent_state, action
++            )
++        else:
++            next_latent_state, reward, policy_logits, value = self._recurrent_inference_core(latent_state, action)
++        return MZNetworkOutput(value, reward, policy_logits, next_latent_state)
++
++    def _initial_inference_core(self, obs: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
++        latent_state = self._representation(obs)
++        policy_logits, value = self._prediction(latent_state)
++        return latent_state, policy_logits, value
++
++    def _recurrent_inference_core(self, latent_state: torch.Tensor, action: torch.Tensor) -> Tuple[torch.Tensor, ...]:
+         next_latent_state, reward = self._dynamics(latent_state, action)
+         policy_logits, value = self._prediction(next_latent_state)
+-        return MZNetworkOutput(value, reward, policy_logits, next_latent_state)
++        return next_latent_state, reward, policy_logits, value
+ 
+     def _representation(self, observation: torch.Tensor) -> torch.Tensor:
+         """
+diff --git a/lzero/policy/alphazero.py b/lzero/policy/alphazero.py
+index b27cab71..47763333 100644
+--- a/lzero/policy/alphazero.py
++++ b/lzero/policy/alphazero.py
+@@ -88,6 +88,9 @@ class AlphaZeroPolicy(Policy):
+         mcts=dict(
+             # (int) The number of simulations to perform at each move.
+             num_simulations=50,
++            # (int or None) Simulations per move in eval mode. None = upstream default min(800, 4 * num_simulations).
++            # Set it to num_simulations for a like-for-like comparison with MuZero, which evaluates with num_simulations.
++            eval_num_simulations=None,
+             # (int) The maximum number of moves to make in a game.
+             max_moves=512,  # for chess and shogi, 722 for Go.
+             # (float) The alpha value used in the Dirichlet distribution for exploration at the root node of the search tree.
+@@ -229,6 +232,7 @@ class AlphaZeroPolicy(Policy):
+         self.simulate_env_list = []
+         for _ in range(self._cfg.collector_env_num):
+             env = env_cls(self._cfg.full_cfg.env)
++            env.is_simulation_env = True  # e.g. stochastic Connect4 then uses its simulation_slip_prob
+             self.simulate_env_list.append(env)
+ 
+         if self._cfg.mcts_ctree:
+@@ -277,6 +281,10 @@ class AlphaZeroPolicy(Policy):
+         start_player_index = {env_id: obs[env_id]['current_player_index'] for env_id in ready_env_id}
+ 
+         self._policy_model = self._collect_model
++        # MCTS inference must use BatchNorm running statistics (as MuZero does). Without this the network stays in
++        # train mode after _forward_learn: BN normalises with the statistics of the current inference batch (8 or
++        # even 1 states) and its running statistics are updated with MCTS inference data.
++        self._collect_model.eval()
+ 
+         # ========== Step 1: Prepare all state configurations ==========
+         state_configs = []
+@@ -336,6 +344,7 @@ class AlphaZeroPolicy(Policy):
+         self.simulate_env_list_eval = []
+         for _ in range(self._cfg.evaluator_env_num):
+             env = env_cls(self._cfg.full_cfg.env)
++            env.is_simulation_env = True  # e.g. stochastic Connect4 then uses its simulation_slip_prob
+             self.simulate_env_list_eval.append(env)
+ 
+         if self._cfg.mcts_ctree:
+@@ -344,9 +353,8 @@ class AlphaZeroPolicy(Policy):
+             find_and_add_to_sys_path("lzero/mcts/ctree/ctree_alphazero/build")
+             import mcts_alphazero
+ 
+-            # TODO(pu): how to set proper num_simulations for evaluation
+             self._eval_mcts = mcts_alphazero.MCTS(self._cfg.mcts.max_moves,
+-                                                  min(800, self._cfg.mcts.num_simulations * 4),
++                                                  self._eval_num_simulations(),
+                                                   self._cfg.mcts.pb_c_base,
+                                                   self._cfg.mcts.pb_c_init, self._cfg.mcts.root_dirichlet_alpha,
+                                                   self._cfg.mcts.root_noise_weight, self.simulate_env)
+@@ -356,8 +364,7 @@ class AlphaZeroPolicy(Policy):
+             else:
+                 from lzero.mcts.ptree.ptree_az import MCTS
+             mcts_eval_config = copy.deepcopy(self._cfg.mcts)
+-            # TODO(pu): how to set proper num_simulations for evaluation
+-            mcts_eval_config.num_simulations = min(800, mcts_eval_config.num_simulations * 4)
++            mcts_eval_config.num_simulations = self._eval_num_simulations()
+             self._eval_mcts = MCTS(mcts_eval_config, self.simulate_env)
+ 
+         self._eval_model = self._model
+@@ -387,6 +394,7 @@ class AlphaZeroPolicy(Policy):
+         start_player_index = {env_id: obs[env_id]['current_player_index'] for env_id in ready_env_id}
+ 
+         self._policy_model = self._eval_model
++        self._eval_model.eval()  # see _forward_collect: use BatchNorm running statistics for MCTS inference
+ 
+         # ========== Step 1: Prepare all state configurations ==========
+         state_configs = []
+@@ -429,6 +437,11 @@ class AlphaZeroPolicy(Policy):
+ 
+         return output
+ 
++    def _eval_num_simulations(self) -> int:
++        """Simulations per move in eval mode: ``mcts.eval_num_simulations`` if set, else min(800, 4 * num_simulations)."""
++        n = self._cfg.mcts.get('eval_num_simulations', None)
++        return int(n) if n else min(800, self._cfg.mcts.num_simulations * 4)
++
+     def _get_simulation_env(self):
+         """
+         Overview:
+@@ -446,6 +459,7 @@ class AlphaZeroPolicy(Policy):
+ 
+         # Create simulation env with config from main config
+         self.simulate_env = env_cls(self._cfg.full_cfg.env)
++        self.simulate_env.is_simulation_env = True  # e.g. stochastic Connect4 then uses its simulation_slip_prob
+ 
+     @torch.no_grad()
+     def _policy_value_fn(self, env: 'Env') -> Tuple[Dict[int, np.ndarray], float]:  # noqa
+@@ -508,27 +522,23 @@ class AlphaZeroPolicy(Policy):
+         for env in env_list:
+             legal_actions_list.append(env.legal_actions)
+             current_state, current_state_scale = env.current_state()
+-            state_tensor = torch.from_numpy(current_state_scale).to(
+-                device=self._device, dtype=torch.float
+-            )
+-            state_batch_list.append(state_tensor)
++            state_batch_list.append(current_state_scale)
+ 
+-        # Stack states into batch tensor
+-        state_batch = torch.stack(state_batch_list, dim=0)
++        # Stack on the CPU and copy to the device once (instead of one small host->device copy per env)
++        state_batch = torch.from_numpy(np.stack(state_batch_list, axis=0)).to(device=self._device, dtype=torch.float)
+ 
+         # Single batch forward pass
+         with torch.no_grad():
+             action_probs_batch, value_batch = self._policy_model.compute_policy_value(state_batch)
+ 
+         # Unpack results and build output dictionaries with legal actions only
++        # One device->host copy for the whole batch (instead of two GPU syncs per env)
++        action_probs_np = action_probs_batch.detach().cpu().numpy()
++        values_np = value_batch.detach().cpu().numpy().reshape(len(env_list), -1)[:, 0]
+         results = []
+         for i, legal_actions in enumerate(legal_actions_list):
+-            action_probs = action_probs_batch[i]
+-            value = value_batch[i]
+-            action_probs_dict = dict(
+-                zip(legal_actions, action_probs[legal_actions].detach().cpu().numpy())
+-            )
+-            results.append((action_probs_dict, value.item()))
++            action_probs_dict = dict(zip(legal_actions, action_probs_np[i][legal_actions]))
++            results.append((action_probs_dict, values_np[i].item()))
+ 
+         return results
+ 
+diff --git a/play_connect4.py b/play_connect4.py
+index 26856e56..3dfa43bf 100644
+--- a/play_connect4.py
++++ b/play_connect4.py
+@@ -1,40 +1,26 @@
+-"""Play Connect Four against your trained AlphaZero agent in the terminal.
++"""Play Connect Four against your trained AlphaZero or MuZero agent in the terminal.
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
+-    python play_connect4.py                       # latest checkpoint, you move first
++    source /venv/main/bin/activate
++    python play_connect4.py                       # latest checkpoint (data_c4/ or experiments/), you move first
+     python play_connect4.py --second              # the agent moves first
+     python play_connect4.py --sims 200            # stronger (slower) agent search
+-    python play_connect4.py --ckpt data_az/connect4_alphazero/ckpt/iteration_250.pth.tar
++    python play_connect4.py --ckpt data_c4/muzero_bot_seed0/ckpt/final.pth.tar
++    python play_connect4.py --device cpu          # default: GPU if available
++    python play_connect4.py --slip-prob 0.2       # stochastic: pieces may slip into a neighbouring column
++
++The algorithm (alphazero / muzero) and training mode are read from the run's run_info.json.
+ """
+ import argparse
+-import glob
+-import os
+-import re
+ import warnings
+ 
+ warnings.filterwarnings("ignore")
+ 
+-import torch
+-from ding.config import compile_config
+-from ding.policy import create_policy
+-
+-from zoo.board_games.connect4.config.connect4_alphazero_sp_mode_config import main_config, create_config
+-from zoo.board_games.connect4.envs.connect4_env import Connect4Env
++from connect4_agent import latest_checkpoint, load_agent
+ 
+ SYMBOLS = {0: "·", 1: "\033[91m●\033[0m", 2: "\033[93m●\033[0m"}  # empty, red, yellow
+ 
+ 
+-def latest_checkpoint() -> str:
+-    ckpts = glob.glob("data_az/*/ckpt/*.pth.tar")
+-    if not ckpts:
+-        raise SystemExit("No checkpoint found under data_az/. Train first with: python train_connect4.py")
+-    best = [c for c in ckpts if c.endswith("ckpt_best.pth.tar")]
+-    if best:
+-        return max(best, key=os.path.getmtime)
+-    return max(ckpts, key=lambda c: int(re.search(r"iteration_(\d+)", c).group(1)) if "iteration_" in c else -1)
+-
+-
+ def show(board) -> None:
+     rows = [list(board[r * 7:(r + 1) * 7]) for r in range(6)]
+     print()
+@@ -49,35 +35,24 @@ def main() -> None:
+     parser.add_argument("--ckpt", type=str, default=None, help="checkpoint path (default: latest)")
+     parser.add_argument("--sims", type=int, default=100, help="MCTS simulations per agent move")
+     parser.add_argument("--second", action="store_true", help="let the agent move first")
++    parser.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto")
++    parser.add_argument("--slip-prob", type=float, default=None,
++                        help="stochastic env: probability a piece slips columns (default: as trained)")
++    parser.add_argument("--slip-to", choices=("adjacent", "any"), default=None, help="default: as trained")
++    parser.add_argument("--sim-slip-prob", type=float, default=None,
++                        help="AlphaZero simulator slip (default: as trained / = --slip-prob)")
+     args = parser.parse_args()
+ 
+-    ckpt = args.ckpt or latest_checkpoint()
+-
+-    main_config.policy.cuda = False
+-    main_config.policy.mcts_ctree = True
+-    main_config.env.alphazero_mcts_ctree = True
+-    main_config.env.battle_mode = "self_play_mode"   # we drive both sides ourselves
+-    main_config.policy.mcts.num_simulations = args.sims
+-    main_config.policy.collector_env_num = 1
+-    main_config.policy.evaluator_env_num = 1
+-    main_config.env.collector_env_num = 1
+-    main_config.env.evaluator_env_num = 1
+-    main_config.exp_name = "data_az/play"
+-    main_config.policy.device = "cpu"
+-
+-    cfg = compile_config(main_config, seed=0, env=None, auto=True, create_cfg=create_config, save_cfg=False)
+-    cfg.policy.full_cfg = cfg
+-    cfg.policy.create_cfg = create_config
+-    policy = create_policy(cfg.policy, enable_field=["learn", "eval"])
+-    policy.learn_mode.load_state_dict(torch.load(ckpt, map_location="cpu"))
+-    agent = policy.eval_mode
+-
+-    env = Connect4Env(cfg.env)
++    agent = load_agent(args.ckpt or latest_checkpoint(), args.sims, args.device,
++                       slip_prob=args.slip_prob, slip_to=args.slip_to, sim_slip_prob=args.sim_slip_prob)
++    env = agent.make_env()
+     obs = env.reset()
+ 
+     human_player = 2 if args.second else 1
+-    print(f"Loaded {ckpt}")
++    print(f"Loaded {agent.ckpt}  [{agent.describe()}]")
+     print(f"You are {SYMBOLS[human_player]}  (player {human_player}). Enter a column 1-7, or q to quit.")
++    if env.slip_prob > 0:
++        print(f"Slippery board: each piece lands in another ({env.slip_to}) column with probability {env.slip_prob:g}.")
+ 
+     done = False
+     while not done:
+@@ -92,10 +67,12 @@ def main() -> None:
+                     break
+                 print(f"Pick a non-full column from {[a + 1 for a in env.legal_actions]}.")
+         else:
+-            action = int(agent.forward({0: obs})[0]["action"])
++            action = agent.act(env, obs)
+             print(f"Agent plays column {action + 1}")
+         timestep = env.step(action)
+         obs, done = timestep.obs, timestep.done
++        if env.last_slipped:
++            print(f"  ...the piece slipped into column {env.last_landed_column + 1}!")
+ 
+     show(env.board)
+     _, winner = env.get_done_winner()
+diff --git a/plot_curves.py b/plot_curves.py
+index 33490220..c916b5a9 100644
+--- a/plot_curves.py
++++ b/plot_curves.py
+@@ -1,13 +1,13 @@
+ """Plot LightZero training curves (mean over seeds ± shaded band), README style.
+ 
+ Each --run is "Label=glob": all run directories matching the glob are treated as seeds of one
+-curve. Without --run, every run under data_az/ is grouped by its name, with trailing
++curve. Without --run, every run under data_c4/ is grouped by its name, with trailing
+ "_seedN" and LightZero's "_YYMMDD_HHMMSS" suffix stripped.
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
+-    python plot_curves.py                                          # all runs in data_az/
+-    python plot_curves.py --run "AlphaZero=data_az/c4_sims50_seed*" --run "AZ 200 sims=data_az/c4_sims200_seed*"
++    source /venv/main/bin/activate
++    python plot_curves.py                                          # all runs in data_c4/
++    python plot_curves.py --run "AlphaZero=data_c4/alphazero_bot_seed*" --run "MuZero=data_c4/muzero_bot_seed*"
+     python plot_curves.py --tag learner_step/total_loss_avg_avg --ylabel Loss
+     python plot_curves.py --list-tags                              # show all logged metrics
+ """
+@@ -68,7 +68,7 @@ def default_groups(root: str):
+ def main():
+     p = argparse.ArgumentParser()
+     p.add_argument("--run", action="append", default=[], help='"Label=glob" of run dirs (repeatable)')
+-    p.add_argument("--root", default="data_az", help="where to look when --run is not given")
++    p.add_argument("--root", default="data_c4", help="where to look when --run is not given")
+     p.add_argument("--tag", default="evaluator_step/eval_episode_return_mean")
+     p.add_argument("--title", default="Connect4")
+     p.add_argument("--ylabel", default="Return")
+diff --git a/run_experiment.py b/run_experiment.py
+index 329204ce..e0a6e2eb 100644
+--- a/run_experiment.py
++++ b/run_experiment.py
+@@ -8,10 +8,11 @@ Training modes (--modes):
+     sp   self-play, the agent plays both sides (AlphaZero and MuZero only; UniZero is skipped)
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
++    source /venv/main/bin/activate
+     python run_experiment.py                                       # bot mode, 1000 steps, seed 0
+     python run_experiment.py --modes bot,sp --seeds 0,1,2          # compare training modes too
+     python run_experiment.py --algos alphazero --modes bot,sp --steps 5000 --eval-every 250 --seeds 0,1,2
++    python run_experiment.py --algos alphazero,muzero --slip-prob 0.2 --seeds 0,1,2   # stochastic Connect Four
+     python run_experiment.py --replot experiments/<name>           # only redo plots + summary
+ 
+ Output: experiments/<name>/
+@@ -225,7 +226,13 @@ def main():
+     p.add_argument("--eval-every", type=int, default=100)
+     p.add_argument("--eval-episodes", type=int, default=10)
+     p.add_argument("--sims", type=int, default=50)
+-    p.add_argument("--parallel", type=int, default=3, help="runs at once (each uses ~1-2 cores)")
++    p.add_argument("--parallel", type=int, default=3, help="runs at once (they share the GPU)")
++    p.add_argument("--slip-prob", type=float, default=0.0, help="stochastic env, passed to train_connect4.py")
++    p.add_argument("--slip-to", choices=("adjacent", "any"), default="adjacent")
++    p.add_argument("--sim-slip-prob", type=float, default=None, help="AlphaZero simulator slip (default: = --slip-prob)")
++    p.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto", help="passed to train_connect4.py")
++    p.add_argument("--collector-envs", type=int, default=None, help="games per process, passed to train_connect4.py")
++    p.add_argument("--no-cuda-graphs", action="store_true", help="passed to train_connect4.py")
+     p.add_argument("--name", default=None, help="experiment folder name (default: timestamp)")
+     p.add_argument("--smooth", type=float, default=0.0, help="EMA smoothing for plots, 0..1")
+     p.add_argument("--replot", default=None, help="existing experiment dir: only redo plots + summary")
+@@ -264,7 +271,11 @@ def main():
+                         sys.executable, "train_connect4.py", "--algo", algo, "--mode", mode, "--seed", str(seed),
+                         "--steps", str(args.steps), "--sims", str(args.sims),
+                         "--eval-every", str(args.eval_every), "--eval-episodes", str(args.eval_episodes),
+-                        "--root", os.path.join(exp_dir, "runs"), "--exp-name", run,
++                        "--root", os.path.join(exp_dir, "runs"), "--exp-name", run, "--device", args.device,
++                        "--slip-prob", str(args.slip_prob), "--slip-to", args.slip_to,
++                        *(["--sim-slip-prob", str(args.sim_slip_prob)] if args.sim_slip_prob is not None else []),
++                        *(["--collector-envs", str(args.collector_envs)] if args.collector_envs else []),
++                        *(["--no-cuda-graphs"] if args.no_cuda_graphs else []),
+                     ]))
+         if skipped:
+             print(f"Skipping unsupported combinations: {', '.join(sorted(set(skipped)))}")
+diff --git a/train_connect4.py b/train_connect4.py
+index 2c5c039c..7b7a1767 100644
+--- a/train_connect4.py
++++ b/train_connect4.py
+@@ -1,11 +1,13 @@
+-"""Train AlphaZero, MuZero or UniZero on Connect Four (Mac CPU).
++"""Train AlphaZero, MuZero or UniZero on Connect Four (GPU if available, else CPU).
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
++    source /venv/main/bin/activate
+     python train_connect4.py --algo alphazero --steps 1000 --eval-every 100
+     python train_connect4.py --algo muzero    --steps 1000 --eval-every 100 --seed 1
+     python train_connect4.py --algo unizero   --steps 1000 --eval-every 100
+     python train_connect4.py --algo alphazero --mode sp     # self-play training (alphazero/muzero only)
++    python train_connect4.py --algo muzero --device cpu     # force CPU (default: --device auto = GPU if present)
++    python train_connect4.py --algo alphazero --slip-prob 0.2   # stochastic Connect Four (pieces slip sideways)
+ 
+ Modes:
+     bot  (default) the agent trains by playing against LightZero's rule bot ("play_with_bot_mode").
+@@ -17,6 +19,11 @@ moving first; return = mean of +1 win / 0 draw / -1 loss. Logged to TensorBoard
+ evaluator_step/eval_episode_return_mean. Evaluations run every --eval-every *env steps*
+ (at the first collection boundary after each multiple), so curves are comparable across algorithms.
+ 
++Stochastic Connect Four: with --slip-prob p a dropped piece lands in a random non-full neighbouring column
++(--slip-to any: any other column) with probability p, for every move of both players. AlphaZero's MCTS simulator
++uses --sim-slip-prob (default: same as --slip-prob = true stochastic model; 0 = plans as if deterministic).
++MuZero/UniZero learn their model from data, so --sim-slip-prob does not apply to them.
++
+ Output: <root>/<exp-name>/ with log/ (TensorBoard), ckpt/ (incl. final.pth.tar) and run_info.json.
+ """
+ import argparse
+@@ -30,6 +37,8 @@ warnings.filterwarnings("ignore")
+ 
+ from easydict import EasyDict
+ 
++from connect4_agent import DEFAULT_ROOT, resolve_device
++
+ ALGOS = ("alphazero", "muzero", "unizero")
+ 
+ 
+@@ -93,7 +102,7 @@ def unizero_config(mode: str):
+                     max_tokens=2 * 10,
+                     context_length=2 * 4,
+                     context_length_for_recurrent=2 * 4,
+-                    device="cpu",
++                    device="cpu",               # overwritten from --device in main()
+                     action_space_size=7,
+                     num_layers=2,
+                     num_heads=2,
+@@ -197,25 +206,72 @@ def main():
+     p.add_argument("--algo", choices=ALGOS, default="alphazero")
+     p.add_argument("--mode", choices=("bot", "sp"), default="bot")
+     p.add_argument("--steps", type=int, default=int(1e5), help="max environment steps (agent moves)")
+-    p.add_argument("--sims", type=int, default=50, help="MCTS simulations per move")
++    p.add_argument("--sims", type=int, default=50, help="MCTS simulations per move (training and evaluation)")
+     p.add_argument("--eval-every", type=int, default=2000, help="evaluate every N env steps")
+     p.add_argument("--eval-episodes", type=int, default=10, help="games vs the rule bot per evaluation")
+     p.add_argument("--seed", type=int, default=0)
+-    p.add_argument("--root", default="data_c4", help="parent folder for runs")
++    p.add_argument("--root", default=DEFAULT_ROOT, help="parent folder for runs")
+     p.add_argument("--exp-name", default=None, help="run folder name (default: <algo>_<mode>_seed<seed>)")
+     p.add_argument("--resume", default=None, help="checkpoint path to resume from")
++    p.add_argument("--slip-prob", type=float, default=0.0, help="stochastic env: probability a piece slips columns")
++    p.add_argument("--slip-to", choices=("adjacent", "any"), default="adjacent", help="where a slipping piece lands")
++    p.add_argument("--sim-slip-prob", type=float, default=None,
++                   help="AlphaZero only: slip probability in its MCTS simulator (default: = --slip-prob)")
++    p.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto",
++                   help="network training/inference device (auto = cuda if available)")
++    p.add_argument("--no-cuda-graphs", action="store_true",
++                   help="disable CUDA-graph replay of MCTS inference (alphazero/muzero; on by default on GPU)")
++    p.add_argument("--collector-envs", type=int, default=None,
++                   help="games collected in parallel per process (default 8). More = bigger GPU inference batches; "
++                        "update_per_collect is scaled along so updates per collected game stay the same")
+     args = p.parse_args()
+ 
+     main_config, create_config, train_fn = CONFIGS[args.algo](args.mode)
+ 
+-    # Mac / CPU settings
+-    main_config.policy.cuda = False
++    # Device: LightZero's train_* entries pick policy.device from policy.cuda; UniZero's world model
++    # additionally needs its own device setting.
++    device = resolve_device(args.device)
++    main_config.policy.cuda = device == "cuda"
++    main_config.policy.device = device
+     if "world_model_cfg" in main_config.policy.get("model", {}):
+-        main_config.policy.model.world_model_cfg.device = "cpu"
++        main_config.policy.model.world_model_cfg.device = device
++    use_graphs = device == "cuda" and not args.no_cuda_graphs and args.algo in ("alphazero", "muzero")
++    if args.algo in ("alphazero", "muzero"):
++        main_config.policy.model.use_cuda_graphs = use_graphs
++    if device == "cuda":
++        import torch
++        torch.backends.cudnn.benchmark = True   # fixed input shapes: let cuDNN pick the fastest conv kernels
++    print(f"[train_connect4] {args.algo}/{args.mode} on {device}"
++          + (" (CUDA-graph MCTS inference)" if use_graphs else ""), flush=True)
++
++    # Parallel games per process (bigger MCTS inference batches), keeping updates per collected game constant.
++    if args.collector_envs:
++        if args.algo == "unizero":
++            raise SystemExit("--collector-envs is not supported for unizero (its world model sizes its KV caches by env count).")
++        old_n = main_config.env.collector_env_num
++        scale = args.collector_envs / old_n
++        main_config.env.collector_env_num = args.collector_envs
++        main_config.policy.collector_env_num = args.collector_envs
++        main_config.policy.n_episode = args.collector_envs
++        main_config.policy.update_per_collect = max(1, round(main_config.policy.update_per_collect * scale))
++        print(f"[train_connect4] {args.collector_envs} collector envs (was {old_n}), "
++              f"update_per_collect={main_config.policy.update_per_collect}", flush=True)
++
++    # Stochastic dynamics (all algorithms; simulation_slip_prob is only used by AlphaZero's simulator)
++    main_config.env.slip_prob = args.slip_prob
++    main_config.env.slip_to = args.slip_to
++    main_config.env.simulation_slip_prob = args.sim_slip_prob
++    if args.slip_prob > 0 or args.sim_slip_prob:
++        sim = args.slip_prob if args.sim_slip_prob is None else args.sim_slip_prob
++        print(f"[train_connect4] stochastic env: slip_prob={args.slip_prob} ({args.slip_to})"
++              + (f", AlphaZero simulator slip_prob={sim}" if args.algo == "alphazero" else ""), flush=True)
+ 
+     # Search budget
+     if args.algo == "alphazero":
+         main_config.policy.mcts.num_simulations = args.sims
++        # LightZero's AlphaZero evaluates with min(800, 4 * sims) by default, MuZero/UniZero with sims:
++        # use the same budget so the evaluation curves are comparable (and evaluation is 4x cheaper).
++        main_config.policy.mcts.eval_num_simulations = args.sims
+     else:
+         main_config.policy.num_simulations = args.sims
+ 
+diff --git a/zoo/board_games/connect4/envs/connect4_env.py b/zoo/board_games/connect4/envs/connect4_env.py
+index 6137f221..19e1ce5e 100644
+--- a/zoo/board_games/connect4/envs/connect4_env.py
++++ b/zoo/board_games/connect4/envs/connect4_env.py
+@@ -47,6 +47,21 @@ from zoo.board_games.connect4.envs.rule_bot import Connect4RuleBot
+ from zoo.board_games.mcts_bot import MCTSBot
+ 
+ 
++def _make_win_lines() -> np.ndarray:
++    """Flat board indices (row * 7 + col) of every horizontal, vertical and diagonal line of four: shape (69, 4)."""
++    lines = []
++    for r in range(6):
++        for c in range(7):
++            for dr, dc in ((0, 1), (1, 0), (1, 1), (-1, 1)):
++                cells = [(r + k * dr, c + k * dc) for k in range(4)]
++                if all(0 <= rr < 6 and 0 <= cc < 7 for rr, cc in cells):
++                    lines.append([rr * 7 + cc for rr, cc in cells])
++    return np.array(lines, dtype=np.int64)
++
++
++_WIN_LINES = _make_win_lines()
++
++
+ @ENV_REGISTRY.register('connect4')
+ class Connect4Env(BaseEnv):
+     config = dict(
+@@ -79,6 +94,16 @@ class Connect4Env(BaseEnv):
+         scale=False,
+         # (float) The stop value when training the agent. If the evalue return reach the stop value, then the training will stop.
+         stop_value=2,
++        # ---------------- Stochastic Connect Four ("slippery columns") ----------------
++        # (float) Probability that a dropped piece slips and lands in a different column than the chosen one.
++        # Applies to every move (agent, bot, human). 0 = the original deterministic game.
++        slip_prob=0.,
++        # (str) Where a slipping piece lands: 'adjacent' = uniformly in a non-full neighbouring column (c-1 / c+1),
++        # 'any' = uniformly in any other non-full column. If no such column exists, the piece stays in its column.
++        slip_to='adjacent',
++        # (float or None) Slip probability inside AlphaZero's MCTS simulator. None = same as ``slip_prob``
++        # (AlphaZero plans with the true stochastic rules); 0 = AlphaZero plans as if the game were deterministic.
++        simulation_slip_prob=None,
+     )
+ 
+     @classmethod
+@@ -124,6 +149,18 @@ class Connect4Env(BaseEnv):
+                 self.prob_random_agent == 0 and self.prob_expert_agent >= 0), \
+             f'self.prob_random_agent:{self.prob_random_agent}, self.prob_expert_agent:{self.prob_expert_agent}'
+ 
++        # Stochastic dynamics (see ``slip_prob`` in the default config).
++        self.slip_prob = float(cfg.get('slip_prob', 0.))
++        self.slip_to = cfg.get('slip_to', 'adjacent')
++        assert self.slip_to in ('adjacent', 'any'), f"slip_to must be 'adjacent' or 'any', got {self.slip_to}"
++        sim_slip = cfg.get('simulation_slip_prob', None)
++        self.simulation_slip_prob = self.slip_prob if sim_slip is None else float(sim_slip)
++        assert 0 <= self.slip_prob <= 1 and 0 <= self.simulation_slip_prob <= 1
++        # Set to True by the AlphaZero policy on its MCTS simulation envs, which then use ``simulation_slip_prob``.
++        self.is_simulation_env = False
++        # Where the last piece actually landed, and whether it slipped (also returned in ``info``).
++        self.last_chosen_column, self.last_landed_column, self.last_slipped = None, None, False
++
+         # The board state is saved as a one-dimensional array instead of a two-dimensional array for ease of computation in ``step()`` function.
+         self.board = [0] * (6 * 7)
+ 
+@@ -162,6 +199,19 @@ class Connect4Env(BaseEnv):
+             whether the game is terminated, and some other information. 
+         """
+         if action in self.legal_actions:
++            chosen = action
++            action = self._landing_column(action)
++            piece = self.players.index(self._current_player) + 1
++            for i in list(filter(lambda x: x % 7 == action, list(range(41, -1, -1)))):
++                if self.board[i] == 0:
++                    self.board[i] = piece
++                    break
++        elif self.is_simulation_env:
++            # With stochastic dynamics, MCTS replays a tree path whose earlier moves may have slipped
++            # differently than when the node was expanded, so a stored action can be illegal here.
++            # Treat it like a slip: the piece lands in a random legal column (silently).
++            chosen = action
++            action = self.random_action()
+             piece = self.players.index(self._current_player) + 1
+             for i in list(filter(lambda x: x % 7 == action, list(range(41, -1, -1)))):
+                 if self.board[i] == 0:
+@@ -175,6 +225,7 @@ class Connect4Env(BaseEnv):
+                 f"Now we randomly choice a action from self.legal_actions."
+             )
+             action = self.random_action()
++            chosen = action
+             print("the random action is", action)
+             piece = self.players.index(self._current_player) + 1
+             for i in list(filter(lambda x: x % 7 == action, list(range(41, -1, -1)))):
+@@ -189,7 +240,10 @@ class Connect4Env(BaseEnv):
+         else:
+             reward = np.array(0).astype(np.float32)
+ 
+-        info = {}
++        self.last_chosen_column, self.last_landed_column = int(chosen), int(action)
++        self.last_slipped = self.last_landed_column != self.last_chosen_column
++        info = {'chosen_column': self.last_chosen_column, 'landed_column': self.last_landed_column,
++                'slipped': self.last_slipped}
+ 
+         self._current_player = self.next_player
+ 
+@@ -206,6 +260,30 @@ class Connect4Env(BaseEnv):
+ 
+         return BaseEnvTimestep(obs, reward, done, info)
+ 
++    @property
++    def effective_slip_prob(self) -> float:
++        return self.simulation_slip_prob if self.is_simulation_env else self.slip_prob
++
++    def _landing_column(self, action: int) -> int:
++        """
++        Overview:
++            Stochastic dynamics: with probability ``effective_slip_prob`` the piece slips to another non-full
++            column (a neighbouring one for ``slip_to='adjacent'``, any other one for ``slip_to='any'``).
++        Arguments:
++            - action (:obj:`int`): the (legal) column chosen by the player.
++        Returns:
++            - column (:obj:`int`): the column the piece actually lands in.
++        """
++        p = self.effective_slip_prob
++        if p <= 0 or np.random.rand() >= p:
++            return action
++        legal = self.legal_actions
++        if self.slip_to == 'adjacent':
++            candidates = [c for c in (action - 1, action + 1) if c in legal]
++        else:
++            candidates = [c for c in legal if c != action]
++        return int(np.random.choice(candidates)) if candidates else action
++
+     def step(self, action: int) -> BaseEnvTimestep:
+         """
+         Overview:
+@@ -321,6 +399,9 @@ class Connect4Env(BaseEnv):
+         self.start_player_index = start_player_index
+         self._current_player = self.players[self.start_player_index]
+ 
++        # The spaces never change: build them only once (AlphaZero's MCTS calls reset() for every simulation).
++        if getattr(self, '_observation_space', None) is not None:
++            return self.observe()
+         self._action_space = spaces.Discrete(7)
+         self._reward_space = spaces.Box(low=-1, high=1, shape=(1,), dtype=np.float32)
+         self._observation_space = spaces.Dict(
+@@ -349,14 +430,14 @@ class Connect4Env(BaseEnv):
+                 the 2 dim indicates which player is the to_play player, 1 means player 1, 2 means player 2.
+         """
+         board_vals = np.array(self.board).reshape(6, 7)
+-        board_curr_player = np.where(board_vals == self.current_player, 1, 0)
+-        board_opponent_player = np.where(board_vals == self.next_player, 1, 0)
+-        board_to_play = np.full((6, 7), self.current_player)
+-        raw_obs = np.array([board_curr_player, board_opponent_player, board_to_play], dtype=np.float32)
++        raw_obs = np.empty((3, 6, 7), dtype=np.float32)
++        raw_obs[0] = board_vals == self.current_player
++        raw_obs[1] = board_vals == self.next_player
++        raw_obs[2] = self.current_player
+         if self.scale:
+-            scale_obs = copy.deepcopy(raw_obs / 2)
++            scale_obs = raw_obs / 2
+         else:
+-            scale_obs = copy.deepcopy(raw_obs)
++            scale_obs = raw_obs.copy()
+         if self.channel_last:
+             # move channel dim to last axis
+             # (C, W, H) -> (W, H, C)
+@@ -381,20 +462,23 @@ class Connect4Env(BaseEnv):
+         if self.battle_mode == 'play_with_bot_mode' or self.battle_mode == 'eval_mode':
+             return {"observation": self.current_state()[1],
+                     "action_mask": action_mask,
+-                    "board": copy.deepcopy(self.board),
++                    "board": self.board.copy() if isinstance(self.board, np.ndarray) else list(self.board),
+                     "current_player_index": self.players.index(self._current_player),
+                     "to_play": -1
+                     }
+         elif self.battle_mode == 'self_play_mode':
+             return {"observation": self.current_state()[1],
+                     "action_mask": action_mask,
+-                    "board": copy.deepcopy(self.board),
++                    "board": self.board.copy() if isinstance(self.board, np.ndarray) else list(self.board),
+                     "current_player_index": self.players.index(self._current_player),
+                     "to_play": self._current_player
+                     }
+ 
+     @property
+     def legal_actions(self) -> List[int]:
++        # Hot path in AlphaZero's MCTS (called per simulated move): vectorised for numpy boards.
++        if isinstance(self.board, np.ndarray):
++            return np.flatnonzero(self.board[:7] == 0).tolist()
+         return [i for i in range(7) if self.board[i] == 0]
+ 
+     def render(self, mode: str = None) -> None:
+@@ -513,56 +597,20 @@ class Connect4Env(BaseEnv):
+                 - if draw,             'done' = True, 'winner' = -1
+                 - if game is not over, 'done' = False,'winner' = -1
+         """
+-        board = copy.deepcopy(np.array(self.board)).reshape(6, 7)
+-        for piece in [1, 2]:
+-            # Check horizontal locations for win
+-            column_count = 7
+-            row_count = 6
+-
+-            for c in range(column_count - 3):
+-                for r in range(row_count):
+-                    if (
+-                            board[r][c] == piece
+-                            and board[r][c + 1] == piece
+-                            and board[r][c + 2] == piece
+-                            and board[r][c + 3] == piece
+-                    ):
+-                        return True, piece
+-
+-            # Check vertical locations for win
+-            for c in range(column_count):
+-                for r in range(row_count - 3):
+-                    if (
+-                            board[r][c] == piece
+-                            and board[r + 1][c] == piece
+-                            and board[r + 2][c] == piece
+-                            and board[r + 3][c] == piece
+-                    ):
+-                        return True, piece
+-
+-            # Check positively sloped diagonals
+-            for c in range(column_count - 3):
+-                for r in range(row_count - 3):
+-                    if (
+-                            board[r][c] == piece
+-                            and board[r + 1][c + 1] == piece
+-                            and board[r + 2][c + 2] == piece
+-                            and board[r + 3][c + 3] == piece
+-                    ):
+-                        return True, piece
+-
+-            # Check negatively sloped diagonals
+-            for c in range(column_count - 3):
+-                for r in range(3, row_count):
+-                    if (
+-                            board[r][c] == piece
+-                            and board[r - 1][c + 1] == piece
+-                            and board[r - 2][c + 2] == piece
+-                            and board[r - 3][c + 3] == piece
+-                    ):
+-                        return True, piece
+-
+-        if all(x in [1, 2] for x in self.board):
++        # Vectorised check over all 69 possible four-in-a-row lines (same result and order as the original
++        # nested loops: player 1 is checked before player 2, then a full board is a draw). This runs several
++        # times per MCTS simulation in AlphaZero, so it is performance critical.
++        board = np.asarray(self.board).reshape(-1)
++        lines = board[_WIN_LINES]
++        first = lines[:, 0]
++        complete = (lines == first[:, None]).all(axis=1) & (first != 0)   # lines of four equal stones
++        if complete.any():
++            winners = first[complete]
++            for piece in (1, 2):
++                if (winners == piece).any():
++                    return True, piece
++
++        if ((board == 1) | (board == 2)).all():
+             return True, -1
+ 
+         return False, -1

@@ -1,0 +1,20 @@
+{
+  "algo": "muzero",
+  "mode": "bot",
+  "steps": 20000,
+  "sims": 50,
+  "eval_every": 1000,
+  "eval_episodes": 20,
+  "seed": 0,
+  "root": "experiments/c4_slip20/runs",
+  "exp_name": "muzero_bot_seed0",
+  "resume": null,
+  "slip_prob": 0.2,
+  "slip_to": "adjacent",
+  "sim_slip_prob": null,
+  "device": "auto",
+  "no_cuda_graphs": false,
+  "collector_envs": null,
+  "run_dir": "experiments/c4_slip20/runs/muzero_bot_seed0",
+  "wall_time_sec": 1396.8
+}

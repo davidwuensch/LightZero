@@ -1,0 +1,23 @@
+[2026-11-12 15:06:55][advanced_buffer.py:252][INFO] Refuse to sample due to -- 
+staleness: True, Remove 0 elements due to staleness. Not enough for sampling. valid(75) / sample(256) < sample_min_limit_ratio(1) 
+thruput: False, Always can sample because push_sample_rate_limit['min'] == 0
+[2026-11-12 15:07:00][advanced_buffer.py:252][INFO] Refuse to sample due to -- 
+staleness: True, Remove 0 elements due to staleness. Not enough for sampling. valid(145) / sample(256) < sample_min_limit_ratio(1) 
+thruput: False, Always can sample because push_sample_rate_limit['min'] == 0
+[2026-11-12 15:07:04][advanced_buffer.py:252][INFO] Refuse to sample due to -- 
+staleness: True, Remove 0 elements due to staleness. Not enough for sampling. valid(190) / sample(256) < sample_min_limit_ratio(1) 
+thruput: False, Always can sample because push_sample_rate_limit['min'] == 0
+[2026-11-12 15:07:21][advanced_buffer.py:686][INFO] === Sample data 0 Times ===
+[2026-11-12 15:07:21][advanced_buffer.py:687][INFO] 
++-------+----------+----------+--------------+--------------+
+| Name  | use_avg  | use_max  | priority_avg | priority_max |
++-------+----------+----------+--------------+--------------+
+| Value | 1.375000 | 2.000000 | 1.000000     | 1.000000     |
++-------+----------+----------+--------------+--------------+
++-------+--------------+---------------+---------------+----------+
+| Name  | priority_min | staleness_avg | staleness_max | beta     |
++-------+--------------+---------------+---------------+----------+
+| Value | 1.000000     | 0.000000      | 0.000000      | 0.400006 |
++-------+--------------+---------------+---------------+----------+
+
+

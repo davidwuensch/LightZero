@@ -1,0 +1,330 @@
+diff --git a/benchmark_connect4.py b/benchmark_connect4.py
+index ebb2ce6c..f56f26c5 100644
+--- a/benchmark_connect4.py
++++ b/benchmark_connect4.py
+@@ -1,21 +1,21 @@
+-"""Benchmark a trained Connect Four AlphaZero agent against baseline opponents.
++"""Benchmark a trained Connect Four AlphaZero or MuZero agent against baseline opponents.
+ 
+ The agent plays N games against each opponent, half as first player and half as second.
+ The first few plies are random (--random-plies) so a deterministic agent doesn't replay
+ the same game over and over.
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
++    source /venv/main/bin/activate
+     python benchmark_connect4.py                                   # latest ckpt vs random, rule, mcts
+     python benchmark_connect4.py --games 100 --opponents rule
+     python benchmark_connect4.py --opponents mcts --mcts-sims 1000 # stronger pure-MCTS baseline
+-    python benchmark_connect4.py --opponents ckpt:data_az/connect4_alphazero/ckpt/iteration_250.pth.tar
++    python benchmark_connect4.py --opponents ckpt:data_c4/alphazero_bot_seed0/ckpt/final.pth.tar
+ 
+ Opponents:
+     random        uniform random legal moves
+     rule          LightZero's rule bot (win / block / avoid traps / build sequences)
+     mcts          pure MCTS with random rollouts, no neural network (--mcts-sims)
+-    ckpt:<path>   another AlphaZero checkpoint (e.g. an earlier one), to measure progress
++    ckpt:<path>   another AlphaZero/MuZero checkpoint (e.g. an earlier one), to measure progress
+ """
+ import argparse
+ import contextlib
+@@ -28,36 +28,12 @@ import warnings
+ warnings.filterwarnings("ignore")
+ 
+ import numpy as np
+-import torch
+-from ding.config import compile_config
+-from ding.policy import create_policy
+ from easydict import EasyDict
+ 
+-from zoo.board_games.connect4.config.connect4_alphazero_sp_mode_config import main_config, create_config
++from connect4_agent import latest_checkpoint, load_agent
+ from zoo.board_games.connect4.envs.connect4_env import Connect4Env
+ from zoo.board_games.connect4.envs.rule_bot import Connect4RuleBot
+ from zoo.board_games.mcts_bot import MCTSBot
+-from play_connect4 import latest_checkpoint
+-
+-
+-def load_agent(ckpt: str, sims: int):
+-    """Return (policy_eval_mode, env_cfg) for a checkpoint."""
+-    cfg = copy.deepcopy(main_config)
+-    cfg.policy.cuda = False
+-    cfg.policy.device = "cpu"
+-    cfg.policy.mcts_ctree = True
+-    cfg.env.alphazero_mcts_ctree = True
+-    cfg.env.battle_mode = "self_play_mode"
+-    cfg.policy.mcts.num_simulations = sims
+-    cfg.policy.collector_env_num = cfg.policy.evaluator_env_num = 1
+-    cfg.env.collector_env_num = cfg.env.evaluator_env_num = 1
+-    cfg.exp_name = "data_az/benchmark"
+-    cfg = compile_config(cfg, seed=0, env=None, auto=True, create_cfg=copy.deepcopy(create_config), save_cfg=False)
+-    cfg.policy.full_cfg = cfg
+-    cfg.policy.create_cfg = create_config
+-    policy = create_policy(cfg.policy, enable_field=["learn", "eval"])
+-    policy.learn_mode.load_state_dict(torch.load(ckpt, map_location="cpu"))
+-    return policy.eval_mode, cfg.env
+ 
+ 
+ def make_player(spec: str, env_cfg, args):
+@@ -82,8 +58,8 @@ def make_player(spec: str, env_cfg, args):
+                 return int(action)
+         return mcts
+     if spec.startswith("ckpt:"):
+-        other, _ = load_agent(spec[5:], args.sims)
+-        return lambda env, obs, ply: int(other.forward({0: obs})[0]["action"])
++        other = load_agent(spec[5:], args.sims, args.device)
++        return lambda env, obs, ply: other.act(env, obs)
+     raise SystemExit(f"Unknown opponent '{spec}'")
+ 
+ 
+@@ -133,15 +109,17 @@ def main():
+     p.add_argument("--mcts-sims", type=int, default=200, help="simulations for the pure-MCTS opponent")
+     p.add_argument("--random-plies", type=int, default=2, help="random opening moves for game diversity")
+     p.add_argument("--seed", type=int, default=0)
++    p.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto", help="default: GPU if available")
+     args = p.parse_args()
+ 
+     np.random.seed(args.seed)
+     ckpt = args.ckpt or latest_checkpoint()
+-    agent, env_cfg = load_agent(ckpt, args.sims)
+-    agent_fn = lambda env, obs, ply: int(agent.forward({0: obs})[0]["action"])
+-    env = Connect4Env(env_cfg)
++    agent = load_agent(ckpt, args.sims, args.device)
++    env_cfg = agent.env_cfg
++    agent_fn = lambda env, obs, ply: agent.act(env, obs)
++    env = agent.make_env()
+ 
+-    print(f"Agent: {ckpt}  ({args.sims} sims/move, {args.random_plies} random opening plies)\n")
++    print(f"Agent: {ckpt}  [{agent.describe()}]  ({args.sims} sims/move, {args.random_plies} random opening plies)\n")
+     header = f"{'opponent':<22}{'W':>5}{'D':>5}{'L':>5}   {'score':>6}  {'95% CI':>13}  {'Elo Δ':>6}  {'as 1st':>7}  {'as 2nd':>7}  {'time':>6}"
+     print(header)
+     print("-" * len(header))
+diff --git a/play_connect4.py b/play_connect4.py
+index 26856e56..f97ee386 100644
+--- a/play_connect4.py
++++ b/play_connect4.py
+@@ -1,40 +1,25 @@
+-"""Play Connect Four against your trained AlphaZero agent in the terminal.
++"""Play Connect Four against your trained AlphaZero or MuZero agent in the terminal.
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
+-    python play_connect4.py                       # latest checkpoint, you move first
++    source /venv/main/bin/activate
++    python play_connect4.py                       # latest checkpoint (data_c4/ or experiments/), you move first
+     python play_connect4.py --second              # the agent moves first
+     python play_connect4.py --sims 200            # stronger (slower) agent search
+-    python play_connect4.py --ckpt data_az/connect4_alphazero/ckpt/iteration_250.pth.tar
++    python play_connect4.py --ckpt data_c4/muzero_bot_seed0/ckpt/final.pth.tar
++    python play_connect4.py --device cpu          # default: GPU if available
++
++The algorithm (alphazero / muzero) and training mode are read from the run's run_info.json.
+ """
+ import argparse
+-import glob
+-import os
+-import re
+ import warnings
+ 
+ warnings.filterwarnings("ignore")
+ 
+-import torch
+-from ding.config import compile_config
+-from ding.policy import create_policy
+-
+-from zoo.board_games.connect4.config.connect4_alphazero_sp_mode_config import main_config, create_config
+-from zoo.board_games.connect4.envs.connect4_env import Connect4Env
++from connect4_agent import latest_checkpoint, load_agent
+ 
+ SYMBOLS = {0: "·", 1: "\033[91m●\033[0m", 2: "\033[93m●\033[0m"}  # empty, red, yellow
+ 
+ 
+-def latest_checkpoint() -> str:
+-    ckpts = glob.glob("data_az/*/ckpt/*.pth.tar")
+-    if not ckpts:
+-        raise SystemExit("No checkpoint found under data_az/. Train first with: python train_connect4.py")
+-    best = [c for c in ckpts if c.endswith("ckpt_best.pth.tar")]
+-    if best:
+-        return max(best, key=os.path.getmtime)
+-    return max(ckpts, key=lambda c: int(re.search(r"iteration_(\d+)", c).group(1)) if "iteration_" in c else -1)
+-
+-
+ def show(board) -> None:
+     rows = [list(board[r * 7:(r + 1) * 7]) for r in range(6)]
+     print()
+@@ -49,34 +34,15 @@ def main() -> None:
+     parser.add_argument("--ckpt", type=str, default=None, help="checkpoint path (default: latest)")
+     parser.add_argument("--sims", type=int, default=100, help="MCTS simulations per agent move")
+     parser.add_argument("--second", action="store_true", help="let the agent move first")
++    parser.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto")
+     args = parser.parse_args()
+ 
+-    ckpt = args.ckpt or latest_checkpoint()
+-
+-    main_config.policy.cuda = False
+-    main_config.policy.mcts_ctree = True
+-    main_config.env.alphazero_mcts_ctree = True
+-    main_config.env.battle_mode = "self_play_mode"   # we drive both sides ourselves
+-    main_config.policy.mcts.num_simulations = args.sims
+-    main_config.policy.collector_env_num = 1
+-    main_config.policy.evaluator_env_num = 1
+-    main_config.env.collector_env_num = 1
+-    main_config.env.evaluator_env_num = 1
+-    main_config.exp_name = "data_az/play"
+-    main_config.policy.device = "cpu"
+-
+-    cfg = compile_config(main_config, seed=0, env=None, auto=True, create_cfg=create_config, save_cfg=False)
+-    cfg.policy.full_cfg = cfg
+-    cfg.policy.create_cfg = create_config
+-    policy = create_policy(cfg.policy, enable_field=["learn", "eval"])
+-    policy.learn_mode.load_state_dict(torch.load(ckpt, map_location="cpu"))
+-    agent = policy.eval_mode
+-
+-    env = Connect4Env(cfg.env)
++    agent = load_agent(args.ckpt or latest_checkpoint(), args.sims, args.device)
++    env = agent.make_env()
+     obs = env.reset()
+ 
+     human_player = 2 if args.second else 1
+-    print(f"Loaded {ckpt}")
++    print(f"Loaded {agent.ckpt}  [{agent.describe()}]")
+     print(f"You are {SYMBOLS[human_player]}  (player {human_player}). Enter a column 1-7, or q to quit.")
+ 
+     done = False
+@@ -92,7 +58,7 @@ def main() -> None:
+                     break
+                 print(f"Pick a non-full column from {[a + 1 for a in env.legal_actions]}.")
+         else:
+-            action = int(agent.forward({0: obs})[0]["action"])
++            action = agent.act(env, obs)
+             print(f"Agent plays column {action + 1}")
+         timestep = env.step(action)
+         obs, done = timestep.obs, timestep.done
+diff --git a/plot_curves.py b/plot_curves.py
+index 33490220..c916b5a9 100644
+--- a/plot_curves.py
++++ b/plot_curves.py
+@@ -1,13 +1,13 @@
+ """Plot LightZero training curves (mean over seeds ± shaded band), README style.
+ 
+ Each --run is "Label=glob": all run directories matching the glob are treated as seeds of one
+-curve. Without --run, every run under data_az/ is grouped by its name, with trailing
++curve. Without --run, every run under data_c4/ is grouped by its name, with trailing
+ "_seedN" and LightZero's "_YYMMDD_HHMMSS" suffix stripped.
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
+-    python plot_curves.py                                          # all runs in data_az/
+-    python plot_curves.py --run "AlphaZero=data_az/c4_sims50_seed*" --run "AZ 200 sims=data_az/c4_sims200_seed*"
++    source /venv/main/bin/activate
++    python plot_curves.py                                          # all runs in data_c4/
++    python plot_curves.py --run "AlphaZero=data_c4/alphazero_bot_seed*" --run "MuZero=data_c4/muzero_bot_seed*"
+     python plot_curves.py --tag learner_step/total_loss_avg_avg --ylabel Loss
+     python plot_curves.py --list-tags                              # show all logged metrics
+ """
+@@ -68,7 +68,7 @@ def default_groups(root: str):
+ def main():
+     p = argparse.ArgumentParser()
+     p.add_argument("--run", action="append", default=[], help='"Label=glob" of run dirs (repeatable)')
+-    p.add_argument("--root", default="data_az", help="where to look when --run is not given")
++    p.add_argument("--root", default="data_c4", help="where to look when --run is not given")
+     p.add_argument("--tag", default="evaluator_step/eval_episode_return_mean")
+     p.add_argument("--title", default="Connect4")
+     p.add_argument("--ylabel", default="Return")
+diff --git a/run_experiment.py b/run_experiment.py
+index 329204ce..6cbe2aa1 100644
+--- a/run_experiment.py
++++ b/run_experiment.py
+@@ -8,7 +8,7 @@ Training modes (--modes):
+     sp   self-play, the agent plays both sides (AlphaZero and MuZero only; UniZero is skipped)
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
++    source /venv/main/bin/activate
+     python run_experiment.py                                       # bot mode, 1000 steps, seed 0
+     python run_experiment.py --modes bot,sp --seeds 0,1,2          # compare training modes too
+     python run_experiment.py --algos alphazero --modes bot,sp --steps 5000 --eval-every 250 --seeds 0,1,2
+@@ -225,7 +225,8 @@ def main():
+     p.add_argument("--eval-every", type=int, default=100)
+     p.add_argument("--eval-episodes", type=int, default=10)
+     p.add_argument("--sims", type=int, default=50)
+-    p.add_argument("--parallel", type=int, default=3, help="runs at once (each uses ~1-2 cores)")
++    p.add_argument("--parallel", type=int, default=3, help="runs at once (they share the GPU)")
++    p.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto", help="passed to train_connect4.py")
+     p.add_argument("--name", default=None, help="experiment folder name (default: timestamp)")
+     p.add_argument("--smooth", type=float, default=0.0, help="EMA smoothing for plots, 0..1")
+     p.add_argument("--replot", default=None, help="existing experiment dir: only redo plots + summary")
+@@ -264,7 +265,7 @@ def main():
+                         sys.executable, "train_connect4.py", "--algo", algo, "--mode", mode, "--seed", str(seed),
+                         "--steps", str(args.steps), "--sims", str(args.sims),
+                         "--eval-every", str(args.eval_every), "--eval-episodes", str(args.eval_episodes),
+-                        "--root", os.path.join(exp_dir, "runs"), "--exp-name", run,
++                        "--root", os.path.join(exp_dir, "runs"), "--exp-name", run, "--device", args.device,
+                     ]))
+         if skipped:
+             print(f"Skipping unsupported combinations: {', '.join(sorted(set(skipped)))}")
+diff --git a/train_connect4.py b/train_connect4.py
+index 2c5c039c..ae18b77d 100644
+--- a/train_connect4.py
++++ b/train_connect4.py
+@@ -1,11 +1,12 @@
+-"""Train AlphaZero, MuZero or UniZero on Connect Four (Mac CPU).
++"""Train AlphaZero, MuZero or UniZero on Connect Four (GPU if available, else CPU).
+ 
+ Usage (from this directory):
+-    source .venv/bin/activate
++    source /venv/main/bin/activate
+     python train_connect4.py --algo alphazero --steps 1000 --eval-every 100
+     python train_connect4.py --algo muzero    --steps 1000 --eval-every 100 --seed 1
+     python train_connect4.py --algo unizero   --steps 1000 --eval-every 100
+     python train_connect4.py --algo alphazero --mode sp     # self-play training (alphazero/muzero only)
++    python train_connect4.py --algo muzero --device cpu     # force CPU (default: --device auto = GPU if present)
+ 
+ Modes:
+     bot  (default) the agent trains by playing against LightZero's rule bot ("play_with_bot_mode").
+@@ -30,6 +31,8 @@ warnings.filterwarnings("ignore")
+ 
+ from easydict import EasyDict
+ 
++from connect4_agent import DEFAULT_ROOT, resolve_device
++
+ ALGOS = ("alphazero", "muzero", "unizero")
+ 
+ 
+@@ -93,7 +96,7 @@ def unizero_config(mode: str):
+                     max_tokens=2 * 10,
+                     context_length=2 * 4,
+                     context_length_for_recurrent=2 * 4,
+-                    device="cpu",
++                    device="cpu",               # overwritten from --device in main()
+                     action_space_size=7,
+                     num_layers=2,
+                     num_heads=2,
+@@ -201,17 +204,23 @@ def main():
+     p.add_argument("--eval-every", type=int, default=2000, help="evaluate every N env steps")
+     p.add_argument("--eval-episodes", type=int, default=10, help="games vs the rule bot per evaluation")
+     p.add_argument("--seed", type=int, default=0)
+-    p.add_argument("--root", default="data_c4", help="parent folder for runs")
++    p.add_argument("--root", default=DEFAULT_ROOT, help="parent folder for runs")
+     p.add_argument("--exp-name", default=None, help="run folder name (default: <algo>_<mode>_seed<seed>)")
+     p.add_argument("--resume", default=None, help="checkpoint path to resume from")
++    p.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto",
++                   help="network training/inference device (auto = cuda if available)")
+     args = p.parse_args()
+ 
+     main_config, create_config, train_fn = CONFIGS[args.algo](args.mode)
+ 
+-    # Mac / CPU settings
+-    main_config.policy.cuda = False
++    # Device: LightZero's train_* entries pick policy.device from policy.cuda; UniZero's world model
++    # additionally needs its own device setting.
++    device = resolve_device(args.device)
++    main_config.policy.cuda = device == "cuda"
++    main_config.policy.device = device
+     if "world_model_cfg" in main_config.policy.get("model", {}):
+-        main_config.policy.model.world_model_cfg.device = "cpu"
++        main_config.policy.model.world_model_cfg.device = device
++    print(f"[train_connect4] {args.algo}/{args.mode} on {device}", flush=True)
+ 
+     # Search budget
+     if args.algo == "alphazero":

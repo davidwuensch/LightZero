@@ -13,6 +13,7 @@ from ding.torch_utils import MLP, ResBlock
 from ding.utils import MODEL_REGISTRY, SequenceType
 
 from .common import RepresentationNetwork
+from .cuda_graph_inference import run_graphed
 
 
 # use ModelRegistry to register the model, for more details about ModelRegistry, please refer to DI-engine's document.
@@ -45,6 +46,7 @@ class AlphaZeroModel(nn.Module):
         bound_type: str = None,
         norm_type: str = 'BN',
         discrete_action_encoding_type: str = 'one_hot',
+        use_cuda_graphs: bool = False,
     ):
         """
         Overview:
@@ -71,6 +73,8 @@ class AlphaZeroModel(nn.Module):
             - value_support_range (:obj:`SequenceType`): The range of categorical value output.
         """
         super(AlphaZeroModel, self).__init__()
+        # (bool) Replay small-batch inference (MCTS calls) as CUDA graphs; see lzero/model/cuda_graph_inference.py.
+        self.use_cuda_graphs = use_cuda_graphs
         self.observation_shape = observation_shape
         self.categorical_distribution = categorical_distribution
         if self.categorical_distribution:
@@ -181,6 +185,11 @@ class AlphaZeroModel(nn.Module):
             - prob (:obj:`torch.Tensor`): :math:`(B, N)`, where B is batch size, N is action space size.
             - value (:obj:`torch.Tensor`): :math:`(B, 1)`, where B is batch size.
         """
+        if self.use_cuda_graphs:
+            return run_graphed(self, 'compute_policy_value', self._policy_value_core, state_batch)
+        return self._policy_value_core(state_batch)
+
+    def _policy_value_core(self, state_batch: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
         logit, value = self.forward(state_batch)
         prob = torch.nn.functional.softmax(logit, dim=-1)
         return prob, value

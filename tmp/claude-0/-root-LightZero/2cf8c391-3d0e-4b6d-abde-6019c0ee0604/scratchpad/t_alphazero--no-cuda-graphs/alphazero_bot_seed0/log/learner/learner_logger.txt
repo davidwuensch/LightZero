@@ -1,0 +1,189 @@
+[2026-11-12 16:12:55][base_learner.py:360][INFO] [RANK0]: DI-engine DRL Policy
+AlphaZeroModel(
+  (prediction_network): PredictionNetwork(
+    (activation): ReLU(inplace=True)
+    (resblocks): ModuleList(
+      (0): ResBlock(
+        (act): ReLU(inplace=True)
+        (conv1): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+        )
+        (conv2): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+        )
+      )
+    )
+    (conv1x1_value): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1))
+    (conv1x1_policy): Conv2d(64, 16, kernel_size=(1, 1), stride=(1, 1))
+    (norm_value): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (norm_policy): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (fc_value_head): Sequential(
+      (0): Linear(in_features=672, out_features=32, bias=True)
+      (1): LayerNorm((32,), eps=1e-05, elementwise_affine=True, bias=True)
+      (2): ReLU(inplace=True)
+      (3): Linear(in_features=32, out_features=1, bias=True)
+    )
+    (fc_policy_head): Sequential(
+      (0): Linear(in_features=672, out_features=32, bias=True)
+      (1): LayerNorm((32,), eps=1e-05, elementwise_affine=True, bias=True)
+      (2): ReLU(inplace=True)
+      (3): Linear(in_features=32, out_features=7, bias=True)
+    )
+  )
+  (representation_network): RepresentationNetwork(
+    (activation): ReLU(inplace=True)
+    (conv): Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+    (resblocks): ModuleList(
+      (0): ResBlock(
+        (act): ReLU(inplace=True)
+        (conv1): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+          (2): ReLU(inplace=True)
+        )
+        (conv2): Sequential(
+          (0): Conv2d(64, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+          (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, bias=True, track_running_stats=True)
+        )
+      )
+    )
+  )
+)
+[2026-11-12 16:13:02][base_learner.py:360][INFO] [RANK0]: learner save ckpt in .//tmp/claude-0/-root-LightZero/2cf8c391-3d0e-4b6d-abde-6019c0ee0604/scratchpad/t_alphazero--no-cuda-graphs/alphazero_bot_seed0/ckpt/ckpt_best.pth.tar
+[2026-11-12 16:13:10][base_learner.py:360][INFO] [RANK0]: === Training Iteration 0 Result ===
+[2026-11-12 16:13:10][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 2.945910       | 1.945910        | 1.000000       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.945910        | 4.522499                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:10][base_learner.py:360][INFO] [RANK0]: learner save ckpt in .//tmp/claude-0/-root-LightZero/2cf8c391-3d0e-4b6d-abde-6019c0ee0604/scratchpad/t_alphazero--no-cuda-graphs/alphazero_bot_seed0/ckpt/iteration_0.pth.tar
+[2026-11-12 16:13:13][base_learner.py:360][INFO] [RANK0]: === Training Iteration 100 Result ===
+[2026-11-12 16:13:13][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 1.761612       | 1.707345        | 0.054268       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.719507        | 0.148386                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:18][base_learner.py:360][INFO] [RANK0]: === Training Iteration 200 Result ===
+[2026-11-12 16:13:18][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 1.722162       | 1.678529        | 0.043633       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.681990        | 0.175796                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:22][base_learner.py:360][INFO] [RANK0]: === Training Iteration 300 Result ===
+[2026-11-12 16:13:22][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 1.676997       | 1.608201        | 0.068797       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.616015        | 0.186321                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:26][base_learner.py:360][INFO] [RANK0]: === Training Iteration 400 Result ===
+[2026-11-12 16:13:26][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 1.656905       | 1.577980        | 0.078925       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.582305        | 0.172476                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:31][base_learner.py:360][INFO] [RANK0]: === Training Iteration 500 Result ===
+[2026-11-12 16:13:31][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 1.592526       | 1.540830        | 0.051696       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.545776        | 0.148695                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:37][base_learner.py:360][INFO] [RANK0]: learner save ckpt in .//tmp/claude-0/-root-LightZero/2cf8c391-3d0e-4b6d-abde-6019c0ee0604/scratchpad/t_alphazero--no-cuda-graphs/alphazero_bot_seed0/ckpt/ckpt_best.pth.tar
+[2026-11-12 16:13:38][base_learner.py:360][INFO] [RANK0]: === Training Iteration 600 Result ===
+[2026-11-12 16:13:38][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 1.601572       | 1.521667        | 0.079905       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.524627        | 0.222023                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:43][base_learner.py:360][INFO] [RANK0]: === Training Iteration 700 Result ===
+[2026-11-12 16:13:43][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 1.596366       | 1.514476        | 0.081890       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.516436        | 0.152829                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:47][base_learner.py:360][INFO] [RANK0]: === Training Iteration 800 Result ===
+[2026-11-12 16:13:47][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 1.591723       | 1.504014        | 0.087709       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.507253        | 0.204188                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:52][base_learner.py:360][INFO] [RANK0]: === Training Iteration 900 Result ===
+[2026-11-12 16:13:52][learner_hook.py:228][INFO] 
++-------+------------+----------------+-----------------+----------------+
+| Name  | cur_lr_avg | total_loss_avg | policy_loss_avg | value_loss_avg |
++-------+------------+----------------+-----------------+----------------+
+| Value | 0.003000   | 1.597418       | 1.484090        | 0.113328       |
++-------+------------+----------------+-----------------+----------------+
++-------+------------------+---------------------------------+------------------------------+
+| Name  | entropy_loss_avg | total_grad_norm_before_clip_avg | collect_mcts_temperature_avg |
++-------+------------------+---------------------------------+------------------------------+
+| Value | -1.483708        | 0.251935                        | 0.250000                     |
++-------+------------------+---------------------------------+------------------------------+
+
+[2026-11-12 16:13:52][base_learner.py:360][INFO] [RANK0]: learner save ckpt in .//tmp/claude-0/-root-LightZero/2cf8c391-3d0e-4b6d-abde-6019c0ee0604/scratchpad/t_alphazero--no-cuda-graphs/alphazero_bot_seed0/ckpt/iteration_950.pth.tar

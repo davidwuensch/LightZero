@@ -1,0 +1,28 @@
+{
+  "algos": [
+    "alphazero"
+  ],
+  "modes": [
+    "bot"
+  ],
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "steps": 20000,
+  "eval_every": 1000,
+  "eval_episodes": 20,
+  "sims": 50,
+  "parallel": 3,
+  "slip_prob": 0.0,
+  "slip_to": "adjacent",
+  "sim_slip_prob": null,
+  "device": "auto",
+  "collector_envs": null,
+  "no_cuda_graphs": false,
+  "name": "c4_az_fixed",
+  "smooth": 0.0,
+  "replot": null,
+  "started": "2026-11-12T16:45:48.862966"
+}

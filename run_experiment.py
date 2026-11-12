@@ -8,10 +8,11 @@ Training modes (--modes):
     sp   self-play, the agent plays both sides (AlphaZero and MuZero only; UniZero is skipped)
 
 Usage (from this directory):
-    source .venv/bin/activate
+    source /venv/main/bin/activate
     python run_experiment.py                                       # bot mode, 1000 steps, seed 0
     python run_experiment.py --modes bot,sp --seeds 0,1,2          # compare training modes too
     python run_experiment.py --algos alphazero --modes bot,sp --steps 5000 --eval-every 250 --seeds 0,1,2
+    python run_experiment.py --algos alphazero,muzero --slip-prob 0.2 --seeds 0,1,2   # stochastic Connect Four
     python run_experiment.py --replot experiments/<name>           # only redo plots + summary
 
 Output: experiments/<name>/
@@ -225,7 +226,13 @@ def main():
     p.add_argument("--eval-every", type=int, default=100)
     p.add_argument("--eval-episodes", type=int, default=10)
     p.add_argument("--sims", type=int, default=50)
-    p.add_argument("--parallel", type=int, default=3, help="runs at once (each uses ~1-2 cores)")
+    p.add_argument("--parallel", type=int, default=3, help="runs at once (they share the GPU)")
+    p.add_argument("--slip-prob", type=float, default=0.0, help="stochastic env, passed to train_connect4.py")
+    p.add_argument("--slip-to", choices=("adjacent", "any"), default="adjacent")
+    p.add_argument("--sim-slip-prob", type=float, default=None, help="AlphaZero simulator slip (default: = --slip-prob)")
+    p.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto", help="passed to train_connect4.py")
+    p.add_argument("--collector-envs", type=int, default=None, help="games per process, passed to train_connect4.py")
+    p.add_argument("--no-cuda-graphs", action="store_true", help="passed to train_connect4.py")
     p.add_argument("--name", default=None, help="experiment folder name (default: timestamp)")
     p.add_argument("--smooth", type=float, default=0.0, help="EMA smoothing for plots, 0..1")
     p.add_argument("--replot", default=None, help="existing experiment dir: only redo plots + summary")
@@ -264,7 +271,11 @@ def main():
                         sys.executable, "train_connect4.py", "--algo", algo, "--mode", mode, "--seed", str(seed),
                         "--steps", str(args.steps), "--sims", str(args.sims),
                         "--eval-every", str(args.eval_every), "--eval-episodes", str(args.eval_episodes),
-                        "--root", os.path.join(exp_dir, "runs"), "--exp-name", run,
+                        "--root", os.path.join(exp_dir, "runs"), "--exp-name", run, "--device", args.device,
+                        "--slip-prob", str(args.slip_prob), "--slip-to", args.slip_to,
+                        *(["--sim-slip-prob", str(args.sim_slip_prob)] if args.sim_slip_prob is not None else []),
+                        *(["--collector-envs", str(args.collector_envs)] if args.collector_envs else []),
+                        *(["--no-cuda-graphs"] if args.no_cuda_graphs else []),
                     ]))
         if skipped:
             print(f"Skipping unsupported combinations: {', '.join(sorted(set(skipped)))}")

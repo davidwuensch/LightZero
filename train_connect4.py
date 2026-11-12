@@ -1,11 +1,13 @@
-"""Train AlphaZero, MuZero or UniZero on Connect Four (Mac CPU).
+"""Train AlphaZero, MuZero or UniZero on Connect Four (GPU if available, else CPU).
 
 Usage (from this directory):
-    source .venv/bin/activate
+    source /venv/main/bin/activate
     python train_connect4.py --algo alphazero --steps 1000 --eval-every 100
     python train_connect4.py --algo muzero    --steps 1000 --eval-every 100 --seed 1
     python train_connect4.py --algo unizero   --steps 1000 --eval-every 100
     python train_connect4.py --algo alphazero --mode sp     # self-play training (alphazero/muzero only)
+    python train_connect4.py --algo muzero --device cpu     # force CPU (default: --device auto = GPU if present)
+    python train_connect4.py --algo alphazero --slip-prob 0.2   # stochastic Connect Four (pieces slip sideways)
 
 Modes:
     bot  (default) the agent trains by playing against LightZero's rule bot ("play_with_bot_mode").
@@ -17,18 +19,29 @@ moving first; return = mean of +1 win / 0 draw / -1 loss. Logged to TensorBoard 
 evaluator_step/eval_episode_return_mean. Evaluations run every --eval-every *env steps*
 (at the first collection boundary after each multiple), so curves are comparable across algorithms.
 
+Stochastic Connect Four: with --slip-prob p a dropped piece lands in a random non-full neighbouring column
+(--slip-to any: any other column) with probability p, for every move of both players. AlphaZero's MCTS simulator
+uses --sim-slip-prob (default: same as --slip-prob = true stochastic model; 0 = plans as if deterministic).
+MuZero/UniZero learn their model from data, so --sim-slip-prob does not apply to them.
+
 Output: <root>/<exp-name>/ with log/ (TensorBoard), ckpt/ (incl. final.pth.tar) and run_info.json.
 """
 import argparse
 import copy
 import json
 import os
+
+# Several runs share one GPU: let the CUDA caching allocator grow/shrink segments instead of fragmenting
+# (must be set before torch initialises CUDA).
+os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
 import time
 import warnings
 
 warnings.filterwarnings("ignore")
 
 from easydict import EasyDict
+
+from connect4_agent import DEFAULT_ROOT, resolve_device
 
 ALGOS = ("alphazero", "muzero", "unizero")
 
@@ -93,7 +106,7 @@ def unizero_config(mode: str):
                     max_tokens=2 * 10,
                     context_length=2 * 4,
                     context_length_for_recurrent=2 * 4,
-                    device="cpu",
+                    device="cpu",               # overwritten from --device in main()
                     action_space_size=7,
                     num_layers=2,
                     num_heads=2,
@@ -197,25 +210,72 @@ def main():
     p.add_argument("--algo", choices=ALGOS, default="alphazero")
     p.add_argument("--mode", choices=("bot", "sp"), default="bot")
     p.add_argument("--steps", type=int, default=int(1e5), help="max environment steps (agent moves)")
-    p.add_argument("--sims", type=int, default=50, help="MCTS simulations per move")
+    p.add_argument("--sims", type=int, default=50, help="MCTS simulations per move (training and evaluation)")
     p.add_argument("--eval-every", type=int, default=2000, help="evaluate every N env steps")
     p.add_argument("--eval-episodes", type=int, default=10, help="games vs the rule bot per evaluation")
     p.add_argument("--seed", type=int, default=0)
-    p.add_argument("--root", default="data_c4", help="parent folder for runs")
+    p.add_argument("--root", default=DEFAULT_ROOT, help="parent folder for runs")
     p.add_argument("--exp-name", default=None, help="run folder name (default: <algo>_<mode>_seed<seed>)")
     p.add_argument("--resume", default=None, help="checkpoint path to resume from")
+    p.add_argument("--slip-prob", type=float, default=0.0, help="stochastic env: probability a piece slips columns")
+    p.add_argument("--slip-to", choices=("adjacent", "any"), default="adjacent", help="where a slipping piece lands")
+    p.add_argument("--sim-slip-prob", type=float, default=None,
+                   help="AlphaZero only: slip probability in its MCTS simulator (default: = --slip-prob)")
+    p.add_argument("--device", choices=("auto", "cuda", "cpu"), default="auto",
+                   help="network training/inference device (auto = cuda if available)")
+    p.add_argument("--no-cuda-graphs", action="store_true",
+                   help="disable CUDA-graph replay of MCTS inference (alphazero/muzero; on by default on GPU)")
+    p.add_argument("--collector-envs", type=int, default=None,
+                   help="games collected in parallel per process (default 8). More = bigger GPU inference batches; "
+                        "update_per_collect is scaled along so updates per collected game stay the same")
     args = p.parse_args()
 
     main_config, create_config, train_fn = CONFIGS[args.algo](args.mode)
 
-    # Mac / CPU settings
-    main_config.policy.cuda = False
+    # Device: LightZero's train_* entries pick policy.device from policy.cuda; UniZero's world model
+    # additionally needs its own device setting.
+    device = resolve_device(args.device)
+    main_config.policy.cuda = device == "cuda"
+    main_config.policy.device = device
     if "world_model_cfg" in main_config.policy.get("model", {}):
-        main_config.policy.model.world_model_cfg.device = "cpu"
+        main_config.policy.model.world_model_cfg.device = device
+    use_graphs = device == "cuda" and not args.no_cuda_graphs and args.algo in ("alphazero", "muzero")
+    if args.algo in ("alphazero", "muzero"):
+        main_config.policy.model.use_cuda_graphs = use_graphs
+    if device == "cuda":
+        import torch
+        torch.backends.cudnn.benchmark = True   # fixed input shapes: let cuDNN pick the fastest conv kernels
+    print(f"[train_connect4] {args.algo}/{args.mode} on {device}"
+          + (" (CUDA-graph MCTS inference)" if use_graphs else ""), flush=True)
+
+    # Parallel games per process (bigger MCTS inference batches), keeping updates per collected game constant.
+    if args.collector_envs:
+        if args.algo == "unizero":
+            raise SystemExit("--collector-envs is not supported for unizero (its world model sizes its KV caches by env count).")
+        old_n = main_config.env.collector_env_num
+        scale = args.collector_envs / old_n
+        main_config.env.collector_env_num = args.collector_envs
+        main_config.policy.collector_env_num = args.collector_envs
+        main_config.policy.n_episode = args.collector_envs
+        main_config.policy.update_per_collect = max(1, round(main_config.policy.update_per_collect * scale))
+        print(f"[train_connect4] {args.collector_envs} collector envs (was {old_n}), "
+              f"update_per_collect={main_config.policy.update_per_collect}", flush=True)
+
+    # Stochastic dynamics (all algorithms; simulation_slip_prob is only used by AlphaZero's simulator)
+    main_config.env.slip_prob = args.slip_prob
+    main_config.env.slip_to = args.slip_to
+    main_config.env.simulation_slip_prob = args.sim_slip_prob
+    if args.slip_prob > 0 or args.sim_slip_prob:
+        sim = args.slip_prob if args.sim_slip_prob is None else args.sim_slip_prob
+        print(f"[train_connect4] stochastic env: slip_prob={args.slip_prob} ({args.slip_to})"
+              + (f", AlphaZero simulator slip_prob={sim}" if args.algo == "alphazero" else ""), flush=True)
 
     # Search budget
     if args.algo == "alphazero":
         main_config.policy.mcts.num_simulations = args.sims
+        # LightZero's AlphaZero evaluates with min(800, 4 * sims) by default, MuZero/UniZero with sims:
+        # use the same budget so the evaluation curves are comparable (and evaluation is 4x cheaper).
+        main_config.policy.mcts.eval_num_simulations = args.sims
     else:
         main_config.policy.num_simulations = args.sims
 

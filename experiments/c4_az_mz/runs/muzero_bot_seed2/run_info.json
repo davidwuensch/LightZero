@@ -1,0 +1,15 @@
+{
+  "algo": "muzero",
+  "mode": "bot",
+  "steps": 20000,
+  "sims": 50,
+  "eval_every": 1000,
+  "eval_episodes": 20,
+  "seed": 2,
+  "root": "experiments/c4_az_mz/runs",
+  "exp_name": "muzero_bot_seed2",
+  "resume": null,
+  "device": "auto",
+  "run_dir": "experiments/c4_az_mz/runs/muzero_bot_seed2",
+  "wall_time_sec": 2202.6
+}

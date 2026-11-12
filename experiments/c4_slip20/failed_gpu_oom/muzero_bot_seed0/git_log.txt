@@ -1,0 +1,870 @@
+v0.2.0-78-g740b646a
+
+commit 740b646ad080c1d3d0b0e027c974522f03c1d8e0
+Author: davidwuensch <45364723+davidwuensch@users.noreply.github.com>
+Date:   Thu Nov 12 15:08:44 2026 +0100
+
+    [add] First Benchmark codd
+
+ benchmark_connect4.py                              | 169 ++++
+ .../smoke_1000/runs/alphazero_seed0/git_diff.txt   | 188 +++++
+ .../smoke_1000/runs/alphazero_seed0/git_log.txt    | 916 +++++++++++++++++++++
+ .../smoke_1000/runs/muzero_seed0/git_diff.txt      | 188 +++++
+ .../smoke_1000/runs/muzero_seed0/git_log.txt       | 916 +++++++++++++++++++++
+ .../smoke_1000/runs/unizero_seed0/git_diff.txt     | 188 +++++
+ .../smoke_1000/runs/unizero_seed0/git_log.txt      | 916 +++++++++++++++++++++
+ lzero/entry/train_alphazero.py                     |   2 +-
+ lzero/model/common.py                              |  10 +-
+ lzero/model/muzero_model.py                        |   6 +-
+ lzero/model/unizero_model.py                       |   5 +-
+ lzero/policy/alphazero.py                          |  14 +-
+ lzero/worker/muzero_evaluator.py                   |   6 +-
+ play_connect4.py                                   | 111 +++
+ plot_curves.py                                     | 133 +++
+ run_experiment.py                                  | 286 +++++++
+ train_connect4.py                                  | 261 ++++++
+ zoo/board_games/connect4/envs/connect4_env.py      |  12 +
+ 18 files changed, 4312 insertions(+), 15 deletions(-)
+
+commit 3be29ae17452a6fd2d91fe5aea22a757a23e7a69
+Author: Tai An <antai12232931@outlook.com>
+Date:   Thu Oct 15 03:32:08 2026 -0700
+
+    fix(entry): pass the required logger to log_module_trainable_status / log_param_statistics (#503)
+    
+    CurriculumController.step() in train_unizero_multitask_balance_segment_ddp.py calls both
+    helpers without their mandatory `logger` argument, so every curriculum stage switch dies
+    with a TypeError instead of logging the freeze/trainable summary.
+    
+    Use `logging.getLogger()`, matching the reference calls in lzero/entry/utils.py.
+
+ lzero/entry/train_unizero_multitask_balance_segment_ddp.py | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+commit dba67faa19d499d397cde93ac2bb09b67a579dec
+Author: 蒲源 <48008469+puyuan1996@users.noreply.github.com>
+Date:   Thu Oct 15 14:41:29 2026 +0800
+
+    fix(pu): fix respect legal actions in sampled efficientzero/muzero trees (#491)
+    
+    * fix: respect legal actions in sampled efficientzero trees
+    
+    * ci: use direct URL syntax for DI-engine install
+    
+    * fix: respect legal actions in sampled muzero ctree
+
+ .github/workflows/test.yml                         |   2 +-
+ .../ctree_sampled_efficientzero/lib/cnode.cpp      | 125 ++++++++++++---------
+ .../ctree/ctree_sampled_efficientzero/lib/cnode.h  |   3 +-
+ .../mcts/ctree/ctree_sampled_muzero/lib/cnode.cpp  | 112 +++++++++---------
+ lzero/mcts/ptree/ptree_sez.py                      |  55 ++++++---
+ .../mcts/tests/test_ptree_sez_discrete_sampling.py |  97 ++++++++++++++++
+ 6 files changed, 269 insertions(+), 125 deletions(-)
+
+commit 13bc1cbfc44d40901ea49acfa120554491996e21
+Author: xiongjyu <xiongjyu@gmail.com>
+Date:   Mon Sep 21 22:24:35 2026 +0800
+
+    feature(xjy/pu): add unified PriorZero support (#500)
+    
+    * tmp
+    
+    * test(pu): add vit moe test
+    
+    * polish(pu): add adapter_scales to tb
+    
+    * feature(pu): add atari uz balance config
+    
+    * polish(pu): add stable_adaptor_scale
+    
+    * tmp
+    
+    * sync code
+    
+    * polish(pu): use freeze_non_lora_parameters in transformer, not use LearnableScale in balance pipeline
+    
+    * feature(pu): add vit-encoder lora in balance pipeline
+    
+    * polish(pu): fix reanalyze index bug, fix global_solved bug, add apply_curriculum_to_encoder option
+    
+    * polish(pu): add collect/eval_num_simulations option
+    
+    * polish(pu): polish comments and style in entry of scalezero
+    
+    * polish(pu): polish comments and style of ctree/tree_search/buffer/common.py
+    
+    * polish(pu): polish comments and style of files in lzero.model
+    
+    * polish(pu): polish comments and style of files in lzero.model.unizero_world_models
+    
+    * polish(pu): polish comments and style of unizero_world_models
+    
+    * polish(pu): polish comments and style of files in policy/
+    
+    * polish(pu): polish comments and style of files in worker
+    
+    * polish(pu): polish comments and style of files in configs
+    
+    * fix(pu): fix some merge typo
+    
+    * fix(pu): fix ln norm_type, fix kv_cache rewrite bug, add value_priority, fix _reset_collect/eval, add adaptive policy entropy control
+    
+    * fix(pu): fix unizero_mt
+    
+    * polish(pu): add LN in head, polish init_weight, polish adamw
+    weight-decay
+    
+    * fix(pu): fix configure_optimizer_unizero in unizero_mt
+    
+    * feature(pu): add encoder-clip, label smooth, analyze_latent_representation option in unizero.py
+    
+    * feature(pu): add encoder-clip, label smooth option in unizero_multitask.py
+    
+    * fix(pu): fix tb log when gpu_num<task_num, fix total_loss += bug, polish
+    alpha_loss
+    
+    * polish(pu):polish config
+    
+    * fix(pu): fix encoder-clip bug and num_channel/res bug
+    
+    * polish(pu): polish scale_factor in DPS
+    
+    * tmp
+    
+    * feature(pu): add priorzero test version
+    
+    * polish(pu): polish by claude code
+    
+    * polish(pu): polish by claude code again
+    
+    * fix(pu): add some debug logs, fix action_inv_map and fix vllm uasage
+    
+    * fix(pu): fix some data type bug
+    
+    * fix(pu): fix some type bugs
+    
+    * feature(pu): add async pipeline support, add off_policy_degree option
+    
+    * fix(pu): fix priorzero monitor vars
+    
+    * fix(pu): fix mask_padding, obs_shape, polish cot prompts
+    
+    * feature(pu): add priorzero_orz_pipeline
+    
+    * fix(pu): fix vllm engine in priorzero_orz_pipeline
+    
+    * fix(pu): fix rft/sft loss, fix raw_obs_text process
+    
+    * polish(pu): delete unused files
+    
+    * polish(pu): delete unused files
+    
+    * Fix game_segment/weighted_total_loss bugs and refine prompts, compute_llm_prior, and SFT loss
+    
+    * Fixed the accumulate_steps bug and added cprofile functionality.
+    
+    * Refine the code and fix the bug in data collection.
+    
+    * Add REINFORCE-style losses and store old_logprob in the buffer.
+    
+    * Fix the get_llm_prior bug so that every action receives a logprob
+    
+    * fixed the history bug in the build_llm_prompt and logs in forward_learn
+    
+    * rename advantage_tensor on rft
+    
+    * Fixed the action out-of-bounds bug and added a record for forward_collect to cprofile.
+    
+    * Fixed the misalignment between old_log_prob and log_prob, and corrected the REINFORCE-series loss computation.
+    
+    * add some logs for analysying
+    
+    * Polish the code and standardize the format.
+    
+    * Add kL divergence in rft and llm_prior_entropy in collect
+    
+    * polish config and format
+    
+    * delete unused files
+    
+    * Decouple the training of world_model and LLM.
+    
+    * add cache in the jericho
+    
+    * Separate sync and async entry points to simplify the program.
+    
+    * Reference OpenRLHF’s implementation to update vLLM weights in real time. Single-GPU works; multi-GPU not tested yet.
+    
+    * delete unused orz files
+    
+    * fix a small bug
+    
+    * Fix action='go' bug; optimize replay buffer with larger capacity; sample for world-model training; train LLM only on latest trajectories
+    
+    * fix a bug
+    
+    * Optimized log-probability computation for the CoT setting.
+    
+    * polish and format file
+    
+    * Improve single/multi-process LLM training with DeepSpeed
+    
+    * fix the vllm bug when using torchrun
+    
+    * fix the fork bug and polish the vllm about sleep
+    
+    * Optimized efficiency and added multiple ways to calculate advantage.
+    
+    * limit the ouput length when using vllm
+    
+    * polish(pu): add cot-reuse in training, use running-norm in value, polish sys-template and max-gen-length, use k3 kl and batch_size=128
+    
+    * fix(pu): fix some bugs in reuse-collect-cot in training phase
+    
+    * polish configs and format
+    
+    * delete unuse config
+    
+    * fix not found go bug
+    
+    * fix the misalignment bug when reusing cot
+    
+    * make the prompt more compact
+    
+    * add lr warmup
+    
+    * add warmup for training world model before training llm and AdaptiveValueNormalizer
+    
+    * polish the implementation of profile
+    
+    * fix a small bug
+    
+    * add profile of forward_collect
+    
+    * add format reward option and fix the cot gradient
+    
+    * rename kl/clip-ratio metrics
+    
+    * Optimize the use of format rewards
+    
+    * polish the format
+    
+    * Add a complete DDP program, including the process of collect and world_model/llm training.
+    
+    * fix some small bugs
+    
+    * add the result of valid_actions's prob in vllm_output and samples shuffle and some fine-grained metrics
+    
+    * add the policy model for reload/offload func
+    
+    * fix a bug
+    
+    * Fixed a bug in the advantage feature and used target_value-pred_value as the advantage value.
+    
+    * Optimize parameter definitions and off-policy's implementation
+    
+    * fix a small bug
+    
+    * fix a small bug
+    
+    * Optimize essential logging; add grad norm metrics; record metrics as averages over parameter updates; add NaN debug logs; enable LLM checkpoint saving.
+    
+    * fix a small bug
+    
+    * Fix a bug; refactor LLM prompts into system/user roles; improve CoT outputs.
+    
+    * add input/response length metrics and envstep-based tb_logger for learner_llm
+    
+    * add llm_prior_tempearture to apply_temperature_scaling for llm_prior
+    
+    * Fixed bugs in prefix_cot & padding and aligned the input contexts of policy_model and vllm.
+    
+    * Remove the logits_to_keep parameter and add metrics such as entropy.
+    
+    * tmp
+    
+    * refine some log
+    
+    * feature(pu): add init image-based/vlm version of priorzero
+    
+    * fix(pu): fix vlm_engine.py
+    
+    * polish some config
+    
+    * Fixed the bug caused by fmt_weight  being 1
+    
+    * delete unused file
+    
+    * tmp
+    
+    * fix score, action_str, and timestep_dict bug, and add 3 modes of PriorZeroEvaluator including WM, WM_LLMPrior, and LLMPrior
+    
+    * fix(pu): fix tb log in priorzero_evaluator.py
+    
+    * fix(pu): fix vision token in prompts in vlm settings
+    
+    * feature(pu): adapt prior_generator.py to support priorzero training in vlm setting
+    
+    * polish(pu): polish logs
+    
+    * polish(pu): polish logs
+    
+    * test(pu): add priorzero pong test config
+    
+    * fix self.history_buffer bug and refine logs
+    
+    * fix some bug when running unizero
+    
+    * fix a bug in evaluator and add enable_rft/wm to control what models need to be trained
+    
+    * add bash scripts to run priorzero and format files
+    
+    * tmp
+    
+    * add priorzero README.md
+    
+    * refine cot prefix and add mcts_root_logits_dict
+    
+    * tmp
+    
+    * add user_prompt_dict to control user_prompt about reward/valid_action(valid_action not completed)
+    
+    * fix the bug of pretrained_model and some small bugs
+    
+    * fix the evaluator_env_num when steping into the _init_eval
+    
+    * Add configuration and adaptation code for alternating LLM and WM training.
+    
+    * adapter the wm to load pretrained weight
+    
+    * rename the log_name in scripts
+    
+    * polish alternate configuration and add eval_episode_log
+    
+    * fix the env_id bug in mcts_info
+    
+    * sync global_step in priorzero_trainer
+    
+    * add adaptive mode for llm/wm policy
+    
+    * fix the bug that llm_weight could less 0
+    
+    * merge pr-474: reset parent_q per batch element in batch_traverse
+    
+    * output llm_weight in collect log and optimizer the way of llm_plus_wm_logits
+    
+    * add llm_sft code
+    
+    * format _collect/eval suffix in the unizero
+    
+    * tmp
+    
+    * Fixed the bug where use_cot was False and added a function to clear value_norm.
+    
+    * fix llm_weight bug in priorzero_policy and polish run_priorzero_ddp.sh
+    
+    * Fixed a deadlock bug that occurred when saving LLM weights while running DDP files.
+    
+    * add lora and statistics on data duplication rate
+    
+    * set the advantage_batch_norm  and llm_plus_wm_logits to default
+    
+    * tmp
+    
+    * fix a bug in priorzero_collector for env_id misalignment and  a bug in last_pos_in_transition
+    
+    * Optimize the data sampling process for LLM training
+    
+    * fix the bug in run_ddp
+    
+    * Several bugs were fixed and vllm parameters were adjusted.
+    
+    * Add `old_action_logprob` and `rollout_action_logprob` to fix the bug related to the `approx_kl` exception.
+    
+    * fix a small bug to prevent OOM
+    
+    * optimizer priorzero_entry_ddp and add unique samples for make_llm_samples
+    
+    * Add torch.cuda.empty_cache() after fetch_latest_batch to prevent OOM
+    
+    * fix a small bug
+    
+    * feature/fix(pu): fix priorzero-vl, add init version of run_priorzero_vlm_lunarlander.sh
+    
+    * polish(pu): rename vlm to vl, polish file structure
+    
+    * fix(pu): fix some bugs in pipeline of run_priorzero_vl_lunarlander.sh
+    
+    * polish(pu): optimize vlm prompt and config
+    
+    * polish(pu): polish eval and config in run_priorzero_vl_lunarlander.sh pipeline
+    
+    * polish(pu): polish prompts and args
+    
+    * Expand the range of pos_in_game_segment and add gradient weights for cot_prefix.
+    
+    * fix(pu): fix sampling-params, fix add-sample to buffer, polish logs
+    
+    * fix(pu): fix raw_obs_text name bug in priorzero_collector_unified.py, use timestep in game_history
+    
+    * for llm train, collector only to collect data without mcts+wm
+    
+    * prevent OOM when running ddp
+    
+    * fix(pu): fix tb, polish prompt, fix timestep in game_history
+    
+    * fix a bug when arriving llm phase and collect process
+    
+    * polish(pu): add some monitor metrics in tb
+    
+    * remove the pure-llm to collect, add pure-wm to collect when running llm-train; add MIS-PO
+    
+    * rename exp_name
+    
+    * fix(pu): fix lunarlander prompts, fix vl_engine
+    
+    * polish(pu): add vlm_image_mode option in lunarlander-image priorzero
+    
+    * fix some inportant bugs to prevent Nan
+    
+    * feature(pu): add lunarlander_image_unizero_config.py
+    
+    * tmp
+    
+    * polish the process of llm's training samples
+    
+    * polish(pu): polish lunarlander config
+    
+    * feature(pu): add cot_weight option in priorzero-vl
+    
+    * fix(pu): mcts-action bug in priorzero-vl, add eval_vl_prior and run_prior_ablation scripts
+    
+    * fix(pu): fix  return in muzero_evaluator.py for lunarlander_image_unizero_config.py
+    
+    * polish evaluator log and eval_freq
+    
+    * tmp
+    
+    * add advantage_global_batch_norm
+    
+    * tmp
+    
+    * delete unused files and configs
+    
+    * fix(pu): polish lunarlander_image_unizero_config, fix logprob in priorzero-vl
+    
+    * fix(pu): add logprob_extraction_mode to support two modes: exact and approximate
+    
+    * add valid_actions to prompt
+    
+    * fix a bug when valid_actions is greater max_action_nums in evaluating wm_llm_prior
+    
+    * fix a bug when zork1 encounter the emulator halted
+    
+    * fix zork1 stucking the step() using timeout judgment
+    
+    * fix a bug
+    
+    * fix timeout bug when running zork1
+    
+    * tmp
+    
+    * fix(pu): fix jericho c timeout bug
+    
+    * fix the bug duing to zork1
+    
+    * add llm_no_collect mode
+    
+    * docs(priorzero): 补充Atari等vision环境改进方向
+    
+    * delete unused files
+    
+    * polish(pu): polish lunarlander-image uz config
+    
+    * polish(pu): polish lunarlander-image related code
+    
+    * tmp
+    
+    * feature(pu): add babyai env and related priorzero configs
+    
+    * fix(pu): fix babyai return
+    
+    * feature(pu): add textcraft env and configs
+    
+    * add llm as policy and rlft ablations
+    
+    * polish(pu): Align BabyAI config with ScalingInter-RL: multi-task 40 levels, per-level eval logging
+    
+      - Switch from single-task to multi-task training/eval across all 40 BabyAI levels
+      - Add per-level TensorBoard logging in evaluator (WM+LLMPrior and LLMPrior modes)
+      - Run initial evaluation before training loop starts
+      - Align hyperparams: max_steps=20, prompt_max_len=512, model=qwen2.5-7b
+      - Increase eval intervals (wm: 2000, llm: 200) for 40-level multi-task
+    
+      Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+    
+    * fix(pu): Fix BERT 1D tensor crash in eval, align BabyAI to 18 ScalingInter-RL levels
+    
+    - Add 1D→2D unsqueeze guard in tokenizer and HFLanguageRepresentationNetwork
+      to prevent BERT ValueError when batch dim is missing during evaluation
+    - Correct task list from 40 to 18 levels based on HF AgentGym-RL-Data-ID dataset
+      (levels: 1-11, 19-21, 30-31, 33, 36)
+    - Increase evaluator_env_num from 2 to 8 for ~4x faster multi-task eval
+    
+    Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+    
+    * add qwen as backbone
+    
+    * fix(pu): TP-pair drain in collector/eval, structured logging, eval-trajectory dump
+    
+      - Add _should_continue_collect + drain_vllm_iter to PriorZeroCollector to
+        fix the vLLM-TP deadlock that hung _sync_prompts_for_tp when DDP ranks
+        finished episodes at different step counts (mirrors the existing eval fix)
+      - Add _sync_prompts_for_tp / drain_vllm_iter in DataProcessor: all_gather
+        prompts over the TP subgroup so partners submit matched vllm.generate
+        calls; required for any vllm_tensor_parallel_size > 1 with DDP > 1
+      - Introduce setup_priorzero_logging with priorzero.main/train/eval loggers
+        (file + rank-0 console, NullHandler elsewhere); replace scattered
+        loguru/print calls in entry, trainer, datafactory, vllm worker
+      - Evaluator: dist.barrier between WM and WM_LLMPrior eval, save per-episode
+        eval trajectories as JSON, extend per-level TB stats with mean/std/min/max
+      - MuZero evaluator: add total_finishes hard counter to prevent eval hang
+        when episodes are unevenly distributed across envs
+      - Guards: empty-batch return in UniZeroPolicy._forward_eval, zero-length
+        input return in HFLanguageRepresentationNetwork
+      - BabyAI: bump prompt_max_len 512→4096 to fit obs budget, align
+        evaluator_env_num with eval level count
+    
+      Co-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>
+    
+    * tmp
+    
+    * fix(pu): Fix CUDA OOM in chunked forward by removing hardcoded chunk_size floor, Fix dual CUDA OOM in train→vLLM handoff and large-batch forward pass
+      - Remove `max(micro_train_batch_size, 32)` floor in PolicyModel.forward and
+        ReferenceModel.forward; use micro_train_batch_size directly (2 vs 32),
+        reducing per-chunk logits from ~37 GiB to ~2.3 GiB for Qwen2.5-7B
+      - Remove redundant batch-level .to(device) before chunking loop to avoid
+        duplicating full batch on GPU alongside per-chunk slices
+      - Reduce default micro_train_batch_size from 4 to 2 for 7B model headroom
+    
+      - Reorder offload_states() before _broadcast_to_vllm() in train_batch so
+        DeepSpeed optimizer states are freed to CPU before vLLM wake_up() reclaims
+        ~43 GiB for weights+KV cache (was OOM at cumem_allocator.cpp:62)
+      - Defer logits.to(float32) to training path only (return_entropy=True),
+        avoiding a 42 GiB fp32 allocation during old_action_log_probs forward;
+        bf16 path in log_probs_from_logits already handles numerical stability
+      - Reduce micro_train_batch_size 4→2 in BabyAI config
+    
+      Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+    
+    * fix(pu): Fix LLM eval coverage, stabilize RFT training, add UniZero baseline config
+    
+      - Fix eval_only_llm_prior episode refill: with env_num=4 and n_episode=18,
+        finished envs were never re-added, so only 4 of 18 levels were evaluated.
+        Add refill logic mirroring eval_with_llm_prior to cover all levels.
+      - Reduce format_weight 0.5→0.1 to prevent constant-positive advantage bias
+        from always-correct format rewards causing response length collapse (88→10)
+      - Increase rft_kl_coef 0.001→0.01 and entropy_loss_coef 0→0.01 to anchor
+        policy against drift and entropy collapse
+      - Accept **kwargs in GameSegment.append() so env-specific fields like
+        raw_obs_text pass through without TypeError
+      - Add BabyAI UniZero baseline config (no LLM) with WM hyperparameters
+        aligned to PriorZero for fair ablation comparison
+    
+      Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+    
+    * fix(pu): Unify eval x-axis to env_step, add per-level UniZero evaluator, harden RFT training
+    
+      - Refactor PriorZero evaluator TB logging: unified x-axis (env_step) for
+        all three eval modes (wm_only, wm_llm, llm_only) with new hierarchical
+        tags eval/{mode}/agg/* and eval/{mode}/per_level/*; old tags preserved
+        under deprecated/ prefix for transition
+      - Add env_step-based eval frequency (wm_eval_freq_envsteps,
+        llm_eval_freq_envsteps) to both BabyAI and Jericho configs, with
+        iter-based fallback when set to 0
+      - Remove phase guard on eval_wm_only and eval_llm_only so all three
+        modes run in every phase, enabling consistent cross-phase comparison
+      - Add eval_wm_only() method to PriorZero evaluator with per-level
+        tracking (previously delegated to super().eval() without level info)
+      - Create MuZeroPerLevelEvaluator for UniZero baseline with dual x-axis
+        TB logging (env_step primary, train_iter secondary) and per-level
+        reward breakdown matching PriorZero tag structure
+      - Add KL early stopping in BatchPPOTrainer: skip remaining gradient
+        updates when ref_kl exceeds kl_early_stop_threshold (default 0 =
+        disabled)
+      - Replace hard assert with warning + filter in DataProcessor for
+        tokenizer round-trip mismatches to avoid training crashes
+      - Tune BabyAI RFT hyperparams: format_weight 0.1→0.3, rft_kl_coef
+        0.01→0.1, entropy_loss_coef 0.01→0.001, replay_buffer 300k→500k,
+        collect_num_simulations 50→25
+    
+      Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
+    
+    * fix(pu): fix babyai_env.py
+    
+    * tmp
+    
+    * merge babyai-textcraft and align priorzero
+    
+    * fix a bug due to merge vl-branch
+    
+    * integrate visual PriorZero support
+    
+    * move PriorZero to shared zoo package
+    
+    * fix: stabilize Jericho UniZero text initialization
+    
+    * fix(unizero): correct collection count and scalar logging
+    
+    * refactor(priorzero): organize project structure
+    
+    * refactor(priorzero): consolidate training configs
+    
+    * fix(priorzero): align DDP runtime with upstream
+    
+    * fix(priorzero): stabilize debug training and evaluation
+    
+    * fix(priorzero): avoid duplicate DDP evaluation
+    
+    * fix(priorzero): correct DDP sampling and collector stats
+    
+    * fix(priorzero): stabilize visual training pipeline
+    
+    ---------
+    
+    Co-authored-by: puyuan <puyuan1996@qq.com>
+    Co-authored-by: zjowowen <zjowowen@outlook.com>
+    Co-authored-by: 蒲源 <2402552459@qq.com>
+    Co-authored-by: jasper <1157507000@qq.com>
+    Co-authored-by: root <root@pu-dev-stxh9-584630-worker-0.puyuan.ailab-rlinfra.svc.pjlab.local>
+    Co-authored-by: Claude Opus 4.6 <noreply@anthropic.com>
+    Co-authored-by: 蒲源 <48008469+puyuan1996@users.noreply.github.com>
+
+ .gitignore                                         |    6 +-
+ lzero/entry/train_unizero.py                       |    9 +-
+ lzero/entry/utils.py                               |   73 ++
+ lzero/mcts/buffer/__init__.py                      |    1 +
+ lzero/mcts/buffer/game_buffer.py                   |    8 -
+ lzero/mcts/buffer/game_buffer_muzero.py            |   22 +-
+ lzero/mcts/buffer/game_buffer_priorzero.py         |  541 ++++++++
+ lzero/mcts/buffer/game_buffer_unizero.py           |    1 +
+ lzero/mcts/buffer/game_segment.py                  |    1 +
+ .../mcts/ctree/ctree_sampled_muzero/lib/cnode.cpp  |    1 +
+ lzero/mcts/tree_search/mcts_ctree.py               |    1 +
+ lzero/mcts/tree_search/mcts_ctree_sampled.py       |    1 +
+ lzero/mcts/utils.py                                |  198 ++-
+ lzero/model/common.py                              |  277 ++--
+ lzero/model/unizero_model.py                       |   35 +-
+ lzero/model/unizero_world_models/hf_transformer.py |   86 ++
+ lzero/model/unizero_world_models/test_moe.py       |  200 +++
+ lzero/model/unizero_world_models/tokenizer.py      |   10 +-
+ lzero/model/unizero_world_models/world_model.py    |  131 +-
+ lzero/policy/scaling_transform.py                  |   14 +-
+ lzero/policy/unizero.py                            |   18 +-
+ lzero/policy/utils.py                              |    4 +
+ lzero/worker/muzero_evaluator.py                   |   10 +-
+ requirements.txt                                   |    1 +
+ zoo/atari/config/atari_muzero_segment_config.py    |    3 +-
+ zoo/atari/config/atari_rezero_mz_config.py         |    3 +
+ zoo/atari/config/atari_unizero_ddp_config.py       |    8 +
+ zoo/babyai/__init__.py                             |    0
+ .../configs/babyai_unizero_segment_config.py       |  225 ++++
+ zoo/babyai/priorzero/README.md                     |   51 +
+ zoo/babyai/priorzero/__init__.py                   |    0
+ zoo/babyai/priorzero/envs/__init__.py              |    0
+ zoo/babyai/priorzero/envs/babyai_env.py            |  399 ++++++
+ zoo/babyai/priorzero/envs/test_babyai_env.py       |   20 +
+ zoo/babyai/priorzero/scripts/run_priorzero_ddp.sh  |   68 +
+ zoo/babyai/priorzero/scripts/test_1gpu.sh          |    7 +
+ zoo/babyai/priorzero/src/priorzero_config.py       |  450 +++++++
+ zoo/babyai/priorzero/src/priorzero_datafactory.py  |   87 ++
+ .../priorzero/src/priorzero_entry_sync_ddp.py      |  349 +++++
+ .../config/lunarlander_image_unizero_config.py     |  254 ++++
+ .../lunarlander/envs/lunarlander_image_env.py      |  157 +++
+ .../dmc2gym_pixels_sampled_unizero_config.py       |  132 ++
+ zoo/dmc2gym/config/dmc2gym_state_smz_config.py     |    2 +-
+ zoo/jericho/configs/jericho_ppo_config.py          |    4 +-
+ zoo/jericho/configs/jericho_unizero_config.py      |   32 +-
+ zoo/jericho/configs/jericho_unizero_ddp_config.py  |   12 +-
+ .../configs/jericho_unizero_qwen_ddp_config.py     |  214 +++
+ .../configs/jericho_unizero_segment_config.py      |    6 +-
+ zoo/jericho/envs/jericho_env.py                    |  255 +++-
+ zoo/jericho/llm_sft.py                             |  824 ++++++++++++
+ .../config/mujoco_sampled_efficientzero_config.py  |    4 +-
+ zoo/priorzero/README.md                            |  210 +++
+ zoo/priorzero/configs/__init__.py                  |    1 +
+ .../configs/jericho_priorzero_ddp_config.py        |  283 ++++
+ .../configs/lunarlander_priorzero_vl_ddp_config.py |  289 ++++
+ zoo/priorzero/src/README.md                        |  593 +++++++++
+ zoo/priorzero/src/ablation/__init__.py             |    1 +
+ .../src/ablation/llm_as_policy/__init__.py         |    1 +
+ .../ablation/llm_as_policy/run_llm_as_policy.py    |  334 +++++
+ .../ablation/llm_as_policy/run_llm_as_policy.sh    |   31 +
+ .../src/ablation/llm_as_policy_legacy/__init__.py  |    1 +
+ .../llm_as_policy_legacy/run_llm_as_policy.py      |  334 +++++
+ .../llm_as_policy_legacy/run_llm_as_policy.sh      |   31 +
+ zoo/priorzero/src/ablation/rlft/__init__.py        |    1 +
+ zoo/priorzero/src/ablation/rlft/local_ppo.py       |  453 +++++++
+ zoo/priorzero/src/ablation/rlft/run_rlft.py        |  832 ++++++++++++
+ zoo/priorzero/src/ablation/rlft/run_rlft.sh        |   46 +
+ zoo/priorzero/src/ablation/vl_prior/__init__.py    |    1 +
+ .../src/ablation/vl_prior/eval_vl_prior.py         |  344 +++++
+ .../src/ablation/vl_prior/run_prior_ablation.sh    |  242 ++++
+ zoo/priorzero/src/game_segment_priorzero.py        |  207 +++
+ zoo/priorzero/src/models/actor.py                  |  641 +++++++++
+ zoo/priorzero/src/models/loss.py                   |  159 +++
+ zoo/priorzero/src/models/stability_optimizer.py    |  156 +++
+ zoo/priorzero/src/prior_generator.py               | 1377 ++++++++++++++++++++
+ zoo/priorzero/src/priorzero_collector.py           |  846 ++++++++++++
+ zoo/priorzero/src/priorzero_config.py              |  479 +++++++
+ zoo/priorzero/src/priorzero_datafactory.py         |  906 +++++++++++++
+ zoo/priorzero/src/priorzero_entry_sync.py          |  376 ++++++
+ zoo/priorzero/src/priorzero_entry_sync_ddp.py      |  483 +++++++
+ zoo/priorzero/src/priorzero_evaluator.py           |  629 +++++++++
+ zoo/priorzero/src/priorzero_policy.py              |  541 ++++++++
+ zoo/priorzero/src/priorzero_trainer.py             |  220 ++++
+ zoo/priorzero/src/strategy/deepspeed.py            |  644 +++++++++
+ zoo/priorzero/src/utils/__init__.py                |  230 ++++
+ zoo/priorzero/src/utils/atari_action_meanings.py   |  187 +++
+ zoo/priorzero/src/vl_config.py                     |  691 ++++++++++
+ zoo/priorzero/src/vl_engine.py                     |  700 ++++++++++
+ zoo/priorzero/src/vllm_utils/vl_engine.py          |  256 ++++
+ zoo/priorzero/src/vllm_utils/vllm_engine.py        |   85 ++
+ zoo/priorzero/src/vllm_utils/worker.py             |   23 +
+ zoo/textcraft/__init__.py                          |    0
+ zoo/textcraft/priorzero/README.md                  |   37 +
+ zoo/textcraft/priorzero/__init__.py                |    0
+ zoo/textcraft/priorzero/envs/__init__.py           |    0
+ zoo/textcraft/priorzero/envs/textcraft_env.py      |  367 ++++++
+ .../priorzero/scripts/run_priorzero_ddp.sh         |   49 +
+ zoo/textcraft/priorzero/scripts/test_1gpu.sh       |    7 +
+ zoo/textcraft/priorzero/src/__init__.py            |    0
+ zoo/textcraft/priorzero/src/priorzero_config.py    |  403 ++++++
+ .../priorzero/src/priorzero_datafactory.py         |   90 ++
+ .../priorzero/src/priorzero_entry_sync_ddp.py      |  338 +++++
+ 102 files changed, 20156 insertions(+), 214 deletions(-)
+
+commit 9ccf29b3c2174f65e06d21c3d0c51dc76853f37f
+Author: 蒲源 <48008469+puyuan1996@users.noreply.github.com>
+Date:   Fri Aug 28 15:25:58 2026 +0800
+
+    fix(pu): Align Atari segment replay, targets, and KV lifecycle in UniZero (#501)
+    
+    * fix(pu): Harden UniZero Atari segment configs and replay lifecycle
+    
+    - Split the concise stable segment baseline from the experimental launcher while preserving async launch helpers
+    - Add max-env-step and collect-temperature overrides with validated reanalysis compatibility defaults
+    - Preserve per-env in-flight segments across collection boundaries and track real transitions before bootstrap padding
+    - Align replay priorities, sampling indices, and retention with real transition counts for PER-on GSL200 runs
+    - Add focused config, resume, collector lifecycle, and game-buffer regression coverage
+    
+    * feat(pu): UniZero MsPacman best config and segment training hardening
+    
+    Stabilize UniZero Atari segment training: replay lifecycle, KV cache
+    rebuild/eviction, optional eval-cache isolation, Pong regression gates,
+    and storage-resilient checkpointing.
+    
+    Record the 2026-08 MsPacman 3M matrix outcome: v3 (historical best
+    recipe with value_loss_weight=0.5) is the best arm. The stable
+    atari_unizero_segment_config.py carries the recipe without experimental
+    mechanisms; atari_unizero_segment_experimental_config.py keeps the full
+    knob set with v3 defaults. Add the v3-only 3M launcher, checkpoint
+    discovery/kill-check tooling, and the experiment report.
+    
+    * fix(pu): Decouple UniZero random shifts and align Atari experiment defaults
+    
+    - Sample random crop offsets per replay item with torch RNG to avoid batch-correlated augmentation and Python RNG interference
+    - Add regression coverage for per-item crops, reproducibility, and RNG isolation
+    - Enable the fixed augmentation path in the stable Atari segment config and label its output runs
+    - Restore baseline defaults and self-describing run names in the experimental config while passing the full v3 recipe explicitly from the MsPacman launcher
+    
+    * polish(pu): delete unused files
+    
+    * fix(pu): Align UniZero segment targets and focus training telemetry
+    
+    - Preserve bounded Transformer history across segment boundaries for bootstrap and replay MCTS roots
+    - Exclude masked replay tails from PER and uniform sampling, validate priority updates, and skip invalid reanalysis roots
+    - Make reanalysis context-aligned, exact-batch, validity-aware, and expose actual frequency and target-age diagnostics
+    - Decouple permanent policy smoothing from the numerical stability guard and parameterize segment/TD validation
+    - Gate TensorBoard scalars behind a core whitelist, add --tb-log-all, and report MCTS, segment, health, and eval signals
+    
+    * fix(pu): Prevent UniZero augmentation gradients from starving planning heads
+    
+    - Clip encoder and non-encoder gradients independently for augmented Atari training
+    
+    - Preserve global clipping for baseline runs and expose clipping diagnostics and a CLI override
+    
+    - Restore channel/spatial ordering when building multi-frame replay target windows
+    
+    - Add regression coverage for gradient isolation, target stacking, and augmentation defaults
+    
+    * feat(pu): Add stable UniZero baseline and fixed-augmentation launch modes
+    
+    - Expose augmentation, gradient clipping, and unique run-name options in the stable Atari launcher
+    
+    - Pair no-augmentation runs with global clipping and fixed-augmentation runs with separate encoder clipping
+    
+    - Preserve the current prioritized replay default and encode both A/B variants in output names
+    
+    - Share clipping-mode validation across stable and experimental launchers and add config tests
+    
+    * fix(pu): Restore uniform UniZero baseline defaults
+    
+    - Disable prioritized replay and redundant model-side TD-priority computation by default
+    
+    - Keep augmentation disabled with global clipping for baseline runs
+    
+    - Select separate encoder clipping automatically when --use-augmentation is specified
+    
+    - Rename default output variants to uniform_baseline and uniform_fixed-aug
+    
+    * fix(pu): Vectorize UniZero contexts and track Atari ablations
+    
+    - Batch replay action embeddings and reuse per-trajectory token timelines to remove per-root CUDA/Python overhead without changing contextual targets
+    - Keep encoded history and grouped bootstrap outputs tensorized while preserving exact bounded-context semantics
+    - Encode stability, KV rebuild, reanalysis, bootstrap, OLC, PER, augmentation, and budget settings in default experiment names
+    - Reduce default Atari evaluation to 3 environments every 10k steps for faster training iteration
+    - Ignore local Atari run launchers so cluster control scripts stay outside source tracking
+    - Cover vectorized context equivalence, continuous actions, resolved run naming, and evaluation defaults
+    
+    * chore(pu): Exclude local MsPacman experiment artifacts
+    
+    - Stop tracking temporary analysis and RJob helper scripts under the root scripts directory
+    - Move the execution checklist and 3M experiment report to the ignored local backup/doc_tmp archive
+    - Ignore root-level scripts so local experiment controls stay out of the upstream PR
+    
+    ---------
+    
+    Co-authored-by: root <root@pu-dev-2.puyuan.ailab-narmodel.svc.pjlab.local>
+
+ .gitignore                                         |    3 +-
+ .../tests/test_train_unizero_segment_resume.py     |  155 +++
+ lzero/entry/train_unizero_segment.py               |  195 +++-
+ lzero/mcts/buffer/game_buffer.py                   |  225 +++--
+ lzero/mcts/buffer/game_buffer_muzero.py            |    8 +-
+ lzero/mcts/buffer/game_buffer_sampled_unizero.py   |   22 +-
+ lzero/mcts/buffer/game_buffer_unizero.py           |   87 +-
+ lzero/mcts/buffer/game_segment.py                  |   66 ++
+ .../mcts/tests/test_game_buffer_index_alignment.py |   77 +-
+ lzero/mcts/tests/test_image_transform.py           |   36 +-
+ .../mcts/tests/test_unizero_reanalysis_context.py  |   44 +
+ lzero/mcts/tree_search/mcts_ctree.py               |   12 +
+ lzero/model/image_transform.py                     |   27 +-
+ .../unizero_world_models/reanalysis_context.py     |  133 ++-
+ .../tests/test_variable_length_kv_cache.py         |   99 ++
+ lzero/model/unizero_world_models/utils.py          |   42 +
+ lzero/model/unizero_world_models/world_model.py    |   21 +-
+ .../tests/test_unizero_eval_cache_isolation.py     |   70 +-
+ .../tests/test_unizero_representation_health.py    |   25 +
+ lzero/policy/tests/test_utils.py                   |   21 +-
+ lzero/policy/unizero.py                            |  319 +++++-
+ lzero/policy/utils.py                              |   15 +-
+ lzero/worker/muzero_evaluator.py                   |    3 +
+ lzero/worker/muzero_segment_collector.py           |   90 +-
+ .../test_muzero_segment_collector_inflight.py      |   31 +
+ zoo/atari/config/_atari_unizero_segment_utils.py   |   42 +
+ .../config/atari_unizero_segment_async_config.py   |    2 +-
+ zoo/atari/config/atari_unizero_segment_config.py   |  921 +++++-------------
+ .../atari_unizero_segment_experimental_config.py   | 1012 ++++++++++++++++++++
+ .../tests/test_atari_unizero_segment_config.py     |  230 ++++-
+ 30 files changed, 3130 insertions(+), 903 deletions(-)

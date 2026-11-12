@@ -1,0 +1,14 @@
+[2026-11-12 15:48:03][alphazero_collector.py:354][INFO] collect end:
+episode_count: 48
+envstep_count: 415
+avg_envstep_per_episode: 8.645833333333334
+avg_envstep_per_sec: 9.789378425031767
+avg_episode_per_sec: 1.1322654563892165
+collect_time: 42.39288563396744
+reward_mean: -0.9166666865348816
+reward_std: 0.3996526300907135
+reward_max: 1.0
+reward_min: -1.0
+total_envstep_count: 415
+total_episode_count: 48
+total_duration: 196.49484755068417

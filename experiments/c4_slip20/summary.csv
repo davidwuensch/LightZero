@@ -1,0 +1,7 @@
+algo,mode,run,evals,last_eval_step,games,final_return,best_return,mean_last3,wall_min
+alphazero,bot,alphazero_bot_seed0,20,19033,2456,-0.6,0.2,-0.333,14.3
+alphazero,bot,alphazero_bot_seed1,20,19013,2456,-0.6,0.3,-0.1,14.3
+alphazero,bot,alphazero_bot_seed2,20,19026,2448,-0.1,0.1,-0.1,14.3
+muzero,bot,muzero_bot_seed0,20,19031,2432,-0.6,-0.6,-0.733,23.3
+muzero,bot,muzero_bot_seed1,20,19020,2600,-0.9,-0.6,-0.767,24.7
+muzero,bot,muzero_bot_seed2,20,19023,2384,-0.7,0.0,-0.767,25.5
