@@ -1,0 +1,188 @@
+diff --git a/lzero/model/common.py b/lzero/model/common.py
+index af32c06..4e0f095 100644
+--- a/lzero/model/common.py
++++ b/lzero/model/common.py
+@@ -1196,6 +1196,8 @@ class PredictionNetwork(nn.Module):
+             last_linear_layer_init_zero: bool = True,
+             activation: nn.Module = nn.ReLU(inplace=True),
+             norm_type: str = 'BN',
++            flatten_input_size_for_value_head: Optional[int] = None,
++            flatten_input_size_for_policy_head: Optional[int] = None,
+     ) -> None:
+         """
+         Arguments:
+@@ -1235,8 +1237,10 @@ class PredictionNetwork(nn.Module):
+         self._flatten_input_size_for_value_head = None
+         self._flatten_input_size_for_policy_head = None
+ 
++        # If the flatten sizes are given, build the heads with the right input size; otherwise fall back
++        # to the (placeholder) lazy initialisation below.
+         self.fc_value = MLP_V2(
+-            in_channels=-1, # Placeholder, will be determined at first forward pass
++            in_channels=flatten_input_size_for_value_head or -1,
+             hidden_channels=value_head_hidden_channels,
+             out_channels=output_support_size,
+             activation=activation,
+@@ -1246,7 +1250,7 @@ class PredictionNetwork(nn.Module):
+             last_linear_layer_init_zero=last_linear_layer_init_zero
+         )
+         self.fc_policy = MLP_V2(
+-            in_channels=-1, # Placeholder
++            in_channels=flatten_input_size_for_policy_head or -1,
+             hidden_channels=policy_head_hidden_channels,
+             out_channels=action_space_size,
+             activation=activation,
+@@ -1273,7 +1277,7 @@ class PredictionNetwork(nn.Module):
+         policy_flat = policy_feat.view(policy_feat.size(0), -1)
+ 
+         # Dynamically initialize in_channels on the first forward pass
+-        if self.fc_value.in_channels == -1:
++        if getattr(self.fc_value, 'in_channels', None) == -1:  # nn.Sequential has no in_channels
+             self.fc_value[0].in_features = value_flat.shape[1]
+             self.fc_policy[0].in_features = policy_flat.shape[1]
+             # PyTorch lazy modules handle this better, but this is a manual way.
+diff --git a/lzero/model/muzero_model.py b/lzero/model/muzero_model.py
+index 4828181..4ce5b3e 100644
+--- a/lzero/model/muzero_model.py
++++ b/lzero/model/muzero_model.py
+@@ -166,7 +166,6 @@ class MuZeroModel(nn.Module):
+             norm_type=norm_type
+         )
+         self.prediction_network = PredictionNetwork(
+-            observation_shape,
+             action_space_size,
+             num_res_blocks,
+             num_channels,
+@@ -175,9 +174,8 @@ class MuZeroModel(nn.Module):
+             value_head_hidden_channels,
+             policy_head_hidden_channels,
+             self.value_support_size,
+-            flatten_input_size_for_value_head,
+-            flatten_input_size_for_policy_head,
+-            downsample,
++            flatten_input_size_for_value_head=flatten_input_size_for_value_head,
++            flatten_input_size_for_policy_head=flatten_input_size_for_policy_head,
+             last_linear_layer_init_zero=self.last_linear_layer_init_zero,
+             activation=activation,
+             norm_type=norm_type
+diff --git a/lzero/model/unizero_model.py b/lzero/model/unizero_model.py
+index 35b5347..f1dff54 100644
+--- a/lzero/model/unizero_model.py
++++ b/lzero/model/unizero_model.py
+@@ -89,13 +89,13 @@ class UniZeroModel(nn.Module):
+             self.representation_network = RepresentationNetworkMLP(
+                 observation_shape,
+                 hidden_channels=world_model_cfg.embed_dim,
+-                layer_num=2,
++                num_layers=2,
+                 activation=self.activation,
+                 group_size=world_model_cfg.group_size,
+                 final_norm_option_in_encoder=world_model_cfg.final_norm_option_in_encoder
+             )
+             # TODO: only for MemoryEnv now
+-            self.decoder_network = VectorDecoderForMemoryEnv(embedding_dim=world_model_cfg.embed_dim, output_shape=25)
++            self.decoder_network = VectorDecoderForMemoryEnv(embedding_dim=world_model_cfg.embed_dim, output_dim=25)
+             self.tokenizer = Tokenizer(encoder=self.representation_network,
+                                        decoder=self.decoder_network, with_lpips=False, obs_type=world_model_cfg.obs_type)
+             self.world_model = self._build_world_model(world_model_cfg, self.tokenizer)
+@@ -154,7 +154,6 @@ class UniZeroModel(nn.Module):
+                 encoder_option=encoder_option,
+                 decoder_network_tokenizer=self.decoder_network_tokenizer,
+                 projection=projection,
+-                encoder_option=kwargs['encoder_option']
+             )
+             self.world_model = self._build_world_model(world_model_cfg, self.tokenizer)
+ 
+diff --git a/lzero/policy/alphazero.py b/lzero/policy/alphazero.py
+index 07b2208..b27cab7 100644
+--- a/lzero/policy/alphazero.py
++++ b/lzero/policy/alphazero.py
+@@ -264,7 +264,12 @@ class AlphaZeroPolicy(Policy):
+         """
+         self.collect_mcts_temperature = temperature
+         ready_env_id = list(obs.keys())
+-        init_state = {env_id: obs[env_id]['board'] for env_id in ready_env_id}
++        # The C++ MCTS calls .tobytes() on init_state, so list boards (e.g. Connect Four) must become int32 arrays.
++        init_state = {
++            env_id: np.asarray(obs[env_id]['board'], dtype=np.int32) if isinstance(obs[env_id]['board'], list)
++            else obs[env_id]['board']
++            for env_id in ready_env_id
++        }
+         # If 'katago_game_state' is in the observation of the given environment ID, it's value is used.
+         # If it's not present (which will raise a KeyError), None is used instead.
+         # This approach is taken to maintain compatibility with the handling of 'katago' related parts of 'alphazero_mcts_ctree' in Go.
+@@ -369,7 +374,12 @@ class AlphaZeroPolicy(Policy):
+                 the corresponding policy output in this timestep, including action, probs and so on.
+         """
+         ready_env_id = list(obs.keys())
+-        init_state = {env_id: obs[env_id]['board'] for env_id in ready_env_id}
++        # The C++ MCTS calls .tobytes() on init_state, so list boards (e.g. Connect Four) must become int32 arrays.
++        init_state = {
++            env_id: np.asarray(obs[env_id]['board'], dtype=np.int32) if isinstance(obs[env_id]['board'], list)
++            else obs[env_id]['board']
++            for env_id in ready_env_id
++        }
+         # If 'katago_game_state' is in the observation of the given environment ID, it's value is used.
+         # If it's not present (which will raise a KeyError), None is used instead.
+         # This approach is taken to maintain compatibility with the handling of 'katago' related parts of 'alphazero_mcts_ctree' in Go.
+diff --git a/lzero/worker/muzero_evaluator.py b/lzero/worker/muzero_evaluator.py
+index 71029cd..a46878c 100644
+--- a/lzero/worker/muzero_evaluator.py
++++ b/lzero/worker/muzero_evaluator.py
+@@ -384,8 +384,10 @@ class MuZeroEvaluator(ISerialEvaluator):
+                         dones[env_id] = done
+                         if episode_timestep.done:
+                             self._policy.reset([env_id])
+-                            reward = episode_timestep.info['score']
+-                            saved_info = {'eval_episode_return': episode_timestep.info['score']}
++                            # Atari-style envs report 'score'; board games report 'eval_episode_return'.
++                            info = episode_timestep.info
++                            reward = info['score'] if 'score' in info else info['eval_episode_return']
++                            saved_info = {'eval_episode_return': reward}
+                             if 'episode_info' in episode_timestep.info:
+                                 saved_info.update(episode_timestep.info['episode_info'])
+                             eval_monitor.update_info(env_id, saved_info)
+diff --git a/zoo/board_games/connect4/envs/connect4_env.py b/zoo/board_games/connect4/envs/connect4_env.py
+index 8edbea0..6137f22 100644
+--- a/zoo/board_games/connect4/envs/connect4_env.py
++++ b/zoo/board_games/connect4/envs/connect4_env.py
+@@ -94,6 +94,8 @@ class Connect4Env(BaseEnv):
+         # Set the format of the observation.
+         self.channel_last = cfg.channel_last
+         self.scale = cfg.scale
++        # Flatten the (3, 6, 7) observation to a 126-dim vector (for vector encoders, e.g. UniZero obs_type='vector').
++        self.flatten_observation = cfg.get('flatten_observation', False)
+ 
+         # Set the parameters about replay render.
+         self.screen_scaling = cfg.screen_scaling
+@@ -297,6 +299,7 @@ class Connect4Env(BaseEnv):
+             return timestep
+ 
+     def reset(self, start_player_index: int = 0, init_state: Optional[np.ndarray] = None,
++              katago_policy_init: bool = False, katago_game_state: Any = None,
+               replay_name_suffix: Optional[str] = None) -> dict:
+         """
+         Overview:
+@@ -307,6 +310,9 @@ class Connect4Env(BaseEnv):
+         """
+         if replay_name_suffix is not None:
+             self.replay_name_suffix = replay_name_suffix
++        if isinstance(init_state, (bytes, bytearray)):
++            # The C++ AlphaZero MCTS (alphazero_mcts_ctree) passes the board as raw int32 bytes.
++            init_state = np.frombuffer(init_state, dtype=np.int32)
+         if init_state is None:
+             self.board = [0] * (6 * 7)
+         else:
+@@ -360,6 +366,12 @@ class Connect4Env(BaseEnv):
+             return raw_obs, scale_obs
+ 
+     def observe(self) -> dict:
++        obs = self._observe()
++        if self.flatten_observation:
++            obs["observation"] = obs["observation"].reshape(-1)
++        return obs
++
++    def _observe(self) -> dict:
+         legal_moves = self.legal_actions
+ 
+         action_mask = np.zeros(7, "int8")

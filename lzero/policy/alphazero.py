@@ -264,7 +264,12 @@ class AlphaZeroPolicy(Policy):
         """
         self.collect_mcts_temperature = temperature
         ready_env_id = list(obs.keys())
-        init_state = {env_id: obs[env_id]['board'] for env_id in ready_env_id}
+        # The C++ MCTS calls .tobytes() on init_state, so list boards (e.g. Connect Four) must become int32 arrays.
+        init_state = {
+            env_id: np.asarray(obs[env_id]['board'], dtype=np.int32) if isinstance(obs[env_id]['board'], list)
+            else obs[env_id]['board']
+            for env_id in ready_env_id
+        }
         # If 'katago_game_state' is in the observation of the given environment ID, it's value is used.
         # If it's not present (which will raise a KeyError), None is used instead.
         # This approach is taken to maintain compatibility with the handling of 'katago' related parts of 'alphazero_mcts_ctree' in Go.
@@ -369,7 +374,12 @@ class AlphaZeroPolicy(Policy):
                 the corresponding policy output in this timestep, including action, probs and so on.
         """
         ready_env_id = list(obs.keys())
-        init_state = {env_id: obs[env_id]['board'] for env_id in ready_env_id}
+        # The C++ MCTS calls .tobytes() on init_state, so list boards (e.g. Connect Four) must become int32 arrays.
+        init_state = {
+            env_id: np.asarray(obs[env_id]['board'], dtype=np.int32) if isinstance(obs[env_id]['board'], list)
+            else obs[env_id]['board']
+            for env_id in ready_env_id
+        }
         # If 'katago_game_state' is in the observation of the given environment ID, it's value is used.
         # If it's not present (which will raise a KeyError), None is used instead.
         # This approach is taken to maintain compatibility with the handling of 'katago' related parts of 'alphazero_mcts_ctree' in Go.

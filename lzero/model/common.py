@@ -1196,6 +1196,8 @@ class PredictionNetwork(nn.Module):
             last_linear_layer_init_zero: bool = True,
             activation: nn.Module = nn.ReLU(inplace=True),
             norm_type: str = 'BN',
+            flatten_input_size_for_value_head: Optional[int] = None,
+            flatten_input_size_for_policy_head: Optional[int] = None,
     ) -> None:
         """
         Arguments:
@@ -1235,8 +1237,10 @@ class PredictionNetwork(nn.Module):
         self._flatten_input_size_for_value_head = None
         self._flatten_input_size_for_policy_head = None
 
+        # If the flatten sizes are given, build the heads with the right input size; otherwise fall back
+        # to the (placeholder) lazy initialisation below.
         self.fc_value = MLP_V2(
-            in_channels=-1, # Placeholder, will be determined at first forward pass
+            in_channels=flatten_input_size_for_value_head or -1,
             hidden_channels=value_head_hidden_channels,
             out_channels=output_support_size,
             activation=activation,
@@ -1246,7 +1250,7 @@ class PredictionNetwork(nn.Module):
             last_linear_layer_init_zero=last_linear_layer_init_zero
         )
         self.fc_policy = MLP_V2(
-            in_channels=-1, # Placeholder
+            in_channels=flatten_input_size_for_policy_head or -1,
             hidden_channels=policy_head_hidden_channels,
             out_channels=action_space_size,
             activation=activation,
@@ -1273,7 +1277,7 @@ class PredictionNetwork(nn.Module):
         policy_flat = policy_feat.view(policy_feat.size(0), -1)
 
         # Dynamically initialize in_channels on the first forward pass
-        if self.fc_value.in_channels == -1:
+        if getattr(self.fc_value, 'in_channels', None) == -1:  # nn.Sequential has no in_channels
             self.fc_value[0].in_features = value_flat.shape[1]
             self.fc_policy[0].in_features = policy_flat.shape[1]
             # PyTorch lazy modules handle this better, but this is a manual way.

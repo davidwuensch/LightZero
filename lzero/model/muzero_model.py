@@ -166,7 +166,6 @@ class MuZeroModel(nn.Module):
             norm_type=norm_type
         )
         self.prediction_network = PredictionNetwork(
-            observation_shape,
             action_space_size,
             num_res_blocks,
             num_channels,
@@ -175,9 +174,8 @@ class MuZeroModel(nn.Module):
             value_head_hidden_channels,
             policy_head_hidden_channels,
             self.value_support_size,
-            flatten_input_size_for_value_head,
-            flatten_input_size_for_policy_head,
-            downsample,
+            flatten_input_size_for_value_head=flatten_input_size_for_value_head,
+            flatten_input_size_for_policy_head=flatten_input_size_for_policy_head,
             last_linear_layer_init_zero=self.last_linear_layer_init_zero,
             activation=activation,
             norm_type=norm_type

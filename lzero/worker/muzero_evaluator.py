@@ -384,8 +384,10 @@ class MuZeroEvaluator(ISerialEvaluator):
                         dones[env_id] = done
                         if episode_timestep.done:
                             self._policy.reset([env_id])
-                            reward = episode_timestep.info['score']
-                            saved_info = {'eval_episode_return': episode_timestep.info['score']}
+                            # Atari-style envs report 'score'; board games report 'eval_episode_return'.
+                            info = episode_timestep.info
+                            reward = info['score'] if 'score' in info else info['eval_episode_return']
+                            saved_info = {'eval_episode_return': reward}
                             if 'episode_info' in episode_timestep.info:
                                 saved_info.update(episode_timestep.info['episode_info'])
                             eval_monitor.update_info(env_id, saved_info)

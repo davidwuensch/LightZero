@@ -89,13 +89,13 @@ class UniZeroModel(nn.Module):
             self.representation_network = RepresentationNetworkMLP(
                 observation_shape,
                 hidden_channels=world_model_cfg.embed_dim,
-                layer_num=2,
+                num_layers=2,
                 activation=self.activation,
                 group_size=world_model_cfg.group_size,
                 final_norm_option_in_encoder=world_model_cfg.final_norm_option_in_encoder
             )
             # TODO: only for MemoryEnv now
-            self.decoder_network = VectorDecoderForMemoryEnv(embedding_dim=world_model_cfg.embed_dim, output_shape=25)
+            self.decoder_network = VectorDecoderForMemoryEnv(embedding_dim=world_model_cfg.embed_dim, output_dim=25)
             self.tokenizer = Tokenizer(encoder=self.representation_network,
                                        decoder=self.decoder_network, with_lpips=False, obs_type=world_model_cfg.obs_type)
             self.world_model = self._build_world_model(world_model_cfg, self.tokenizer)
@@ -154,7 +154,6 @@ class UniZeroModel(nn.Module):
                 encoder_option=encoder_option,
                 decoder_network_tokenizer=self.decoder_network_tokenizer,
                 projection=projection,
-                encoder_option=kwargs['encoder_option']
             )
             self.world_model = self._build_world_model(world_model_cfg, self.tokenizer)
 

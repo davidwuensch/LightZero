@@ -94,6 +94,8 @@ class Connect4Env(BaseEnv):
         # Set the format of the observation.
         self.channel_last = cfg.channel_last
         self.scale = cfg.scale
+        # Flatten the (3, 6, 7) observation to a 126-dim vector (for vector encoders, e.g. UniZero obs_type='vector').
+        self.flatten_observation = cfg.get('flatten_observation', False)
 
         # Set the parameters about replay render.
         self.screen_scaling = cfg.screen_scaling
@@ -297,6 +299,7 @@ class Connect4Env(BaseEnv):
             return timestep
 
     def reset(self, start_player_index: int = 0, init_state: Optional[np.ndarray] = None,
+              katago_policy_init: bool = False, katago_game_state: Any = None,
               replay_name_suffix: Optional[str] = None) -> dict:
         """
         Overview:
@@ -307,6 +310,9 @@ class Connect4Env(BaseEnv):
         """
         if replay_name_suffix is not None:
             self.replay_name_suffix = replay_name_suffix
+        if isinstance(init_state, (bytes, bytearray)):
+            # The C++ AlphaZero MCTS (alphazero_mcts_ctree) passes the board as raw int32 bytes.
+            init_state = np.frombuffer(init_state, dtype=np.int32)
         if init_state is None:
             self.board = [0] * (6 * 7)
         else:
@@ -360,6 +366,12 @@ class Connect4Env(BaseEnv):
             return raw_obs, scale_obs
 
     def observe(self) -> dict:
+        obs = self._observe()
+        if self.flatten_observation:
+            obs["observation"] = obs["observation"].reshape(-1)
+        return obs
+
+    def _observe(self) -> dict:
         legal_moves = self.legal_actions
 
         action_mask = np.zeros(7, "int8")
